@@ -941,15 +941,15 @@ body::before {
      ========================================================= -->
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="bar-name" href="../Portfolio v2.html" data-tab="filing">
+    <a class="bar-name" href="/index.html?tab=filing" data-tab="filing">
       <span class="home-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.2L12 4l9 7.2"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>
       Home
     </a>
 
     <nav class="bar-tabs">
-      <a href="../Portfolio v2.html" data-tab="filing"><span class="roman">I.</span>Experience</a>
-      <a href="../Portfolio v2.html" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
-      <a href="../Portfolio v2.html" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
+      <a href="/index.html?tab=filing" data-tab="filing"><span class="roman">I.</span>Experience</a>
+      <a href="/index.html?tab=repos" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
+      <a href="/index.html?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
     </nav>
 
     <a class="bar-next" href="#" aria-disabled="true" title="Coming May 28, 2026">
@@ -1071,7 +1071,7 @@ body::before {
        FOOT NAV — prev article (back to index) + next
        ========================================================= -->
   <nav class="article-foot">
-    <a class="foot-cell" href="../index.html?tab=blog" data-tab="blog">
+    <a class="foot-cell" href="/index.html?tab=blog" data-tab="blog">
       <span class="k">← Back</span>
       <span class="title">All Market Opinions</span>
       <span class="meta">Article index</span>
@@ -1094,7 +1094,7 @@ body::before {
   <span class="right">
     <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
-    <a href="../files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+    <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
   </span>
 </footer>
 
@@ -1108,7 +1108,7 @@ body::before {
 
   <header class="mt-topbar">
     <div class="mt-topbar-inner">
-      <a class="mt-home" href="../index.html?tab=blog" data-tab="blog">
+      <a class="mt-home" href="/index.html?tab=blog" data-tab="blog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         All articles
       </a>
@@ -1146,7 +1146,7 @@ body::before {
       </aside>
 
       <figure class="mt-figure">
-        <img src="../blog/images/jensen-huang.jpg" alt="Nvidia CEO Jensen Huang on stage with a GPU." loading="lazy">
+        <img src="/blog/images/jensen-huang.jpg" alt="Nvidia CEO Jensen Huang on stage with a GPU." loading="lazy">
         <figcaption>
           <span>
             Jensen Huang, Nvidia's founder and CEO.
@@ -1158,7 +1158,7 @@ body::before {
       <p>Among Nvidia's main products are semiconductor chips, crucial to the modern-day AI buildout, and its customers are spending at massive, unprecedented rates. Microsoft, Amazon, Meta, and Google's parent company, Alphabet, have collectively committed to over $600 billion in spending throughout 2026, a rise of approximately 70% from last year, with most of it going toward chips, data center capacity, and related infrastructure <a class="cite" href="#mt-ref-2">(Bratton, 2026)</a>. Because Nvidia controls about 90% of the market for AI chips <a class="cite" href="#mt-ref-3">(Mbachu, 2026)</a>, much of the money firms spend on AI hardware ends up directly in Nvidia's pockets. Therefore, their quarterly revenue is a direct indicator of the momentum and trajectory of the AI boom, a matter pertinent to far more investors than just those holding NVDA.</p>
 
       <figure class="mt-figure">
-        <img src="../blog/images/data-center.jpg" alt="A Google data center hallway in Council Bluffs, Iowa, with colorful fiber-optic cable trays running overhead between rows of server racks." loading="lazy">
+        <img src="/blog/images/data-center.jpg" alt="A Google data center hallway in Council Bluffs, Iowa, with colorful fiber-optic cable trays running overhead between rows of server racks." loading="lazy">
         <figcaption>
           <span>
             A Google data center in Council Bluffs, Iowa.
@@ -1172,7 +1172,7 @@ body::before {
       <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#mt-ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#mt-ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. As a result, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#mt-ref-6">(Shalett, 2023)</a>.</p>
 
       <figure class="mt-figure">
-        <img src="../blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
+        <img src="/blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
         <figcaption>
           <span>
             The New York Stock Exchange during trading hours.
@@ -1216,7 +1216,7 @@ body::before {
     </section>
 
     <nav class="mt-foot">
-      <a class="cell" href="../index.html?tab=blog" data-tab="blog">
+      <a class="cell" href="/index.html?tab=blog" data-tab="blog">
         <span class="k">← Back</span>
         <span class="title">All Market Opinions</span>
         <span class="meta">Article index</span>
@@ -1236,7 +1236,7 @@ body::before {
     <span class="links">
       <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
-      <a href="../files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
     </span>
   </footer>
 

@@ -455,13 +455,13 @@ function Blog() {
           );
         })}
       </div>
-      <a className="featured-article" href="blog/nvidia-earnings-spillover.html">
+      <a className="featured-article" href="/why-you-shouldve-watched-nvidia-earnings-even-if-you-dont-own-the-stock">
         <div className="featured-article-side">
           <span className="featured-article-label" style={{ fontSize: "12px", fontFamily: "Arial" }}>Featured article</span>
           <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 21, 2026</span>
         </div>
         <div className="featured-article-main">
-          <h3 className="featured-article-title">Why you should've watched Nvidia earnings even if you don't own the stock</h3>
+          <h3 className="featured-article-title">Why you should watch Nvidia earnings even if you don't own the stock</h3>
           <p className="featured-article-excerpt">The market always has bellwether stocks. This piece looks at why Nvidia has become one of the clearest examples in the modern day.</p>
           <span className="featured-article-cta" style={{ fontSize: "12px" }}>Read article <span aria-hidden="true" style={{ fontSize: "12px" }}>↗</span></span>
         </div>
@@ -490,8 +490,26 @@ function Colophon() {
 }
 
 // ---------- App ----------
+function initialPortfolioTab() {
+  const validTabs = new Set(['filing', 'repos', 'blog']);
+  const normalize = (value) => {
+    const tab = String(value || '').toLowerCase();
+    if (validTabs.has(tab)) return tab;
+    if (tab === 'iii' || tab === '3' || tab === 'articles' || tab === 'writing' || tab === 'opinions') return 'blog';
+    if (tab === 'ii' || tab === '2' || tab === 'projects') return 'repos';
+    if (tab === 'i' || tab === '1' || tab === 'experience') return 'filing';
+    return null;
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  return normalize(params.get('tab') || params.get('page')) ||
+    normalize(window.location.hash.replace(/^#/, '')) ||
+    normalize(localStorage.getItem('portfolioV2.tab')) ||
+    'filing';
+}
+
 function App() {
-  const [active, setActive] = useState(() => localStorage.getItem('portfolioV2.tab') || 'filing');
+  const [active, setActive] = useState(initialPortfolioTab);
   const [tweaksOn, setTweaksOn] = useState(false);
   useEffect(() => {localStorage.setItem('portfolioV2.tab', active);window.scrollTo({ top: 0 });}, [active]);
   useEffect(() => {

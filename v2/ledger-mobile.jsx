@@ -313,10 +313,10 @@ function MTBlog() {
         })}
       </div>
 
-      <a className="mt-featured" href="blog/nvidia-earnings-spillover.html">
+      <a className="mt-featured" href="/why-you-shouldve-watched-nvidia-earnings-even-if-you-dont-own-the-stock">
         <span className="label">Featured article</span>
         <span className="date">May 21, 2026</span>
-        <h3 className="title">Why you should've watched Nvidia earnings even if you don't own the stock</h3>
+        <h3 className="title">Why you should watch Nvidia earnings even if you don't own the stock</h3>
         <p className="excerpt">The market always has bellwether stocks. This piece looks at why Nvidia has become one of the clearest examples in the modern day.</p>
         <span className="cta">Read article ↗</span>
       </a>
