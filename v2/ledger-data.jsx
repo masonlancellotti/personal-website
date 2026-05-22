@@ -224,7 +224,7 @@ const GOAL_REPOS = [
 ];
 
 const POSTS = [
-  { date: "May 21, 2026", title: "Why you should've watched Nvidia earnings even if you don't own the stock",  excerpt: "With tech stocks dominating the market, megacap earnings reports like Nvidia's have the potential to shift sentiment across AI, semiconductors, and broader indexes, creating a ripple effect that reaches far beyond direct stock exposure.", tags: ["Stock market"], len: "5 min", href: "blog/nvidia-earnings-spillover.html" },
+  { date: "May 21, 2026", title: "Why you should've watched Nvidia earnings even if you don't own the stock",  excerpt: "With tech stocks dominating the market, megacap earnings reports like Nvidia's have the potential to shift sentiment across AI, semiconductors, and broader indexes, creating a ripple effect that reaches far beyond direct stock exposure.", tags: ["Stock market"], len: "5 min", href: "/why-you-shouldve-watched-nvidia-earnings-even-if-you-dont-own-the-stock" },
   { date: "May 28, 2026", title: "The quiet pressure of higher yields", excerpt: "While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.", tags: ["Interest rates"], len: "— min", upcoming: true },
 ];
 
@@ -258,4 +258,6 @@ const FOOTNOTES = [
 ];
 
 Object.assign(window, { REGISTER, SKILLS, TRANSCRIPT, REPOS, GOAL_REPOS, POSTS, INVOLVEMENT, FOOTNOTES });
+
+
 

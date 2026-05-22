@@ -491,9 +491,9 @@ function Colophon() {
 
 // ---------- App ----------
 function App() {
-  const [active, setActive] = useState(() => localStorage.getItem('portfolioV2.tab') || 'filing');
+  const [active, setActive] = useState('filing');
   const [tweaksOn, setTweaksOn] = useState(false);
-  useEffect(() => {localStorage.setItem('portfolioV2.tab', active);window.scrollTo({ top: 0 });}, [active]);
+  useEffect(() => { window.scrollTo({ top: 0 }); }, [active]);
   useEffect(() => {
     const onMsg = (e) => {
       const d = e.data || {};
