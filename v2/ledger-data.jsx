@@ -1,0 +1,260 @@
+// Ledger data + skills + transcript
+
+const REGISTER = [
+  {
+    n: 1, start: "2022-06", end: "2023-03",
+    period: "Jun '22 – Mar '23",
+    kind: "Work",
+    org: "Mathnasium",
+    role: "Math Instructor",
+    place: "Haymarket, VA",
+    coords: "38.81°N, 77.64°W",
+    note: "First paid role. Taught varying levels of math at a tutoring center. Served as my introduction into the professional world.",
+    bullets: [
+      "Taught 30+ K-12 students through structured sessions and one-on-one homework help.",
+      "Introduced study techniques and problem-solving strategies to build retention and academic confidence.",
+      "Wrote personalized learning plans with regular parent check-ins, with ~90% of students finishing the semester with higher grades."
+    ],
+    stat: { v: "30", sub: "+", label: "students", fn: 4 },
+    photo: null,
+    link: { href: "https://www.mathnasium.com/math-centers/haymarket", label: "Mathnasium Haymarket" },
+    fn: 1,
+    future: false,
+    duration: "10 mos."
+  },
+  {
+    n: 2, start: "2024-05", end: "2025-08",
+    period: "May '24 – Present",
+    kind: "Work",
+    org: "Life Time Fitness",
+    role: "Lifeguard",
+    place: "Gainesville, VA",
+    coords: "38.79°N, 77.61°W",
+    note: "Returning seasonal employee for three summers. Undergone repeated certifications and training. Bolstered my client communication skills.",
+    bullets: [
+      "Monitored pool activities and proactively enforced safety guidelines to prevent accidents.",
+      "Administered first aid on 4 separate occasions, coordinating directly with police and EMS.",
+      "Collaborated with management on aquatics events and served 300+ members daily, resolving issues on the deck."
+    ],
+    stat: { v: "4", sub: "", label: "emergency responses", fn: 5 },
+    photo: null,
+    link: { href: "https://my.lifetime.life/clubs/va/gainesville/programs/swim.html", label: "Life Time Gainesville" },
+    fn: 2,
+    future: false,
+    duration: "Ongoing"
+  },
+  {
+    n: 3, start: "2024-01", end: null,
+    period: "Jan '24 – Present",
+    kind: "Leadership",
+    org: "Emory Club Swimming",
+    role: "Head Captain",
+    place: "Atlanta, GA",
+    coords: "33.79°N, 84.32°W",
+    note: "The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
+    bullets: [
+      "Design and lead 4 practices per week for 10–20 swimmers across every skill level.",
+      "Balance technique work for new swimmers with endurance training for more experienced swimmers in the same session.",
+      "Coordinate logistics for 6 out-of-state meets per year, managing itineraries, lodging, transportation, and budgeting with the club sports office."
+    ],
+    stat: { v: "6", sub: "/yr", label: "out-of-state meets", fn: 6 },
+    photo: null,
+    photos: ["v2/swim-1.jpg", "v2/swim-2.jpg", "v2/swim-3.jpg", "v2/swim-4.jpg", "v2/swim-5.jpg"],
+    fn: 3,
+    future: false,
+    duration: "Ongoing"
+  },
+  {
+    n: 4, start: "2025-06", end: "2025-08",
+    period: "Jun '25 – Aug '25",
+    kind: "Internship",
+    org: "RBmedia",
+    role: "Marketing Intern",
+    place: "Landover, MD",
+    coords: "38.93°N, 76.87°W",
+    note: "First time in a professional setting with a business context. Opened my eyes to the utility of data and how invaluable of a tool it can be for almost any task or goal, no matter how seemingly unrelated it is to math or analytics.",
+    bullets: [
+      "Compiled monthly and quarterly sales reports on 2,500+ Audible and Spotify audiobook titles.",
+      "Visualized trends with tables and graphs that guided executive decision-making on future titles.",
+      "Assisted in rolling out an automated posting workflow across 12 social media accounts, supervising the first ~1,800 uploads and diagnosing technical issues in real time."
+    ],
+    stat: { v: "2,500", sub: "+", label: "titles tracked", fn: 7 },
+    photo: null,
+    link: { href: "https://rbmediaglobal.com/", label: "RBmedia" },
+    fn: 4,
+    future: false,
+    duration: "3 mos."
+  },
+  {
+    n: 5, start: "2025-09", end: null,
+    period: "Sep '25 – Present",
+    kind: "Leadership",
+    org: "Emory Economics Department",
+    role: "Student Tutor",
+    place: "Atlanta, GA",
+    coords: "33.79°N, 84.32°W",
+    note: "Invited to the program through a GPA-based selection process. Fellow students can reach out to me for independent, paid tutoring when in need of homework help or clarity on tricky concepts.",
+    bullets: [
+      "Offer one-on-one instruction in micro/macroeconomics, data science, and computer science.",
+      "Build comprehensive review guides and exam-based timelines from each course's syllabus.",
+      "Run 3–5 sessions per week on content mastery, problem sets, and test strategy, looping in professors and TAs when needed to clarify solution methods."
+    ],
+    stat: { v: "60", sub: "/800", label: "selection ratio", fn: 9 },
+    photo: null,
+    link: { href: "https://economics.emory.edu/undergraduate/econ-dept-opportunities/tutoring.html", label: "Emory Econ Tutoring" },
+    fn: 5,
+    future: false,
+    duration: "Ongoing"
+  }
+];
+
+// Skills — pulled directly from resume, in the order listed there
+const SKILLS = [
+  // Expert
+  { skill: "Python",                 level: "Expert",       n: 5, applied: "Linear Algebra, Econometrics, Machine Learning, trading programs" },
+  { skill: "Excel",                  level: "Expert",       n: 5, applied: "RBmedia sales reports, Accounting: The Language of Business, financial models, operations optimization" },
+  { skill: "AI tools",               level: "Expert",       n: 5, applied: "RBmedia advertising, coding, daily process automation, research, data cleaning" },
+  { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, class presentations, consulting case decks" },
+  // Advanced
+  { skill: "Java",                   level: "Advanced",     n: 4, applied: "Intro CS, Data Structures and Algorithms" },
+  { skill: "Statistical modeling",   level: "Advanced",     n: 4, applied: "Econometric regression, constrained optimization, financial data analysis" },
+  { skill: "Corporate finance",      level: "Advanced",     n: 4, applied: "Firm valuation, risk-return analysis, stock pitches" },
+  // Proficient
+  { skill: "SQL",                    level: "Proficient",   n: 3, applied: "Database Systems, trading programs" },
+  { skill: "AWS",                    level: "Proficient",   n: 3, applied: "Portfolio website backend/frontend deployment, trading programs, Docker and GitHub integration" },
+  { skill: "JavaScript",             level: "Proficient",   n: 3, applied: "Portfolio website creation" },
+  { skill: "HTML",                   level: "Proficient",   n: 3, applied: "Portfolio website creation" },
+  { skill: "Accounting principles",  level: "Proficient",   n: 3, applied: "Accounting: The Language of Business, Corporate Finance, stock pitches" },
+  // Intermediate
+  { skill: "Tableau",                level: "Intermediate", n: 2, applied: "Process & Systems Management projects, dashboard creation for trading program monitoring/troubleshooting" },
+  { skill: "API integration",        level: "Intermediate", n: 2, applied: "Portfolio website backend development, trading programs" },
+  { skill: "Web scraping",           level: "Intermediate", n: 2, applied: "Trading programs, market research, public sentiment tracking" },
+  // Elementary
+  { skill: "Power BI",               level: "Elementary",   n: 1, applied: "Econometrics" },
+  { skill: "R",                      level: "Elementary",   n: 1, applied: "Data Science for Economists, Econometrics" },
+  // Languages
+  { skill: "Spanish",                level: "Proficient",   n: 3, applied: "Spanish coursework (5 years), travel" },
+];
+
+// Full academic transcript — every term, every course
+const TRANSCRIPT = [
+  {
+    term: "Fall 2023", termGpa: 4.000, credits: 15, creditsFn: 1,
+    courses: [
+      { code: "CS 170",   name: "Intro to Computer Science I",                 credits: 4, grade: "A", placeholder: "Learned programming from scratch in Java, starting with simple algorithms, recursion, and Turtle graphics." },
+      { code: "ECON 101", name: "Principles of Microeconomics",                credits: 3, grade: "A", placeholder: "Covered how markets work through supply, demand, pricing, and consumer/firm behavior." },
+      { code: "PSYC 110", name: "Intro Psychology I",                          credits: 3, grade: "A", placeholder: "Focused on the biological side of psychology, including brain structures, animal behavior, and how different parts of the brain control different functions or predispositions." },
+      { code: "PSYC 190", name: "Freshman Seminar: Psychology",                credits: 3, grade: "A", placeholder: "Focused on case studies regarding brain disorders like Alzheimer's, face blindness, and aphantasia, concluding with a fifteen-minute final presentation (which I did on CTE)." },
+    ]
+  },
+  {
+    term: "Spring 2024", termGpa: 4.000, credits: 13, creditsFn: 1,
+    courses: [
+      { code: "CS 171",   name: "Intro to Computer Science II",                credits: 3, grade: "A", placeholder: "Built on Java foundation from CS 170 with object-oriented programming, basic data structures, and more complex/efficient problem solving." },
+      { code: "CS 224",   name: "Foundations of Computer Science",             credits: 3, grade: "A", placeholder: "Covered discrete math, logic, proofs, and the theory behind how computer science and encryption work." },
+      { code: "ECON 112", name: "Principles of Macroeconomics",                credits: 3, grade: "A", placeholder: "Focused on inflation, unemployment, growth, banking, and how the Fed as well as the overall larger economy move." },
+      { code: "ENG 205",  name: "Poetry",                                      credits: 3, grade: "A", placeholder: "Focused on comprehension of nuanced, cryptic writings and understanding how authors use language, structure, and style to create meaning or accomplish an artistic goal." },
+    ]
+  },
+  {
+    term: "Fall 2024", termGpa: 3.929, credits: 17,
+    courses: [
+      { code: "CS 253",   name: "Data Structures and Algorithms",              credits: 3, grade: "A",  placeholder: "Learned core data structures and algorithms in both Java and Python, with an emphasis on efficiency and identifying appropriate use cases." },
+      { code: "ECON 201", name: "Intermediate Microeconomics",                 credits: 4, grade: "A",  placeholder: "Dove deeper into utility theory, consumer choice, firm behavior, calculus applications, and constrained optimization." },
+      { code: "ECON 215", name: "Stocks, Bonds & Financial Markets",           credits: 3, grade: "A",  placeholder: "Covered a vast array of financial markets, including stocks, bonds, options, futures, real estate, and other major asset classes." },
+      { code: "MATH 221", name: "Linear Algebra",                              credits: 4, grade: "A-", placeholder: "Studied matrices, vector spaces, eigenvalues, transformations, and least-squares methods, learning how to apply these concepts efficiently and in a standardized manner using Python." },
+      { code: "SPAN 201", name: "Intermediate Spanish I",                      credits: 3, grade: "A",  placeholder: "Continued building Spanish speaking, writing, reading, and listening skills through studying authentic cultural material." },
+    ]
+  },
+  {
+    term: "Spring 2025", termGpa: 4.000, credits: 18,
+    courses: [
+      { code: "ACT 200",  name: "Accounting: The Language of Business",        credits: 3, grade: "A", placeholder: "Learned how the four financial statements connect and can be used to track performance through transactions, costs, and cash flows, concluding with a final twenty-minute stock pitch (which my group did on Nike, recommending a buy)." },
+      { code: "BUS 290",  name: "Tech Toolbox A: Excel",                       credits: 1, grade: "S", placeholder: "Built practical Excel skills through learning formulas, how to create charts, employ pivot tables, utilize VLOOKUP, and conduct basic financial modeling." },
+      { code: "ECON 212", name: "Intermediate Macroeconomics",                 credits: 3, grade: "A", placeholder: "A math-heavy class centered on deriving theoretical models for national output, employment, inflation, and monetary policy mechanisms." },
+      { code: "ECON 220", name: "Data Science for Economists",                 credits: 4, grade: "A", placeholder: "Covered basic and intermediate probability, statistics, and regression concepts, also building a foundation in conducting practical economic work with real datasets through a Python lab component." },
+      { code: "MATH 210", name: "Advanced Calculus for Data Sciences",         credits: 4, grade: "A", placeholder: "Focused on multivariable calculus, optimization, integration, Taylor series, and data-science applications." },
+      { code: "SPAN 202", name: "Intermediate Spanish II",                     credits: 3, grade: "A", placeholder: "Continued strengthening Spanish communication skills while studying Hispanic culture and society." },
+    ]
+  },
+  {
+    term: "Fall 2025", termGpa: 4.000, credits: 17,
+    courses: [
+      { code: "CS 325",   name: "Artificial Intelligence",                     credits: 3, grade: "A", placeholder: "Began with primitive AI concepts and built up to more advanced topics like alpha-beta pruning, CNNs, reinforcement learning, and LLMs, overall covering a wide array of computational techniques and their discrete foundations." },
+      { code: "ECON 310W", name: "Experimental Economics",                     credits: 4, grade: "A", placeholder: "Started by studying classic experiments and findings in the field, ending with the design of my own economic experiment and a mock academic paper analyzing it." },
+      { code: "ECON 320", name: "Econometrics",                                credits: 4, grade: "A", placeholder: "Built regression-based tools for modeling economic data, testing relationships, and interpreting results, including a lab section in which we had to design a unique econometric model using real datasets from IPUMS and FRED, presenting our findings and limitations." },
+      { code: "FIN 320",  name: "Corporate Finance",                           credits: 3, grade: "A", placeholder: "Covered stock and bond valuation, annuities and perpetuities, risk-return tradeoffs, capital allocation, and general firm-level financial decision-making." },
+      { code: "HIST 207", name: "Medieval Europe and the World",               credits: 3, grade: "A", placeholder: "Focused on medieval Europe's expansion and religious power through the rigorous study and analysis of primary texts and accounts, emphasizing the suppression of other cultures and belief systems through ruthless conquest and conversion." },
+    ]
+  },
+  {
+    term: "Spring 2026", termGpa: 3.600, credits: 12,
+    courses: [
+      { code: "CS 334",   name: "Machine Learning",                            credits: 3, grade: "A-", placeholder: "Built from foundational ML concepts like decision boundaries, gradient descent, regularization, model selection, and kernels into more advanced topics like neural networks, transformers, clustering, and recommender systems." },
+      { code: "CS 377",   name: "Database Systems",                            credits: 3, grade: "A",  placeholder: "A heavily SQL-based class covering database design, relational models, normalization, query processing, and data integrity." },
+      { code: "ISOM 351", name: "Process & Systems Management",                credits: 3, grade: "B-", placeholder: "Studied how businesses analyze and improve operations, resource allocation, and process decisions, with an emphasis on performance measurement, forecasting accuracy, and reducing costly inefficiencies." },
+      { code: "MKT 340",  name: "Marketing Management",                        credits: 3, grade: "A",  placeholder: "Covered how companies understand customers, position products, and build/iterate marketing strategies, ending with an online, multi-week, simulated internship and group presentation on our decision-making throughout the activity." },
+    ]
+  }
+];
+
+const REPOS = [
+  {
+    title: "Prediction Market Trading System",
+    name: "prediction-markets-program",
+    desc: "Automated prediction market infrastructure for fair value edge identification, orderbook analysis, cross-venue arbitrage evaluation.",
+    lang: "Python",
+    status: "Iterative development",
+    link: { label: "github.com/masonlancellotti/prediction-markets-program", href: "https://github.com/masonlancellotti/prediction-markets-program" },
+    longDesc: "A multi-arm trading research system specifically built to trade contracts in prediction markets like Kalshi and Polymarket. It connects live API data, orderbook depth, multiple cross-platform comparisons, paper execution logs, backtesting functionality, and graph-based contract relationships into a single workflow for evaluating whether a profitable opportunity, either through a detected edge, arbitrage opportunity, or liquidity gap, can actually be profitable after fees. I decided to create this program based on the thesis that inefficiencies would be easier to identify and more common in prediction markets, which are much less mature than traditional financial markets and are still dominated by a largely non-institutional trader base." },
+
+  {
+    title: "Personal Website",
+    name: "personal-website",
+    desc: "Frontend architecture including modular components and reusable organization systems meant to provide a richer alternative to my resume.",
+    lang: "React",
+    status: "Deployed",
+    link: { label: "github.com/masonlancellotti/personal-website", href: "https://github.com/masonlancellotti/personal-website" },
+    longDesc: "A modular React-based portfolio website intended to offer a more complete picture of my background and experience, in addition to displaying how I can utilize my skillset in a practical setting to produce a concrete, high-quality deliverable. I used Claude for much of the build process to implement, debug, and refine the frontend while I crafted focused prompts and feedback to ensure the final product reflected my initial vision." }];
+
+const GOAL_REPOS = [
+  { title: "Market Intelligence Agent",           name: "goal-project-01", desc: "Market research system for tracking news, macro data, filings, price movement, and technical signals to produce structured investment briefs, strategy notes, and hedge ideas. Runs continuously on local Mac Mini infrastructure.", why: "Technical and fundamental research can be tedious, and it's easy to miss small but important details. Since I find it necessary to build strong conviction before opening a new position in my brokerage account or crypto wallet, I think a program like this would be beneficial in helping to standardize my decision-making process and make me a more disciplined investor.", lang: "—", status: "queued" },
+  { title: "Automated Content Creation Pipeline", name: "goal-project-02", desc: "End-to-end workflow for turning a prompt into trending short-form content or niche long-form videos, including media sourcing, caption generation, metadata development, and compiling spreadsheets for external API schedule automation.", why: "Ever since a young age, I was fascinated with content creation. The scalability that AI introduces into this space is fascinating to me, and I believe there are a variety of creative paths and monetization strategies available that would serve to keep the project engaging.", lang: "—", status: "queued" },
+  { title: "Resale Price Gap Engine",             name: "goal-project-03", desc: "Secondhand marketplace scanner that evaluates listings against recent resale history, taking into account item condition and price history to identify potentially profitable opportunities and trigger seller outreach or transaction workflows when platform regulations permit.", why: "I like this idea because the market for secondhand goods is ripe for mispricing and inefficiencies. In addition, while flipping has existed for decades, programming can make the process much faster by removing almost all of the manual work and applying a higher standard of analysis to the workflow, greatly increasing potential upside.", lang: "—", status: "queued" },
+];
+
+const POSTS = [
+  { date: "May 21, 2026", title: "Why you should've watched Nvidia earnings even if you don't own the stock",  excerpt: "With tech stocks dominating the market, megacap earnings reports like Nvidia's have the potential to shift sentiment across AI, semiconductors, and broader indexes, creating a ripple effect that reaches far beyond direct stock exposure.", tags: ["Stock market"], len: "6 min", href: "blog/nvidia-earnings-spillover.html" },
+  { date: "May 28, 2026", title: "The quiet pressure of higher yields", excerpt: "While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.", tags: ["Interest rates"], len: "— min", upcoming: true },
+];
+
+const INVOLVEMENT = [
+  {
+    org: "Emory Economics Review",
+    role: "Contributor",
+    desc: "Emory's undergraduate economics publication. I am part of the organization as an author and write long-form pieces on unique economics topics of my choice, with selected work published in an annual print magazine.",
+    article: {
+      title: "Peptide Pricing Power: The GLP-1 Duopoly",
+      author: "Mason Lancellotti",
+      date: "March 3, 2026",
+      href: "https://emoryeconomicsreview.org/articles/2026/3/3/peptide-pricing-power-the-glp-1-duopoly"
+    },
+    fn: 2
+  },
+  {
+    org: "Omicron Delta Epsilon",
+    letters: "ΟΔΕ",
+    role: "Member",
+    desc: "International economics honor society. Merit-based invitation extended to students in the top of their economics class.",
+    meta: "Academic distinction",
+    since: "Inducted 2025",
+    aside: true
+  }
+];
+
+const FOOTNOTES = [
+  { n: 1, text: "I left off a few required first-year courses because they were general education requirements and do not add any meaningful information to the academic background presented in this section." },
+  { n: 2, text: "I only included certain extracurricular involvement in this section, focusing on the clubs where I have had the most relevant or impactful experience." }
+];
+
+Object.assign(window, { REGISTER, SKILLS, TRANSCRIPT, REPOS, GOAL_REPOS, POSTS, INVOLVEMENT, FOOTNOTES });
