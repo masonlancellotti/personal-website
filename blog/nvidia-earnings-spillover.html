@@ -542,6 +542,372 @@ body::before {
 .colophon .right { text-align: right; display: flex; gap: 18px; justify-content: flex-end; flex-wrap: wrap; }
 
 /* ==========================================================
+   DESKTOP / MOBILE-TABLET VISIBILITY SWITCH
+   Single alternate layout for everything ≤1024px.
+   ========================================================== */
+.desktop-only      { display: block; }
+.mobile-tablet-only{ display: none; }
+@media (max-width: 1024px) {
+  .desktop-only       { display: none !important; }
+  .mobile-tablet-only { display: block; }
+}
+
+/* ==========================================================
+   MOBILE / TABLET ARTICLE LAYOUT
+   - phone: full-width, compact
+   - tablet (≥640px): centered max-width container, looser
+   ========================================================== */
+.mt-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--bg) 94%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.mt-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.mt-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 8px 12px 8px 10px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  min-height: 44px;
+  box-sizing: border-box;
+}
+.mt-home svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
+.mt-badge {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+
+.mt-article {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 18px 8px;
+  position: relative;
+  z-index: 2;
+}
+.mt-kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.mt-kicker .num { color: var(--accent); font-weight: 500; }
+.mt-kicker .dot { color: var(--accent); opacity: 0.55; }
+.mt-kicker .label { color: var(--accent); }
+.mt-kicker .spacer { flex: 1; }
+.mt-kicker .tag {
+  font-size: 10px;
+  color: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
+  padding: 3px 8px;
+  letter-spacing: 0.05em;
+}
+
+.mt-title {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 20px 0 14px;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.mt-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 18px;
+  padding: 12px 0 14px;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  margin: 0 0 24px;
+}
+.mt-meta .m { display: flex; flex-direction: column; gap: 2px; }
+.mt-meta .k {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mt-meta .v {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+}
+.mt-meta .v-sub {
+  font-size: 11.5px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  margin-top: 1px;
+}
+.mt-meta .author {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--rule-soft);
+}
+
+.mt-lede {
+  font-size: 17.5px;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  font-weight: 400;
+  margin: 0 0 22px;
+  text-wrap: pretty;
+}
+.mt-body p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0 0 20px;
+  text-wrap: pretty;
+}
+.mt-body p .cite {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in oklab, var(--accent) 50%, transparent);
+  padding-bottom: 1px;
+  font-variant-numeric: tabular-nums;
+}
+.mt-body p .cite:hover { border-bottom-style: solid; }
+
+.mt-figure {
+  margin: 26px -2px;
+  display: block;
+}
+.mt-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  background: var(--bg-2);
+}
+.mt-figure figcaption {
+  margin: 10px 2px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.mt-figure figcaption::before {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: var(--ink-2);
+  margin-top: 9px;
+  opacity: 0.6;
+}
+.mt-figure figcaption .credit {
+  display: block;
+  margin-top: 4px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.mt-pullquote {
+  margin: 24px 0;
+  padding: 18px 18px 16px;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
+  position: relative;
+}
+.mt-pullquote::before {
+  content: "“";
+  position: absolute;
+  top: -16px;
+  left: 12px;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.55;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.mt-pullquote .pq-text {
+  margin: 6px 0 0;
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  font-style: italic;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.mt-pullquote .pq-attr {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+.mt-pullquote .pq-attr b { color: var(--ink); font-weight: 500; }
+
+.mt-references {
+  margin: 40px 0 0;
+  padding: 20px 0 0;
+  border-top: 2px solid var(--ink);
+}
+.mt-references .h {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.mt-references .note {
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  display: block;
+  margin: 4px 0 14px;
+}
+.mt-references ol {
+  list-style: none;
+  counter-reset: mt-ref;
+  padding: 0;
+  margin: 0;
+}
+.mt-references ol li {
+  counter-increment: mt-ref;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 8px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  scroll-margin-top: 80px;
+}
+.mt-references ol li::before {
+  content: "[" counter(mt-ref) "]";
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding-top: 1px;
+}
+.mt-references ol li:target {
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+}
+.mt-references ol li:target::before { color: var(--accent); font-weight: 600; }
+.mt-references ol li b { color: var(--ink); font-weight: 500; }
+.mt-references ol li a {
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-word;
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.mt-foot {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 36px 0 24px;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.mt-foot .cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 76px;
+  box-sizing: border-box;
+}
+.mt-foot .cell .k {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mt-foot .cell .title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+.mt-foot .cell .meta {
+  margin-top: auto;
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.mt-foot .cell[aria-disabled="true"] { opacity: 0.62; cursor: default; }
+
+.mt-colophon {
+  border-top: 1px solid var(--rule);
+  margin-top: 8px;
+  padding: 18px 18px 28px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  color: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+.mt-colophon a { color: inherit; text-decoration: none; }
+.mt-colophon a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.mt-colophon .links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Tablet ≥640px: centered, looser */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .mt-topbar-inner { padding: 14px 32px; }
+  .mt-article { padding: 40px 40px 16px; }
+  .mt-title { font-size: 38px; line-height: 1.08; }
+  .mt-lede { font-size: 19px; }
+  .mt-body p { font-size: 16.5px; line-height: 1.7; }
+  .mt-meta { grid-template-columns: repeat(3, auto) 1fr; align-items: baseline; gap: 28px; }
+  .mt-meta .author { grid-column: auto; border-top: none; padding-top: 0; justify-self: end; text-align: right; }
+  .mt-foot { grid-template-columns: 1fr 1fr; }
+  .mt-foot .cell.right { text-align: right; align-items: flex-end; }
+  .mt-colophon { padding: 22px 40px 32px; flex-direction: row; justify-content: space-between; align-items: center; }
+}
+
+/* ==========================================================
    Responsive
    ========================================================== */
 @media (max-width: 900px) {
@@ -561,9 +927,14 @@ body::before {
   .colophon .center, .colophon .right { text-align: left; justify-content: flex-start; }
 }
 </style>
-  <meta name="description" content="I�m Mason Lancellotti, an Emory economics and computer science student focused on data analytics, finance, strategy, and tech-driven solutions.">
+  <meta name="description" content="I�m Mason Lancellotti, an Emory economics and computer science student focused on data analytics, finance, strategy, and tech-driven solutions.">
 </head>
 <body>
+
+<!-- =========================================================
+     DESKTOP LAYOUT (>=1025px) - original markup, unchanged
+     ========================================================= -->
+<div class="desktop-only">
 
 <!-- =========================================================
      TOP BAR
@@ -727,11 +1098,156 @@ body::before {
   </span>
 </footer>
 
+</div><!-- /.desktop-only -->
+
+<!-- =========================================================
+     MOBILE / TABLET LAYOUT (<=1024px)
+     Same content, restructured for narrow viewports.
+     ========================================================= -->
+<div class="mobile-tablet-only">
+
+  <header class="mt-topbar">
+    <div class="mt-topbar-inner">
+      <a class="mt-home" href="../Portfolio v2.html" data-tab="blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        All articles
+      </a>
+      <span class="mt-badge">III · Market Opinions</span>
+    </div>
+  </header>
+
+  <article class="mt-article">
+
+    <div class="mt-kicker">
+      <span class="num">III</span>
+      <span class="dot">·</span>
+      <span class="label">Market Opinions</span>
+      <span class="spacer"></span>
+      <span class="tag">Stock market</span>
+    </div>
+
+    <h1 class="mt-title">Why you should watch Nvidia earnings even if you don't own the stock</h1>
+
+    <div class="mt-meta">
+      <div class="m"><span class="k">Published</span><span class="v">May 21, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
+      <div class="m"><span class="k">Time to read</span><span class="v">5 min.</span></div>
+      <div class="m author"><span class="k">Author</span><span class="v">Mason Lancellotti</span></div>
+    </div>
+
+    <div class="mt-body">
+
+      <p class="mt-lede">Nvidia's (NVDA) quarterly results have become one of the most highly anticipated events in the market, but it's not because of Nvidia alone. When the company reports its recent financials, stocks that have nothing to do with chips also move. This spillover effect functions through a few different mechanisms that are imperative for all investors to understand, even if they own shares of a seemingly unrelated company or only have broad exposure through a whole-market index fund.</p>
+
+      <p>On May 20, Nvidia reported a fiscal first-quarter 2027 revenue of $81.6 billion, up 85% from the year prior, with data center revenue making up more than 92% of the total <a class="cite" href="#mt-ref-1">(Nvidia, 2026)</a>. In addition, the company projects next quarter's revenue to reach $91 billion, with CEO Jensen Huang describing the AI buildout as "the largest infrastructure expansion in human history" <a class="cite" href="#mt-ref-1">(Nvidia, 2026)</a>. Despite these positive developments, NVDA fell 1.5% in after-hours trading. While these results at first may seem contradictory, the reason for the decline becomes clearer once we understand why and how Nvidia now influences so many different parts of the market.</p>
+
+      <aside class="mt-pullquote">
+        <p class="pq-text">The largest infrastructure expansion in human history.</p>
+        <p class="pq-attr"><b>Jensen Huang</b>, Nvidia CEO</p>
+      </aside>
+
+      <figure class="mt-figure">
+        <img src="images/jensen-huang.jpg" alt="Nvidia CEO Jensen Huang on stage with a GPU." loading="lazy">
+        <figcaption>
+          <span>
+            Jensen Huang, Nvidia's founder and CEO.
+            <span class="credit">Image: Wikimedia Commons</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <p>Among Nvidia's main products are semiconductor chips, crucial to the modern-day AI buildout, and its customers are spending at massive, unprecedented rates. Microsoft, Amazon, Meta, and Google's parent company, Alphabet, have collectively committed to over $600 billion in spending throughout 2026, a rise of approximately 70% from last year, with most of it going toward chips, data center capacity, and related infrastructure <a class="cite" href="#mt-ref-2">(Bratton, 2026)</a>. Because Nvidia controls about 90% of the market for AI chips <a class="cite" href="#mt-ref-3">(Mbachu, 2026)</a>, much of the money firms spend on AI hardware ends up directly in Nvidia's pockets. Therefore, their quarterly revenue is a direct indicator of the momentum and trajectory of the AI boom, a matter pertinent to far more investors than just those holding NVDA.</p>
+
+      <figure class="mt-figure">
+        <img src="images/data-center.jpg" alt="A Google data center hallway in Council Bluffs, Iowa, with colorful fiber-optic cable trays running overhead between rows of server racks." loading="lazy">
+        <figcaption>
+          <span>
+            A Google data center in Council Bluffs, Iowa.
+            <span class="credit">Image: Google Data Centers Photo Gallery</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <p>The first layer of spillover is straightforward: other firms in the semiconductor industry. Some of these companies are connected to Nvidia through the supply chain, like TSMC, Micron, and SK Hynix, while others, like AMD, are direct competitors. Broadcom, which sells chips and networking equipment, and Arm, which provides chip designs, have slightly less direct connections, but still benefit from the same growth in demand for AI. The market reaction made that link clear, with TSMC, Micron, and Broadcom trading lower alongside Nvidia, falling 0.4%, 0.8%, and 0.3%, respectively. Because these firms are all governed by the same demand cycle, Nvidia's earnings have become a proxy for the health of the semiconductor industry as a whole. However, the company's influence reaches beyond semiconductors, widening into major indexes, where its sheer size confers market-wide importance upon each earnings report.</p>
+
+      <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#mt-ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#mt-ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. As a result, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#mt-ref-6">(Shalett, 2023)</a>.</p>
+
+      <figure class="mt-figure">
+        <img src="images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
+        <figcaption>
+          <span>
+            The New York Stock Exchange during trading hours.
+            <span class="credit">Image: Wikimedia Commons</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <p>However, the impact is not only mechanical; because the S&amp;P 500 is a benchmark investors use to judge the market overall, a move driven by Nvidia and co. influences broader sentiment and risk appetite as a whole. If Nvidia pulls the index higher, it can reinforce momentum and make investors more willing to stay exposed to high-valuation growth stocks. On the other hand, if it pulls the index lower, the market can feel more fragile, even for investors whose portfolios have no direct connection to semiconductors. At this point, the ripple effect has little to do with operational proximity to Nvidia and everything to do with collective investor confidence <a class="cite" href="#mt-ref-7">(Baker &amp; Wurgler, 2006)</a>.</p>
+
+      <p>That shift in confidence is what brings unrelated stocks into the picture. Once Nvidia influences the index, the backdrop against which other stocks are valued changes, and effects can start to trickle down. Although a retailer, bank, or healthcare company may not have even a tangential link to Nvidia, stocks do not trade in a vacuum. In a strong market, investors may be willing to pay a premium for growth or scalability; in a weaker one, that premium can shrink, and unrelated stocks can fall even without unfavorable company-specific news. This sums up the pressure Nvidia can create: it doesn't change other businesses directly, but by changing the market environment, it can affect how investors are willing to price them.</p>
+
+      <aside class="mt-pullquote">
+        <p class="pq-text">Buy side expectations probably got a little bit ahead of themselves.</p>
+        <p class="pq-attr"><b>Christopher Rolland</b>, Susquehanna analyst</p>
+      </aside>
+
+      <p>Now, as I alluded to earlier, this logic can also help us understand the after-hours decline immediately after Nvidia's positive earnings report. The problem is that Nvidia's influence has become circular: its growth supports optimism across AI, semiconductors, and broader indexes, but that same optimism then raises the bar Nvidia has to reach each quarter. This meant that a strong quarter would not be enough to raise NVDA by itself. Instead, earnings had to be a slam dunk, giving investors a genuine reason to heighten their expectations even further. While Nvidia's report confirmed that demand remained strong, that strength was already priced in. According to Susquehanna analyst Christopher Rolland, "Buy side expectations probably got a little bit ahead of themselves" <a class="cite" href="#mt-ref-8">(Marino-Nachison, 2026)</a>. Despite validating the market's existing sentiment, earnings left no reason for NVDA to move higher.</p>
+
+      <p>The main question going forward is whether the AI boom can produce returns large enough to match the prices investors are paying today. Right now, the largest tech companies are pouring money into AI infrastructure, much of that spending flows to Nvidia, and Nvidia's growth then reinforces the valuation of those same companies funding AI expansion <a class="cite" href="#mt-ref-9">(Milmo, 2025)</a>. That positive feedback loop has remained stable so far, but it also creates unease and uncertainty among investors. As valuations climb to extreme levels and beyond, the AI sector has begun to blur the line between unusually strong growth and a test of how much optimism investors are willing to tolerate. In fact, Nvidia's market cap has become so large that it is comparable to the total value of every acre of land in Australia <a class="cite" href="#mt-ref-10">(Australian Bureau of Statistics, 2024)</a>. While comparisons like that are not proof of a bubble, they do show how much future success investors are already pricing in, which could be a cause for concern.</p>
+
+      <p>For the average investor, the takeaway should not be that every stock depends on Nvidia in the same way. Rather, for the time being, Nvidia's earnings give investors a valuable read on several parts of the market at once. In such a concentrated market environment, information like this matters to everyone because broad exposure is not as far removed from single-company risk as it may appear. Even investors who never own NVDA are still playing in a market where the AI chip giant sets much of the tone. There isn't only risk in holding NVDA; there's also risk in assuming you are unaffected by Nvidia just because it's not in your portfolio.</p>
+
+    </div>
+
+    <section class="mt-references">
+      <span class="h">References</span>
+      <span class="note">10 sources · Tap any in-text citation to jump</span>
+      <ol>
+        <li id="mt-ref-1"><span><b>Nvidia.</b> (2026, May 20). NVIDIA announces financial results for first quarter fiscal 2027. <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027" target="_blank" rel="noopener">nvidianews.nvidia.com</a></span></li>
+        <li id="mt-ref-2"><span><b>Bratton, L.</b> (2026, February 6). Big Tech set to spend $650 billion in 2026 as AI investments soar. Yahoo Finance. <a href="https://finance.yahoo.com/news/big-tech-set-to-spend-650-billion-in-2026-as-ai-investments-soar-163907630.html" target="_blank" rel="noopener">finance.yahoo.com</a></span></li>
+        <li id="mt-ref-3"><span><b>Mbachu, J.</b> (2026, February 6). Big tech will spend $600B on AI in 2026: 5 stocks cashing the checks. Investing.com. <a href="https://www.investing.com/analysis/big-tech-will-spend-600b-on-ai-in-2026-5-stocks-cashing-the-checks-200674615" target="_blank" rel="noopener">investing.com</a></span></li>
+        <li id="mt-ref-4"><span><b>SlickCharts.</b> (2026). S&amp;P 500 companies by market cap. <a href="https://www.slickcharts.com/sp500" target="_blank" rel="noopener">slickcharts.com/sp500</a></span></li>
+        <li id="mt-ref-5"><span><b>Foelber, D.</b> (2025, November 17). Nvidia and 19 other stocks now make up 50% of the S&amp;P 500. Here's what it means for your investment portfolio. Nasdaq. <a href="https://www.nasdaq.com/articles/nvidia-and-19-other-stocks-now-make-50-sp-500-heres-what-it-means-your-investment" target="_blank" rel="noopener">nasdaq.com</a></span></li>
+        <li id="mt-ref-6"><span><b>Shalett, L.</b> (2023, May 24). Why investing in the S&amp;P 500 isn't true diversification. Morgan Stanley. <a href="https://www.morganstanley.com/ideas/concentration-risk-high-s-and-p-500-q2-2023" target="_blank" rel="noopener">morganstanley.com</a></span></li>
+        <li id="mt-ref-7"><span><b>Baker, M., &amp; Wurgler, J.</b> (2006). Investor sentiment and the cross-section of stock returns. <em>The Journal of Finance, 61</em>(4), 1645–1680. <a href="https://doi.org/10.1111/j.1540-6261.2006.00885.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.2006.00885.x</a></span></li>
+        <li id="mt-ref-8"><span><b>Marino-Nachison, D.</b> (2026, May 20). Nvidia earnings live: AI chip giant beats Street expectations on profits, sales. Investopedia. <a href="https://www.investopedia.com/nvidia-earnings-live-coverage-q1-fy2027-nvda-stock-11974368" target="_blank" rel="noopener">investopedia.com</a></span></li>
+        <li id="mt-ref-9"><span><b>Milmo, D.</b> (2025, October 8). Do OpenAI's multibillion-dollar deals mean exuberance has got out of hand? The Guardian. <a href="https://www.theguardian.com/business/2025/oct/08/openai-multibillion-dollar-deals-exuberance-circular-nvidia-amd" target="_blank" rel="noopener">theguardian.com</a></span></li>
+        <li id="mt-ref-10"><span><b>Australian Bureau of Statistics.</b> (2024, November 27). National Land Account, Experimental Estimates, 2021. <a href="https://www.abs.gov.au/statistics/environment/environmental-accounts/national-land-account-experimental-estimates/latest-release" target="_blank" rel="noopener">abs.gov.au</a></span></li>
+      </ol>
+    </section>
+
+    <nav class="mt-foot">
+      <a class="cell" href="../Portfolio v2.html" data-tab="blog">
+        <span class="k">← Back</span>
+        <span class="title">All Market Opinions</span>
+        <span class="meta">Article index</span>
+      </a>
+      <a class="cell right" href="#" aria-disabled="true" title="Coming May 28, 2026">
+        <span class="k">Next →</span>
+        <span class="title">The quiet pressure of higher yields</span>
+        <span class="meta">May 28, 2026 · Coming Thursday</span>
+      </a>
+    </nav>
+
+  </article>
+
+  <footer class="mt-colophon">
+    <span>© 2026 Mason Lancellotti</span>
+    <a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a>
+    <span class="links">
+      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+      <a href="../files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </span>
+  </footer>
+
+</div><!-- /.mobile-tablet-only -->
+
 <script>
   // Persist the requested tab on the main portfolio when the user clicks a section link
   document.querySelectorAll('[data-tab]').forEach((el) => {
     el.addEventListener('click', (e) => {
       const tab = el.getAttribute('data-tab');
+      try { localStorage.setItem('portfolioV2.tab', tab); } catch (_) {}
     });
   });
 

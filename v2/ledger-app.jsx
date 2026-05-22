@@ -491,9 +491,9 @@ function Colophon() {
 
 // ---------- App ----------
 function App() {
-  const [active, setActive] = useState('filing');
+  const [active, setActive] = useState(() => localStorage.getItem('portfolioV2.tab') || 'filing');
   const [tweaksOn, setTweaksOn] = useState(false);
-  useEffect(() => { window.scrollTo({ top: 0 }); }, [active]);
+  useEffect(() => {localStorage.setItem('portfolioV2.tab', active);window.scrollTo({ top: 0 });}, [active]);
   useEffect(() => {
     const onMsg = (e) => {
       const d = e.data || {};
@@ -512,12 +512,17 @@ function App() {
 
   return (
     <>
-      <div className="doc" data-screen-label={active}>
-        <Masthead active={active} setActive={setActive} />
-        {active === 'filing' && <Filing />}
-        {active === 'repos' && <Repos />}
-        {active === 'blog' && <Blog />}
-        <Colophon />
+      <div className="desktop-only">
+        <div className="doc" data-screen-label={active}>
+          <Masthead active={active} setActive={setActive} />
+          {active === 'filing' && <Filing />}
+          {active === 'repos' && <Repos />}
+          {active === 'blog' && <Blog />}
+          <Colophon />
+        </div>
+      </div>
+      <div className="mobile-tablet-only">
+        {typeof MobileTabletApp !== 'undefined' && <MobileTabletApp active={active} setActive={setActive} />}
       </div>
       {tweaksOn && <Tweaks />}
     </>);
