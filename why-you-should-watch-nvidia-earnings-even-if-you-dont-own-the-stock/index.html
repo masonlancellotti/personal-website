@@ -165,8 +165,16 @@ body::before {
   text-overflow: ellipsis;
 }
 .topbar .bar-next .next-arrow {
-  font-size: 16px;
+  width: 18px;
+  height: 18px;
   color: var(--ink-2);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.topbar .bar-next .next-arrow svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 .topbar .bar-next[aria-disabled="true"] {
   cursor: default;
@@ -957,7 +965,7 @@ body::before {
         <span class="next-label">Next article</span>
         <span class="next-title">The quiet pressure of higher yields</span>
       </span>
-      <span class="next-arrow" aria-hidden="true">→</span>
+      <span class="next-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
     </a>
   </div>
 </header>

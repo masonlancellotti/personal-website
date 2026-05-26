@@ -308,7 +308,7 @@ function MTBlog() {
                 {p.tags.map((t, j) => <span key={j}>{t}</span>)}
                 {p.upcoming && <span className="upcoming">· Coming Thursday</span>}
               </div>
-              {clickable && <div className="mt-post-cta">Read article →</div>}
+              {clickable && <div className="mt-post-cta">Read article ↗</div>}
             </button>
           );
         })}

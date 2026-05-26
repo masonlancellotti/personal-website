@@ -449,7 +449,7 @@ function Blog() {
               </div>
               <span className="len" style={{ fontSize: "13px" }}>
                 {p.len}
-                {clickable && <span style={{ display: 'block', marginTop: 4, fontSize: 11, color: 'var(--accent)' }}>Read →</span>}
+                {clickable && <span style={{ display: 'block', marginTop: 4, fontSize: 11, color: 'var(--accent)' }}>Read ↗</span>}
               </span>
             </div>
           );
