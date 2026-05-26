@@ -314,7 +314,7 @@ function MTBlog() {
         })}
       </div>
 
-      <a className="mt-featured" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock">
+      <a className="mt-featured" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
         <span className="label">Featured article</span>
         <span className="date">May 21, 2026</span>
         <h3 className="title">Why you should watch Nvidia earnings even if you don't own the stock</h3>

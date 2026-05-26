@@ -455,7 +455,7 @@ function Blog() {
           );
         })}
       </div>
-      <a className="featured-article" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock">
+      <a className="featured-article" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
         <div className="featured-article-side">
           <span className="featured-article-label" style={{ fontSize: "12px" }}>Featured article</span>
           <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 21, 2026</span>
