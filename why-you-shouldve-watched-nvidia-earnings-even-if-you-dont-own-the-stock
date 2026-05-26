@@ -251,7 +251,7 @@ body::before {
   letter-spacing: -0.005em;
 }
 .article-meta .m .v-sub {
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
   font-weight: 500;
@@ -595,9 +595,9 @@ body::before {
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  background: var(--paper);
   padding: 5px 9px;
   white-space: nowrap;
 }
@@ -667,7 +667,7 @@ body::before {
   letter-spacing: -0.005em;
 }
 .mt-meta .v-sub {
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
   font-weight: 500;
@@ -1017,7 +1017,7 @@ body::before {
 
     <p>The first layer of spillover is straightforward: other firms in the semiconductor industry. Some of these companies are connected to Nvidia through the supply chain, like TSMC, Micron, and SK Hynix, while others, like AMD, are direct competitors. Broadcom, which sells chips and networking equipment, and Arm, which provides chip designs, have slightly less direct connections, but still benefit from the same growth in demand for AI. The market reaction made that link clear, with TSMC, Micron, and Broadcom trading lower alongside Nvidia, falling 0.4%, 0.8%, and 0.3%, respectively. Because these firms are all governed by the same demand cycle, Nvidia's earnings have become a proxy for the health of the semiconductor industry as a whole. However, the company's influence reaches beyond semiconductors, widening into major indexes, where its sheer size confers market-wide importance upon each earnings report.</p>
 
-    <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. As a result, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#ref-6">(Shalett, 2023)</a>.</p>
+    <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. Consequently, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#ref-6">(Shalett, 2023)</a>.</p>
 
     <figure class="article-figure">
       <img src="/blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
@@ -1095,6 +1095,8 @@ body::before {
     <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
     <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+    <a href="/files/mason-transcript.pdf" target="_blank" rel="noopener">Transcript</a>
+    <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
   </span>
 </footer>
 
@@ -1169,7 +1171,7 @@ body::before {
 
       <p>The first layer of spillover is straightforward: other firms in the semiconductor industry. Some of these companies are connected to Nvidia through the supply chain, like TSMC, Micron, and SK Hynix, while others, like AMD, are direct competitors. Broadcom, which sells chips and networking equipment, and Arm, which provides chip designs, have slightly less direct connections, but still benefit from the same growth in demand for AI. The market reaction made that link clear, with TSMC, Micron, and Broadcom trading lower alongside Nvidia, falling 0.4%, 0.8%, and 0.3%, respectively. Because these firms are all governed by the same demand cycle, Nvidia's earnings have become a proxy for the health of the semiconductor industry as a whole. However, the company's influence reaches beyond semiconductors, widening into major indexes, where its sheer size confers market-wide importance upon each earnings report.</p>
 
-      <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#mt-ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#mt-ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. As a result, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#mt-ref-6">(Shalett, 2023)</a>.</p>
+      <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#mt-ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#mt-ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. Consequently, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#mt-ref-6">(Shalett, 2023)</a>.</p>
 
       <figure class="mt-figure">
         <img src="/blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
@@ -1237,20 +1239,14 @@ body::before {
       <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
       <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="/files/mason-transcript.pdf" target="_blank" rel="noopener">Transcript</a>
+      <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
     </span>
   </footer>
 
 </div><!-- /.mobile-tablet-only -->
 
 <script>
-  // Persist the requested tab on the main portfolio when the user clicks a section link
-  document.querySelectorAll('[data-tab]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      const tab = el.getAttribute('data-tab');
-      try { localStorage.setItem('portfolioV2.tab', tab); } catch (_) {}
-    });
-  });
-
   // Stop the "coming Thursday" cards from navigating
   document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
     el.addEventListener('click', (e) => e.preventDefault());

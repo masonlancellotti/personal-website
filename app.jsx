@@ -1,11 +1,11 @@
 const { useState: useStateA, useEffect: useEffectA } = React;
 
 function App() {
-  const [active, setActive] = useStateA(() => localStorage.getItem('portfolio.tab') || 'journey');
+  const [active, setActive] = useStateA('journey');
   const [tweaksOn, setTweaksOn] = useStateA(false);
   const [bump, setBump] = useStateA(0);
 
-  useEffectA(() => { localStorage.setItem('portfolio.tab', active); window.scrollTo({ top: 0 }); }, [active]);
+  useEffectA(() => { window.scrollTo({ top: 0 }); }, [active]);
 
   // tweaks host integration
   useEffectA(() => {

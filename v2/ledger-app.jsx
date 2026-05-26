@@ -152,7 +152,7 @@ function Filing() {
         <div>
           <p className="lede">
             Undergraduate at <em>Emory University</em> studying economics and computer science, with a business minor and a master's in economics expected in 2028.
-            <small style={{ width: "400px" }}>Below you can find a running archive of my work, experience, and skillset. Some entries can be expanded to provide more detail, with links, notes, or context where useful. I created this page with the goal of painting a fuller picture of my background than a static resume alone can accomplish.
+            <small style={{ width: "400px" }}>Below you can find a running archive of my experience, skills, and coursework. Some entries can be expanded to provide more detail. I created this page with the goal of painting a clearer picture of my background than a static resume alone can accomplish.
 
 
             </small>
@@ -169,7 +169,7 @@ function Filing() {
       <div className="section-head">
         <span className="title"><span className="numeral">I</span><span className="dot">·</span>Roadmap of Experience</span>
         <span className="rule"></span>
-        <span className="note" style={{ fontSize: "13px" }}>High school + college</span>
+        <span className="note" style={{ fontSize: "13px" }}>Work, leadership, and campus roles</span>
       </div>
 
       <div className="register">
@@ -287,7 +287,7 @@ function Filing() {
           </a>
         </span>
         <span className="rule"></span>
-        <span className="note" style={{ fontSize: "13px" }}>Emory University<span className="dot"> ·</span>BA Econ + CS <span className="dot">·</span>May 2027</span>
+        <span className="note" style={{ fontSize: "13px" }}>Emory University<span className="dot"> ·</span>Econ + CS BA <span className="dot">·</span>May 2027</span>
       </div>
 
       <div className="transcript">
@@ -423,7 +423,7 @@ function Blog() {
       <div className="section-head" style={{ marginTop: 0 }}>
         <span className="title"><span className="numeral">I</span><span className="dot">·</span>Articles</span>
         <span className="rule"></span>
-        <span className="note" style={{ fontSize: "13px" }}>Long-form<span className="dot"> ·</span>Sources provided</span>
+        <span className="note" style={{ fontSize: "13px" }}>Research-backed commentary</span>
       </div>
       <div style={{ borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
         {POSTS.map((p, i) => {
@@ -457,7 +457,7 @@ function Blog() {
       </div>
       <a className="featured-article" href="/why-you-shouldve-watched-nvidia-earnings-even-if-you-dont-own-the-stock">
         <div className="featured-article-side">
-          <span className="featured-article-label" style={{ fontSize: "12px", fontFamily: "Arial" }}>Featured article</span>
+          <span className="featured-article-label" style={{ fontSize: "12px" }}>Featured article</span>
           <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 21, 2026</span>
         </div>
         <div className="featured-article-main">
@@ -504,14 +504,25 @@ function initialPortfolioTab() {
   const params = new URLSearchParams(window.location.search);
   return normalize(params.get('tab') || params.get('page')) ||
     normalize(window.location.hash.replace(/^#/, '')) ||
-    normalize(localStorage.getItem('portfolioV2.tab')) ||
     'filing';
+}
+
+function clearPortfolioTabAddress() {
+  const url = new URL(window.location.href);
+  const validHashTabs = new Set(['filing', 'repos', 'blog', 'i', 'ii', 'iii', '1', '2', '3', 'experience', 'projects', 'articles', 'writing', 'opinions']);
+  const shouldClearHash = validHashTabs.has(url.hash.replace(/^#/, '').toLowerCase());
+  if (!url.searchParams.has('tab') && !url.searchParams.has('page') && !shouldClearHash) return;
+  url.searchParams.delete('tab');
+  url.searchParams.delete('page');
+  if (shouldClearHash) url.hash = '';
+  window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
 }
 
 function App() {
   const [active, setActive] = useState(initialPortfolioTab);
   const [tweaksOn, setTweaksOn] = useState(false);
-  useEffect(() => {localStorage.setItem('portfolioV2.tab', active);window.scrollTo({ top: 0 });}, [active]);
+  useEffect(() => { window.scrollTo({ top: 0 }); }, [active]);
+  useEffect(() => { clearPortfolioTabAddress(); }, []);
   useEffect(() => {
     const onMsg = (e) => {
       const d = e.data || {};

@@ -48,10 +48,10 @@ const REGISTER = [
     period: "Jan '24 – Present",
     kind: "Leadership",
     org: "Emory Club Swimming",
-    role: "Head Captain",
+    role: "Vice President",
     place: "Atlanta, GA",
     coords: "33.79°N, 84.32°W",
-    note: "The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
+    note: "Currently serving as Vice President after previously serving as Head Captain. The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
     bullets: [
       "Design and lead 4 practices per week for 10–20 swimmers across every skill level.",
       "Balance technique work for new swimmers with endurance training for more experienced swimmers in the same session.",
@@ -59,7 +59,7 @@ const REGISTER = [
     ],
     stat: { v: "6", sub: "/yr", label: "out-of-state meets", fn: 6 },
     photo: null,
-    photos: ["v2/swim-1.jpg", "v2/swim-2.jpg", "v2/swim-3.jpg", "v2/swim-4.jpg", "v2/swim-5.jpg"],
+    photos: ["v2/swim-5.jpg", "v2/swim-2.jpg", "v2/swim-3.jpg"],
     fn: 3,
     future: false,
     duration: "Ongoing"
@@ -97,7 +97,7 @@ const REGISTER = [
     bullets: [
       "Offer one-on-one instruction in micro/macroeconomics, data science, and computer science.",
       "Build comprehensive review guides and exam-based timelines from each course's syllabus.",
-      "Run 3–5 sessions per week on content mastery, problem sets, and test strategy, looping in professors and TAs when needed to clarify solution methods."
+      "Run 3-5 sessions per week on content mastery, problem sets, and test strategy, looping in professors and TAs when needed to clarify solution methods."
     ],
     stat: { v: "60", sub: "/800", label: "selection ratio", fn: 9 },
     photo: null,
@@ -111,29 +111,27 @@ const REGISTER = [
 // Skills — pulled directly from resume, in the order listed there
 const SKILLS = [
   // Expert
-  { skill: "Python",                 level: "Expert",       n: 5, applied: "Linear Algebra, Econometrics, Machine Learning, trading programs" },
-  { skill: "Excel",                  level: "Expert",       n: 5, applied: "RBmedia sales reports, Accounting: The Language of Business, financial models, operations optimization" },
-  { skill: "AI tools",               level: "Expert",       n: 5, applied: "RBmedia advertising, coding, daily process automation, research, data cleaning" },
+  { skill: "Python",                 level: "Expert",       n: 5, applied: "Linear Algebra, Econometrics, Machine Learning, trading program development" },
+  { skill: "Excel",                  level: "Expert",       n: 5, applied: "Accounting, financial modeling, system optimization" },
   { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, class presentations, consulting case decks" },
+  { skill: "AI",                     level: "Expert",       n: 5, applied: "RBmedia projects, coding, simple task automation, research, data cleaning" },
   // Advanced
-  { skill: "Java",                   level: "Advanced",     n: 4, applied: "Intro CS, Data Structures and Algorithms" },
-  { skill: "Statistical modeling",   level: "Advanced",     n: 4, applied: "Econometric regression, constrained optimization, financial data analysis" },
-  { skill: "Corporate finance",      level: "Advanced",     n: 4, applied: "Firm valuation, risk-return analysis, stock pitches" },
+  { skill: "SQL",                    level: "Advanced",     n: 4, applied: "Database Systems, trading program development" },
+  { skill: "Statistical modeling",   level: "Advanced",     n: 4, applied: "Econometrics, Intermediate Microeconomics, investment research, trading program development" },
+  { skill: "Financial analysis",     level: "Advanced",     n: 4, applied: "Accounting, Corporate Finance, investment research" },
   // Proficient
-  { skill: "SQL",                    level: "Proficient",   n: 3, applied: "Database Systems, trading programs" },
-  { skill: "AWS",                    level: "Proficient",   n: 3, applied: "Portfolio website backend/frontend deployment, trading programs, Docker and GitHub integration" },
-  { skill: "JavaScript",             level: "Proficient",   n: 3, applied: "Portfolio website creation" },
-  { skill: "HTML",                   level: "Proficient",   n: 3, applied: "Portfolio website creation" },
-  { skill: "Accounting principles",  level: "Proficient",   n: 3, applied: "Accounting: The Language of Business, Corporate Finance, stock pitches" },
+  { skill: "Tableau",                level: "Proficient",   n: 3, applied: "Process & Systems Management projects, trading program monitoring" },
+  { skill: "Java",                   level: "Proficient",   n: 3, applied: "Intro CS, Data Structures and Algorithms" },
+  { skill: "Market research",        level: "Proficient",   n: 3, applied: "Emory Economics Review, personal blog writing, Stocks, Bonds, and Financial Markets, personal investing" },
   // Intermediate
-  { skill: "Tableau",                level: "Intermediate", n: 2, applied: "Process & Systems Management projects, dashboard creation for trading program monitoring/troubleshooting" },
-  { skill: "API integration",        level: "Intermediate", n: 2, applied: "Portfolio website backend development, trading programs" },
-  { skill: "Web scraping",           level: "Intermediate", n: 2, applied: "Trading programs, market research, public sentiment tracking" },
+  { skill: "Power BI",               level: "Intermediate", n: 2, applied: "Econometrics, trading program development" },
+  { skill: "Risk management",        level: "Intermediate", n: 2, applied: "Personal investing, Stocks, Bonds, and Financial Markets, trading program development" },
+  { skill: "KPI reporting",          level: "Intermediate", n: 2, applied: "RBmedia ad hoc leadership briefings, Marketing" },
   // Elementary
-  { skill: "Power BI",               level: "Elementary",   n: 1, applied: "Econometrics" },
   { skill: "R",                      level: "Elementary",   n: 1, applied: "Data Science for Economists, Econometrics" },
+  { skill: "Predictive forecasting", level: "Elementary",   n: 1, applied: "Process & Systems Management, personal investing" },
   // Languages
-  { skill: "Spanish",                level: "Proficient",   n: 3, applied: "Spanish coursework (5 years), travel" },
+  { skill: "Spanish",                level: "Proficient",   n: 3, applied: "Spanish coursework, travel" },
 ];
 
 // Full academic transcript — every term, every course
@@ -219,7 +217,6 @@ const REPOS = [
 
 const GOAL_REPOS = [
   { title: "Market Intelligence Agent",           name: "goal-project-01", desc: "Market research system for tracking news, macro data, filings, price movement, and technical signals to produce structured investment briefs, strategy notes, and hedge ideas. Runs continuously on local Mac Mini infrastructure.", why: "Technical and fundamental research can be tedious, and it's easy to miss small but important details. Since I find it necessary to build strong conviction before opening a new position in my brokerage account or crypto wallet, I think a program like this would be beneficial in helping to standardize my decision-making process and make me a more disciplined investor.", lang: "—", status: "queued" },
-  { title: "Automated Content Creation Pipeline", name: "goal-project-02", desc: "End-to-end workflow for turning a prompt into trending short-form content or niche long-form videos, including media sourcing, caption generation, metadata development, and compiling spreadsheets for external API schedule automation.", why: "Ever since a young age, I was fascinated with content creation. The scalability that AI introduces into this space is fascinating to me, and I believe there are a variety of creative paths and monetization strategies available that would serve to keep the project engaging.", lang: "—", status: "queued" },
   { title: "Resale Price Gap Engine",             name: "goal-project-03", desc: "Secondhand marketplace scanner that evaluates listings against recent resale history, taking into account item condition and price history to identify potentially profitable opportunities and trigger seller outreach or transaction workflows when platform regulations permit.", why: "I like this idea because the market for secondhand goods is ripe for mispricing and inefficiencies. In addition, while flipping has existed for decades, programming can make the process much faster by removing almost all of the manual work and applying a higher standard of analysis to the workflow, greatly increasing potential upside.", lang: "—", status: "queued" },
 ];
 
@@ -236,7 +233,7 @@ const INVOLVEMENT = [
     article: {
       title: "Peptide Pricing Power: The GLP-1 Duopoly",
       author: "Mason Lancellotti",
-      date: "March 3, 2026",
+      date: "March 7, 2026",
       href: "https://emoryeconomicsreview.org/articles/2026/3/3/peptide-pricing-power-the-glp-1-duopoly"
     },
     fn: 2

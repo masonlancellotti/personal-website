@@ -9,7 +9,7 @@ function MTMasthead({ active, setActive }) {
   const tabs = [
     { id: 'filing', label: 'Experience',  roman: 'I' },
     { id: 'repos',  label: 'Repos',       roman: 'II' },
-    { id: 'blog',   label: 'Opinions',    roman: 'III' }
+    { id: 'blog',   label: 'Blogs',       roman: 'III' }
   ];
   return (
     <header className="mt-masthead">
@@ -74,8 +74,9 @@ function MTFiling() {
           with a business minor and a master's in economics expected in 2028.
         </p>
         <p className="mt-lede-small">
-          A running archive of my work, experience, and skillset. Some entries can be tapped
-          for more detail.
+          Below you can find a running archive of my experience, skills, and coursework.
+          Some entries can be expanded to provide more detail. I created this page with the
+          goal of painting a clearer picture of my background than a static resume alone can accomplish.
         </p>
         <div className="mt-statblock">
           <div><span className="k">Positions held</span><span className="v">{totalRoles}</span></div>
@@ -86,7 +87,7 @@ function MTFiling() {
       </section>
 
       {/* Experience */}
-      <MTSectionHead numeral="I" title="Roadmap of Experience" note="High school + college" />
+      <MTSectionHead numeral="I" title="Roadmap of Experience" note="Work, leadership, and campus roles" />
       <div className="mt-register">
         {REGISTER.map((r) => (
           <React.Fragment key={r.n}>
@@ -179,7 +180,7 @@ function MTFiling() {
       <MTSectionHead
         numeral="III"
         title="Undergrad Transcript"
-        note="Emory University · BA Econ + CS · May 2027"
+        note="Emory University · Econ + CS BA · May 2027"
         link={{ href: 'files/mason-transcript.pdf', label: 'Open PDF' }} />
       <div className="mt-transcript">
         {TRANSCRIPT.map((t, i) => (
@@ -286,7 +287,7 @@ function MTRepos() {
 function MTBlog() {
   return (
     <div>
-      <MTSectionHead numeral="I" title="Articles" note="Long-form · Sources provided" />
+      <MTSectionHead numeral="I" title="Articles" note="Research-backed commentary" />
       <div className="mt-register">
         {POSTS.map((p, i) => {
           const clickable = !!p.href;
