@@ -199,7 +199,7 @@ body::before {
 .article-kicker {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 0;
   font-size: 11px;
   color: var(--muted);
   letter-spacing: 0.08em;
@@ -208,7 +208,18 @@ body::before {
   border-bottom: 1px solid var(--rule);
 }
 .article-kicker .numeral { color: var(--accent); font-weight: 500; }
-.article-kicker .dot { color: var(--accent); opacity: 0.9; font-weight: 500; }
+.article-kicker .section-label-dot {
+  display: inline-block;
+  margin: 0 0.65rem;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 1;
+  font-weight: 400;
+  vertical-align: baseline;
+  transform: none;
+  letter-spacing: 0;
+}
 .article-kicker .label { color: var(--accent); }
 .article-kicker .spacer { flex: 1; }
 .article-kicker .tag {
@@ -627,7 +638,7 @@ body::before {
 .mt-kicker {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 0;
   font-size: 10.5px;
   color: var(--muted);
   letter-spacing: 0.08em;
@@ -636,7 +647,18 @@ body::before {
   border-bottom: 1px solid var(--rule);
 }
 .mt-kicker .num { color: var(--accent); font-weight: 500; }
-.mt-kicker .dot { color: var(--accent); opacity: 0.9; font-weight: 500; }
+.mt-kicker .section-label-dot {
+  display: inline-block;
+  margin: 0 0.65rem;
+  font-size: 1.2em;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 1;
+  font-weight: 400;
+  vertical-align: baseline;
+  transform: none;
+  letter-spacing: 0;
+}
 .mt-kicker .label { color: var(--accent); }
 .mt-kicker .spacer { flex: 1; }
 .mt-kicker .tag {
@@ -984,7 +1006,7 @@ body::before {
 
   <div class="article-kicker">
     <span class="numeral">III</span>
-    <span class="dot">·</span>
+    <span class="section-label-dot" aria-hidden="true">&middot;</span>
     <span class="label">Market Opinions</span>
     <span class="spacer"></span>
     <span class="tag">Stock market</span>
@@ -1140,7 +1162,7 @@ body::before {
 
     <div class="mt-kicker">
       <span class="num">III</span>
-      <span class="dot">·</span>
+      <span class="section-label-dot" aria-hidden="true">&middot;</span>
       <span class="label">Market Opinions</span>
       <span class="spacer"></span>
       <span class="tag">Stock market</span>
