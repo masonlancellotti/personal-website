@@ -139,7 +139,7 @@ const TRANSCRIPT = [
   {
     term: "Fall 2023", termGpa: 4.000, credits: 15, creditsFn: 1,
     courses: [
-      { code: "CS 170",   name: "Intro to Computer Science I",                 credits: 4, grade: "A", placeholder: "Learned programming from scratch in Java, starting with simple algorithms, recursion, and Turtle graphics." },
+      { code: "CS 170",   name: "Intro to Computer Science I",                 credits: 4, grade: "A", placeholder: "Learned programming from scratch in Java, starting with simple algorithms, recursion, and turtle graphics." },
       { code: "ECON 101", name: "Principles of Microeconomics",                credits: 3, grade: "A", placeholder: "Covered how markets work through supply, demand, pricing, and consumer/firm behavior." },
       { code: "PSYC 110", name: "Intro Psychology I",                          credits: 3, grade: "A", placeholder: "Focused on the biological side of psychology, including brain structures, animal behavior, and how different parts of the brain control different functions or predispositions." },
       { code: "PSYC 190", name: "Freshman Seminar: Psychology",                credits: 3, grade: "A", placeholder: "Focused on case studies regarding brain disorders like Alzheimer's, face blindness, and aphantasia, concluding with a fifteen-minute final presentation (which I did on CTE)." },
@@ -150,18 +150,18 @@ const TRANSCRIPT = [
     courses: [
       { code: "CS 171",   name: "Intro to Computer Science II",                credits: 3, grade: "A", placeholder: "Built on Java foundation from CS 170 with object-oriented programming, basic data structures, and more complex/efficient problem solving." },
       { code: "CS 224",   name: "Foundations of Computer Science",             credits: 3, grade: "A", placeholder: "Covered discrete math, logic, proofs, and the theory behind how computer science and encryption work." },
-      { code: "ECON 112", name: "Principles of Macroeconomics",                credits: 3, grade: "A", placeholder: "Focused on inflation, unemployment, growth, banking, and how the Fed as well as the overall larger economy move." },
-      { code: "ENG 205",  name: "Poetry",                                      credits: 3, grade: "A", placeholder: "Focused on comprehension of nuanced, cryptic writings and understanding how authors use language, structure, and style to create meaning or accomplish an artistic goal." },
+      { code: "ECON 112", name: "Principles of Macroeconomics",                credits: 3, grade: "A", placeholder: "Focused on inflation, unemployment, growth, banking, and how the Fed as well as the overall larger economy function." },
+      { code: "ENG 205",  name: "Poetry",                                      credits: 3, grade: "A", placeholder: "Focused on reading comprehension and understanding the how and why behind authors' use of varying languages, structures, and tones." },
     ]
   },
   {
     term: "Fall 2024", termGpa: 3.929, credits: 17,
     courses: [
       { code: "CS 253",   name: "Data Structures and Algorithms",              credits: 3, grade: "A",  placeholder: "Learned core data structures and algorithms in both Java and Python, with an emphasis on efficiency and identifying appropriate use cases." },
-      { code: "ECON 201", name: "Intermediate Microeconomics",                 credits: 4, grade: "A",  placeholder: "Dove deeper into utility theory, consumer choice, firm behavior, calculus applications, and constrained optimization." },
+      { code: "ECON 201", name: "Intermediate Microeconomics",                 credits: 4, grade: "A",  placeholder: "Dove deeper into utility theory, consumer choice dynamics, firm behavior, constrained optimization, and other calculus applications." },
       { code: "ECON 215", name: "Stocks, Bonds & Financial Markets",           credits: 3, grade: "A",  placeholder: "Covered a vast array of financial markets, including stocks, bonds, options, futures, real estate, and other major asset classes." },
       { code: "MATH 221", name: "Linear Algebra",                              credits: 4, grade: "A-", placeholder: "Studied matrices, vector spaces, eigenvalues, transformations, and least-squares methods, learning how to apply these concepts efficiently and in a standardized manner using Python." },
-      { code: "SPAN 201", name: "Intermediate Spanish I",                      credits: 3, grade: "A",  placeholder: "Continued building Spanish speaking, writing, reading, and listening skills through studying authentic cultural material." },
+      { code: "SPAN 201", name: "Intermediate Spanish I",                      credits: 3, grade: "A",  placeholder: "Focused on the study of authentic cultural material in order to build more robust speaking, writing, reading, and listening skills." },
     ]
   },
   {
@@ -170,28 +170,28 @@ const TRANSCRIPT = [
       { code: "ACT 200",  name: "Accounting: The Language of Business",        credits: 3, grade: "A", placeholder: "Learned how the four financial statements connect and can be used to track performance through transactions, costs, and cash flows, concluding with a final twenty-minute stock pitch (which my group did on Nike, recommending a buy)." },
       { code: "BUS 290",  name: "Tech Toolbox A: Excel",                       credits: 1, grade: "S", placeholder: "Built practical Excel skills through learning formulas, how to create charts, employ pivot tables, utilize VLOOKUP, and conduct basic financial modeling." },
       { code: "ECON 212", name: "Intermediate Macroeconomics",                 credits: 3, grade: "A", placeholder: "A math-heavy class centered on deriving theoretical models for national output, employment, inflation, and monetary policy mechanisms." },
-      { code: "ECON 220", name: "Data Science for Economists",                 credits: 4, grade: "A", placeholder: "Covered basic and intermediate probability, statistics, and regression concepts, also building a foundation in conducting practical economic work with real datasets through a Python lab component." },
-      { code: "MATH 210", name: "Advanced Calculus for Data Sciences",         credits: 4, grade: "A", placeholder: "Focused on multivariable calculus, optimization, integration, Taylor series, and data-science applications." },
-      { code: "SPAN 202", name: "Intermediate Spanish II",                     credits: 3, grade: "A", placeholder: "Continued strengthening Spanish communication skills while studying Hispanic culture and society." },
+      { code: "ECON 220", name: "Data Science for Economists",                 credits: 4, grade: "A", placeholder: "Covered basic and intermediate probability, statistics, and regression concepts, also including a Python lab component during which we conducted practical economic work using real-world datasets." },
+      { code: "MATH 210", name: "Advanced Calculus for Data Sciences",         credits: 4, grade: "A", placeholder: "Focused on multivariable calculus, optimization, integration, Taylor series, and specific data science applications using Python." },
+      { code: "SPAN 202", name: "Intermediate Spanish II",                     credits: 3, grade: "A", placeholder: "Continued strengthening Spanish communication skills while further studying Hispanic culture, society, and history." },
     ]
   },
   {
     term: "Fall 2025", termGpa: 4.000, credits: 17,
     courses: [
       { code: "CS 325",   name: "Artificial Intelligence",                     credits: 3, grade: "A", placeholder: "Began with primitive AI concepts and built up to more advanced topics like alpha-beta pruning, CNNs, reinforcement learning, and LLMs, overall covering a wide array of computational techniques and their discrete foundations." },
-      { code: "ECON 310W", name: "Experimental Economics",                     credits: 4, grade: "A", placeholder: "Started by studying classic experiments and findings in the field, ending with the design of my own economic experiment and a mock academic paper analyzing it." },
-      { code: "ECON 320", name: "Econometrics",                                credits: 4, grade: "A", placeholder: "Built regression-based tools for modeling economic data, testing relationships, and interpreting results, including a lab section in which we had to design a unique econometric model using real datasets from IPUMS and FRED, presenting our findings and limitations." },
+      { code: "ECON 310W", name: "Experimental Economics",                     credits: 4, grade: "A", placeholder: "Focused on examining a list of the most impactful studies and findings in the field, ending with a capstone project that involved the design of our own economic experiment and a mock academic paper explaining the procedure and analyzing various possible outcomes." },
+      { code: "ECON 320", name: "Econometrics",                                credits: 4, grade: "A", placeholder: "Focused on regression-based approaches for modeling economic data, testing relationships, and interpreting results, including a lab section in which we had to design a unique econometric model using real datasets from IPUMS and FRED, presenting our findings and limitations at the conclusion of the course." },
       { code: "FIN 320",  name: "Corporate Finance",                           credits: 3, grade: "A", placeholder: "Covered stock and bond valuation, annuities and perpetuities, risk-return tradeoffs, capital allocation, and general firm-level financial decision-making." },
-      { code: "HIST 207", name: "Medieval Europe and the World",               credits: 3, grade: "A", placeholder: "Focused on medieval Europe's expansion and religious power through the rigorous study and analysis of primary texts and accounts, emphasizing the suppression of other cultures and belief systems through ruthless conquest and conversion." },
+      { code: "HIST 207", name: "Medieval Europe and the World",               credits: 3, grade: "A", placeholder: "Focused on Catholicism's aggressive expansion and religious dominance through the rigorous study and analysis of primary texts and accounts, emphasizing the suppression of other cultures and belief systems." },
     ]
   },
   {
     term: "Spring 2026", termGpa: 3.600, credits: 12,
     courses: [
       { code: "CS 334",   name: "Machine Learning",                            credits: 3, grade: "A-", placeholder: "Built from foundational ML concepts like decision boundaries, gradient descent, regularization, model selection, and kernels into more advanced topics like neural networks, transformers, clustering, and recommender systems." },
-      { code: "CS 377",   name: "Database Systems",                            credits: 3, grade: "A",  placeholder: "A heavily SQL-based class covering database design, relational models, normalization, query processing, and data integrity." },
-      { code: "ISOM 351", name: "Process & Systems Management",                credits: 3, grade: "B-", placeholder: "Studied how businesses analyze and improve operations, resource allocation, and process decisions, with an emphasis on performance measurement, forecasting accuracy, and reducing costly inefficiencies." },
-      { code: "MKT 340",  name: "Marketing Management",                        credits: 3, grade: "A",  placeholder: "Covered how companies understand customers, position products, and build/iterate marketing strategies, ending with an online, multi-week, simulated internship and group presentation on our decision-making throughout the activity." },
+      { code: "CS 377",   name: "Database Systems",                            credits: 3, grade: "A",  placeholder: "A heavily SQL-based class covering database design, relational models, normalization, query processing, and maintenance of data integrity." },
+      { code: "ISOM 351", name: "Process & Systems Management",                credits: 3, grade: "B-", placeholder: "Studied how businesses analyze and improve operations, allocate resources, and make process decisions, with an emphasis on performance measurement, forecasting accuracy, and reducing costly inefficiencies." },
+      { code: "MKT 340",  name: "Marketing Management",                        credits: 3, grade: "A",  placeholder: "Covered how companies understand customers, position products, and construct marketing strategies, ending with an online, multi-week, simulated internship and group presentation on our decision-making throughout the activity." },
     ]
   }
 ];
