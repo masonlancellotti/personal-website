@@ -15,7 +15,7 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Last modified on 5/25</span>
+        <span>Last modified: 5/25/2026</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">
@@ -181,7 +181,7 @@ function MTFiling() {
         numeral="III"
         title="Undergrad Transcript"
         note="Emory University · Econ + CS BA · May 2027"
-        link={{ href: 'files/mason-transcript.pdf', label: 'Open PDF' }} />
+        link={{ href: 'files/mason-transcript-2026-05-25.pdf', label: 'Open PDF' }} />
       <div className="mt-transcript">
         {TRANSCRIPT.map((t, i) => (
           <div key={i} className={`mt-term${t.current ? ' current' : ''}`}>
@@ -334,7 +334,7 @@ function MTColophon() {
         <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="files/mason-resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-        <a href="files/mason-transcript.pdf" target="_blank" rel="noopener noreferrer">Transcript</a>
+        <a href="files/mason-transcript-2026-05-25.pdf" target="_blank" rel="noopener noreferrer">Transcript</a>
         <a href="files/mason-sat.pdf" target="_blank" rel="noopener noreferrer">SAT</a>
       </span>
     </footer>

@@ -113,7 +113,7 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified on 5/25</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 5/25/2026</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
@@ -282,7 +282,7 @@ function Filing() {
       <div className="section-head">
         <span className="title">
           <span className="numeral">III</span><span className="dot">·</span>Undergrad Transcript
-          <a className="section-head-link" href="files/mason-transcript.pdf" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px" }}>
+          <a className="section-head-link" href="files/mason-transcript-2026-05-25.pdf" target="_blank" rel="noopener noreferrer" style={{ fontSize: "12px" }}>
             Open PDF <span aria-hidden="true">↗</span>
           </a>
         </span>
@@ -482,7 +482,7 @@ function Colophon() {
         <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>LinkedIn</a>
         <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>GitHub</a>
         <a href="files/mason-resume.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>Resume</a>
-        <a href="files/mason-transcript.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>Transcript</a>
+        <a href="files/mason-transcript-2026-05-25.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>Transcript</a>
         <a href="files/mason-sat.pdf" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ink-2)', textDecoration: 'none' }}>SAT</a>
       </span>
     </footer>);
