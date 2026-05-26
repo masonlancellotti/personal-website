@@ -15,7 +15,7 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Updated 5/21/2026</span>
+        <span>Last modified on 5/25</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">

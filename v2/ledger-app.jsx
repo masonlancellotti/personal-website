@@ -113,7 +113,7 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last updated: 5/21/2026</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified on 5/25</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
