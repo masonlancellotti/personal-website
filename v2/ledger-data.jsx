@@ -51,7 +51,7 @@ const REGISTER = [
     role: "Vice President",
     place: "Atlanta, GA",
     coords: "33.79°N, 84.32°W",
-    note: "Currently serving as Vice President after previously serving as Head Captain. The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
+    note: "The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
     bullets: [
       "Design and lead 4 practices per week for 10–20 swimmers across every skill level.",
       "Balance technique work for new swimmers with endurance training for more experienced swimmers in the same session.",
