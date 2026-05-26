@@ -210,7 +210,7 @@ const REPOS = [
     title: "Personal Website",
     name: "personal-website",
     desc: "Frontend architecture including modular components and reusable organization systems meant to provide a richer alternative to my resume.",
-    lang: "JavaScript",
+    lang: "HTML",
     status: "Deployed",
     link: { label: "github.com/masonlancellotti/personal-website", href: "https://github.com/masonlancellotti/personal-website" },
     longDesc: "A modular React-based portfolio website intended to offer a more complete picture of my background and experience, in addition to displaying how I can utilize my skillset in a practical setting to produce a concrete, high-quality deliverable. I used Claude for much of the build process to implement, debug, and refine the frontend while I crafted focused prompts and feedback to ensure the final product reflected my initial vision." }];
