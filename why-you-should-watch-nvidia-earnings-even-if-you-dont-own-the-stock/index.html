@@ -210,18 +210,17 @@ body::before {
 .article-kicker .numeral { color: var(--accent); font-weight: 500; }
 .article-kicker .section-label-dot {
   display: inline-block;
+  width: 4px;
+  height: 4px;
+  min-width: 4px;
+  min-height: 4px;
+  border-radius: 999px;
+  background-color: currentColor;
   margin: 0 0.65rem;
-  font-size: 1em;
-  line-height: 1;
   color: var(--accent);
   opacity: 1;
-  font-weight: 400;
-  font-family: var(--font-stack);
-  position: static;
-  top: auto;
-  vertical-align: baseline;
-  transform: none;
-  letter-spacing: 0;
+  vertical-align: middle;
+  transform: translateY(-1px);
 }
 .article-kicker .label { color: var(--accent); }
 .article-kicker .spacer { flex: 1; }
@@ -652,18 +651,17 @@ body::before {
 .mt-kicker .num { color: var(--accent); font-weight: 500; }
 .mt-kicker .section-label-dot {
   display: inline-block;
+  width: 4px;
+  height: 4px;
+  min-width: 4px;
+  min-height: 4px;
+  border-radius: 999px;
+  background-color: currentColor;
   margin: 0 0.65rem;
-  font-size: 1em;
-  line-height: 1;
   color: var(--accent);
   opacity: 1;
-  font-weight: 400;
-  font-family: var(--font-stack);
-  position: static;
-  top: auto;
-  vertical-align: baseline;
-  transform: none;
-  letter-spacing: 0;
+  vertical-align: middle;
+  transform: translateY(-1px);
 }
 .mt-kicker .label { color: var(--accent); }
 .mt-kicker .spacer { flex: 1; }
@@ -1012,7 +1010,7 @@ body::before {
 
   <div class="article-kicker">
     <span class="numeral">III</span>
-    <span class="section-label-dot" aria-hidden="true">&middot;</span>
+    <span class="section-label-dot" aria-hidden="true"></span>
     <span class="label">Market Opinions</span>
     <span class="spacer"></span>
     <span class="tag">Stock market</span>
@@ -1168,7 +1166,7 @@ body::before {
 
     <div class="mt-kicker">
       <span class="num">III</span>
-      <span class="section-label-dot" aria-hidden="true">&middot;</span>
+      <span class="section-label-dot" aria-hidden="true"></span>
       <span class="label">Market Opinions</span>
       <span class="spacer"></span>
       <span class="tag">Stock market</span>
