@@ -113,7 +113,7 @@ const SKILLS = [
   // Expert
   { skill: "Python",                 level: "Expert",       n: 5, applied: "Linear Algebra, Econometrics, Machine Learning, trading program development" },
   { skill: "Excel",                  level: "Expert",       n: 5, applied: "Accounting, financial modeling, system optimization" },
-  { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, class presentations, consulting case decks" },
+  { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, strategy analysis decks, class presentations" },
   { skill: "AI",                     level: "Expert",       n: 5, applied: "RBmedia projects, coding, simple task automation, research, data cleaning" },
   // Advanced
   { skill: "SQL",                    level: "Advanced",     n: 4, applied: "Database Systems, trading program development" },
