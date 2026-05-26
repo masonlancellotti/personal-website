@@ -350,9 +350,9 @@ function Repos() {
   return (
     <div>
       <div className="section-head" style={{ marginTop: 0 }}>
-        <span className="title"><span className="numeral">I</span><span className="dot">·</span>Active Builds</span>
+        <span className="title"><span className="numeral">I</span><span className="dot">·</span>Primary Work</span>
         <span className="rule"></span>
-        <span className="note" style={{ fontSize: "13px" }}>Currently in progress</span>
+        <span className="note" style={{ fontSize: "13px" }}>Active / maintained</span>
       </div>
       <div style={{ borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
         <div className="repo-row" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--muted)', letterSpacing: '0.16em', textTransform: 'uppercase', cursor: 'default', background: 'transparent', padding: '10px 0 9px', borderBottom: '1px solid var(--rule)' }}>

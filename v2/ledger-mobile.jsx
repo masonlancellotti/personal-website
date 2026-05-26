@@ -228,7 +228,7 @@ function MTRepos() {
   const [openRepo, setOpenRepo] = useStateMT(null);
   return (
     <div>
-      <MTSectionHead numeral="I" title="Active Builds" note="Currently in progress" />
+      <MTSectionHead numeral="I" title="Primary Work" note="Active / maintained" />
       <div className="mt-register">
         {REPOS.map((r, i) => (
           <React.Fragment key={i}>
