@@ -101,7 +101,7 @@ body::before {
 .topbar .bar-name .home-icon svg { width: 100%; height: 100%; display: block; }
 .topbar .bar-tabs {
   display: flex;
-  gap: 28px;
+  gap: 8px;
   justify-content: center;
 }
 .topbar .bar-tabs a {
@@ -111,14 +111,22 @@ body::before {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  padding: 4px 2px;
-  border-bottom: 1.5px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  padding: 8px 11px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
 }
-.topbar .bar-tabs a:hover { color: var(--ink); }
+.topbar .bar-tabs a:hover,
+.topbar .bar-tabs a:focus-visible {
+  color: var(--ink);
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 4%, var(--bg-2));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 55%, transparent);
+}
 .topbar .bar-tabs a.active {
   color: var(--ink);
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 6%, var(--paper));
 }
 .topbar .bar-tabs a .roman {
   font-size: 11px;
@@ -982,18 +990,18 @@ body::before {
      ========================================================= -->
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="bar-name" href="../index.html?tab=blog" data-tab="blog">
+    <a class="bar-name" href="/?tab=blog" data-tab="blog">
       <span class="home-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
       Back to articles
     </a>
 
     <nav class="bar-tabs">
-      <a href="../index.html?tab=filing" data-tab="filing"><span class="roman">I.</span>Experience</a>
-      <a href="../index.html?tab=repos" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
-      <a href="../index.html?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
+      <a href="/?tab=filing" data-tab="filing"><span class="roman">I.</span>Experience</a>
+      <a href="/?tab=repos" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
+      <a href="/?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
     </nav>
 
-    <a class="bar-next" href="#" aria-disabled="true" title="Coming May 28, 2026">
+    <a class="bar-next" href="/the-quiet-pressure-of-higher-yields/">
       <span>
         <span class="next-label">Next article</span>
         <span class="next-title">The quiet pressure of higher yields</span>
@@ -1112,15 +1120,15 @@ body::before {
        FOOT NAV — prev article (back to index) + next
        ========================================================= -->
   <nav class="article-foot">
-    <a class="foot-cell" href="../index.html?tab=blog" data-tab="blog">
+    <a class="foot-cell" href="/?tab=blog" data-tab="blog">
       <span class="k">← Back</span>
       <span class="title">All Market Opinions</span>
       <span class="meta">Article index</span>
     </a>
-    <a class="foot-cell right" href="#" aria-disabled="true" title="Coming May 28, 2026">
+    <a class="foot-cell right" href="/the-quiet-pressure-of-higher-yields/">
       <span class="k">Next →</span>
       <span class="title">The quiet pressure of higher yields</span>
-      <span class="meta">May 28, 2026 · Coming Thursday</span>
+      <span class="meta">May 28, 2026 · 6 min</span>
     </a>
   </nav>
 
@@ -1151,11 +1159,11 @@ body::before {
 
   <header class="mt-topbar">
     <div class="mt-topbar-inner">
-      <a class="mt-home" href="../index.html?tab=blog" data-tab="blog">
+      <a class="mt-home" href="/?tab=blog" data-tab="blog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         All articles
       </a>
-      <a class="mt-badge" href="#" aria-disabled="true" title="Coming May 28, 2026">
+      <a class="mt-badge" href="/the-quiet-pressure-of-higher-yields/">
         Next article
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
       </a>
@@ -1262,15 +1270,15 @@ body::before {
     </section>
 
     <nav class="mt-foot">
-      <a class="cell" href="../index.html?tab=blog" data-tab="blog">
+      <a class="cell" href="/?tab=blog" data-tab="blog">
         <span class="k">← Back</span>
         <span class="title">All Market Opinions</span>
         <span class="meta">Article index</span>
       </a>
-      <a class="cell right" href="#" aria-disabled="true" title="Coming May 28, 2026">
+      <a class="cell right" href="/the-quiet-pressure-of-higher-yields/">
         <span class="k">Next →</span>
         <span class="title">The quiet pressure of higher yields</span>
-        <span class="meta">May 28, 2026 · Coming Thursday</span>
+        <span class="meta">May 28, 2026 · 6 min</span>
       </a>
     </nav>
 

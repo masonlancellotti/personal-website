@@ -9,7 +9,7 @@ const REGISTER = [
     role: "Math Instructor",
     place: "Haymarket, VA",
     coords: "38.81°N, 77.64°W",
-    note: "First paid role. Taught varying levels of math at a tutoring center. Served as my introduction into the professional world.",
+    note: "This was my first paid role, and served as my introduction into the professional world.",
     bullets: [
       "Taught 30+ K-12 students through structured sessions and one-on-one homework help.",
       "Introduced study techniques and problem-solving strategies to build retention and academic confidence.",
@@ -30,7 +30,7 @@ const REGISTER = [
     role: "Lifeguard",
     place: "Gainesville, VA",
     coords: "38.79°N, 77.61°W",
-    note: "Returning seasonal employee for three summers. Undergone repeated certifications and training. Bolstered my client communication skills.",
+    note: "Being a returning seasonal employee for three summers, I have undergone repeated certifications and training. This position has also bolstered my client communication skills.",
     bullets: [
       "Monitored pool activities and proactively enforced safety guidelines to prevent accidents.",
       "Administered first aid on 4 separate occasions, coordinating directly with police and EMS.",
@@ -51,7 +51,7 @@ const REGISTER = [
     role: "Vice President",
     place: "Atlanta, GA",
     coords: "33.79°N, 84.32°W",
-    note: "The team spans first-time learners to ex-varsity, forcing me to consider many different perspectives, often different than my own.",
+    note: "The team spans from beginners to ex-varsity swimmers, requiring me to consider many different perspectives, often different than my own.",
     bullets: [
       "Design and lead 4 practices per week for 10–20 swimmers across every skill level.",
       "Balance technique work for new swimmers with endurance training for more experienced swimmers in the same session.",
@@ -72,7 +72,7 @@ const REGISTER = [
     role: "Marketing Intern",
     place: "Landover, MD",
     coords: "38.93°N, 76.87°W",
-    note: "First time in a professional setting with a business context. Opened my eyes to the utility of data and how invaluable of a tool it can be for almost any task or goal, no matter how seemingly unrelated it is to math or analytics.",
+    note: "This was my first time in a professional setting with a business context. It opened my eyes to the utility of data and how invaluable of a tool it can be for almost any task, goal, or industry.",
     bullets: [
       "Compiled monthly and quarterly sales reports on 2,500+ Audible and Spotify audiobook titles.",
       "Visualized trends with tables and graphs that guided executive decision-making on future titles.",
@@ -93,7 +93,7 @@ const REGISTER = [
     role: "Student Tutor",
     place: "Atlanta, GA",
     coords: "33.79°N, 84.32°W",
-    note: "Invited to the program through a GPA-based selection process. Fellow students can reach out to me for independent, paid tutoring when in need of homework help or clarity on tricky concepts.",
+    note: "Having been invited to the program through a GPA-based selection process, students can reach out to me for independent, paid tutoring when in need of homework help or clarity on tricky concepts.",
     bullets: [
       "Offer one-on-one instruction in micro/macroeconomics, data science, and computer science.",
       "Build comprehensive review guides and exam-based timelines from each course's syllabus.",
@@ -202,7 +202,7 @@ const REPOS = [
     name: "prediction-markets-program",
     desc: "Automated prediction market infrastructure for fair value edge identification, orderbook analysis, cross-venue arbitrage evaluation.",
     lang: "Python",
-    status: "Iterative development",
+    status: "Development",
     link: { label: "github.com/masonlancellotti/prediction-markets-program", href: "https://github.com/masonlancellotti/prediction-markets-program" },
     longDesc: "A multi-arm trading research system specifically built to trade contracts in prediction markets like Kalshi and Polymarket. It connects live API data, orderbook depth, multiple cross-platform comparisons, paper execution logs, backtesting functionality, and graph-based contract relationships into a single workflow for evaluating whether a profitable opportunity, either through a detected edge, arbitrage opportunity, or liquidity gap, can actually be profitable after fees. I decided to create this program based on the thesis that inefficiencies would be easier to identify and more common in prediction markets, which are much less mature than traditional financial markets and are still dominated by a largely non-institutional trader base." },
 
@@ -217,11 +217,12 @@ const REPOS = [
 
 const GOAL_REPOS = [
   { title: "Market Intelligence Agent",           name: "goal-project-01", desc: "Market research system for tracking news, macro data, filings, price movement, and technical signals to produce structured investment briefs, strategy notes, and hedge ideas. Runs continuously on local Mac Mini infrastructure, with important notifications routed to other devices like my phone or laptop.", why: "Technical and fundamental research can be tedious, and it's easy to miss small but important details. Since I find it necessary to build strong conviction before opening a new position in my brokerage account or crypto wallet, I think a program like this would be beneficial in helping to standardize my decision-making process and make me a more disciplined investor.", lang: "—", status: "queued" },
-  { title: "Resale Price Gap Engine",             name: "goal-project-03", desc: "Secondhand marketplace scanner that evaluates listings against recent resale history, taking into account item condition and price history to identify potentially profitable opportunities and trigger seller outreach or transaction workflows when platform regulations permit.", why: "I like this idea because the market for secondhand goods is ripe for mispricing and inefficiencies. In addition, while flipping has existed for decades, programming can make the process much faster by removing almost all of the manual work and applying a higher standard of analysis to the workflow, greatly increasing potential upside. It intrigues me how this is effectively a watered-down, ultra-concrete version of financial arbitrage.", lang: "—", status: "queued" },
+  { title: "Resale Price Gap Engine",             name: "goal-project-03", desc: "Secondhand marketplace scanner that evaluates listings against recent resales, taking into account item condition and price history to identify potentially profitable opportunities and trigger seller outreach or transaction workflows when platform regulations permit.", why: "I like this idea because the market for secondhand goods is ripe for mispricing and inefficiencies. In addition, while flipping has existed for decades, programming can make the process much faster by removing almost all of the manual work and applying a higher standard of analysis to the workflow, greatly increasing potential upside. It intrigues me how this is effectively a watered-down, ultra-concrete version of financial arbitrage.", lang: "—", status: "queued" },
 ];
 
 const POSTS = [
-  { date: "May 28, 2026", title: "The quiet pressure of higher yields", excerpt: "While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.", tags: ["Interest rates"], len: "— min", upcoming: true },
+  { date: "June 4, 2026", title: "Beyond AI: the two forces defining the next tech frontier", excerpt: "As AI dominates the current market narrative, investors are eager to identify the next \"golden ticket,\" so to speak. While sectors like nuclear energy and quantum computing are still in their early stages, some speculate they have the potential to explode alongside rising demands for power and advanced computation.", tags: ["Technology"], len: "— min", upcoming: true },
+  { date: "May 28, 2026", title: "The quiet pressure of higher yields", excerpt: "While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.", tags: ["Interest rates"], len: "6 min", href: "/the-quiet-pressure-of-higher-yields/" },
   { date: "May 21, 2026", title: "Why you should watch Nvidia earnings even if you don't own the stock",  excerpt: "With tech stocks dominating the market, megacap earnings reports like Nvidia's have the potential to shift sentiment across AI, semiconductors, and broader indexes, creating a ripple effect that reaches far beyond direct stock exposure.", tags: ["Stock market"], len: "5 min", href: "/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/" },
 ];
 

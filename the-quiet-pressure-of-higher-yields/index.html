@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mason Lancellotti</title>
+<title>The quiet pressure of higher yields | Mason Lancellotti</title>
 <style>
 /* ==========================================================
    Article page — inherits the Ledger filing aesthetic
@@ -369,6 +369,10 @@ body::before {
   font-size: 11px;
   color: var(--muted);
 }
+.article-figure.wide-chart {
+  width: 100%;
+  max-width: 700px;
+}
 
 /* pullquote — floated accent quote, body text wraps around it */
 .article-body .pullquote {
@@ -637,6 +641,14 @@ body::before {
   white-space: nowrap;
 }
 .mt-badge svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
+.mt-badge[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.65;
+}
+.mt-badge[aria-disabled="true"]:hover {
+  border-color: var(--rule);
+  background: var(--paper);
+}
 
 .mt-article {
   max-width: 760px;
@@ -791,6 +803,10 @@ body::before {
   margin-top: 4px;
   font-size: 10.5px;
   color: var(--muted);
+}
+.mt-figure.wide-chart {
+  margin-left: -10px;
+  margin-right: -10px;
 }
 
 .mt-pullquote {
@@ -976,7 +992,7 @@ body::before {
   .colophon .center, .colophon .right { text-align: left; justify-content: flex-start; }
 }
 </style>
-  <meta name="description" content="I'm Mason Lancellotti, an Emory economics and computer science student focused on finance, consulting, data analytics, and tech-driven solutions.">
+  <meta name="description" content="While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.">
 </head>
 <body>
 
@@ -1001,10 +1017,10 @@ body::before {
       <a href="/?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
     </nav>
 
-    <a class="bar-next" href="/the-quiet-pressure-of-higher-yields/">
+    <a class="bar-next" href="#" aria-disabled="true" title="Coming June 4, 2026">
       <span>
         <span class="next-label">Next article</span>
-        <span class="next-title">The quiet pressure of higher yields</span>
+        <span class="next-title">Beyond AI: the two forces defining the next tech frontier</span>
       </span>
       <span class="next-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
     </a>
@@ -1021,76 +1037,70 @@ body::before {
     <span class="section-label-dot" aria-hidden="true"></span>
     <span class="label">Market Opinions</span>
     <span class="spacer"></span>
-    <span class="tag">Stock market</span>
+    <span class="tag">Interest rates</span>
   </div>
 
-  <h1 class="article-title" style="width: 650px">Why you should watch Nvidia earnings even if you don't own the stock</h1>
+  <h1 class="article-title" style="width: 650px">The quiet pressure of higher yields</h1>
 
   <div class="article-meta">
-    <div class="m"><span class="k">Published</span><span class="v">May 21, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-    <div class="m"><span class="k">Time to read</span><span class="v">5 min.</span></div>
-    <div class="author">By Mason Lancellotti</div>
+    <div class="m"><span class="k">Published</span><span class="v">May 28, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
+    <div class="m"><span class="k">Time to read</span><span class="v">6 min.</span></div>
+    <div class="author">By&nbsp;Mason Lancellotti</div>
   </div>
 
   <div class="article-body">
 
-    <p class="article-lede">Nvidia's (NVDA) quarterly results have become one of the most highly anticipated events in the market, but it's not because of Nvidia alone. When the company reports its recent financials, stocks that have nothing to do with chips also move. This spillover effect functions through a few different mechanisms that are imperative for all investors to understand, even if they own shares of a seemingly unrelated company or only have broad exposure through a whole-market index fund.</p>
-
-    <aside class="pullquote" aria-hidden="true">
-      <p class="pq-text">The largest infrastructure expansion in human history.</p>
-      <p class="pq-attr"><b>Jensen Huang</b>, Nvidia CEO</p>
-    </aside>
-    <p>On May 20, Nvidia reported a fiscal first-quarter 2027 revenue of $81.6 billion, up 85% from the year prior, with data center revenue making up more than 92% of the total <a class="cite" href="#ref-1">(Nvidia, 2026)</a>. In addition, the company projects next quarter's revenue to reach $91 billion, with CEO Jensen Huang describing the AI buildout as "the largest infrastructure expansion in human history" <a class="cite" href="#ref-1">(Nvidia, 2026)</a>. Despite these positive developments, NVDA fell 1.5% in after-hours trading. While these results at first may seem contradictory, the reason for the decline becomes clearer once we understand why and how Nvidia now influences so many different parts of the market.</p>
+    <p class="article-lede">Over the past year, investors have had no shortage of things to worry about. Between volatile earnings reports, rising tariffs, foreign conflicts, and oil prices, every few weeks, there always seems to be a new, unexpected event changing the market narrative. These factors are important, of course, but they also tend to steal attention from a much humbler force underpinning the entire market: Treasury yields. Higher yields do not produce the same knee-jerk market reaction as a surprise earnings miss or a big Fed decision; instead, they work slowly, pulling down valuations, pushing up the cost of borrowing, and changing investor tendencies, all of which can subtly make the market more fragile than it looks.</p>
 
     <figure class="article-figure">
-      <img src="/blog/images/jensen-huang.jpg" alt="Nvidia CEO Jensen Huang on stage with a GPU." loading="lazy">
+      <img src="/blog/images/treasury-building.jpg" alt="The U.S. Treasury Building in Washington, D.C." loading="lazy">
       <figcaption>
         <span>
-          Jensen Huang, Nvidia's founder and CEO.
+          The U.S. Treasury Building in Washington, D.C.
           <span class="credit">Image: Wikimedia Commons</span>
         </span>
       </figcaption>
     </figure>
 
-    <p>Among Nvidia's main products are semiconductor chips, crucial to the modern-day AI buildout, and its customers are spending at massive, unprecedented rates. Microsoft, Amazon, Meta, and Google's parent company, Alphabet, have collectively committed to over $600 billion in spending throughout 2026, a rise of approximately 70% from last year, with most of it going toward chips, data center capacity, and related infrastructure <a class="cite" href="#ref-2">(Bratton, 2026)</a>. Because Nvidia controls about 90% of the market for AI chips <a class="cite" href="#ref-3">(Mbachu, 2026)</a>, much of the money firms spend on AI hardware ends up directly in Nvidia's pockets. Therefore, their quarterly revenue is a direct indicator of the momentum and trajectory of the AI boom, a matter pertinent to far more investors than just those holding NVDA.</p>
+    <p>This topic is worth covering because yields are no longer low enough for investors to get away with ignoring. Currently, the 10-year Treasury yield sits at about 4.5% <a class="cite" href="#ref-1">(YCharts, 2026)</a>, while the 30-year Treasury yield is just above 5% <a class="cite" href="#ref-2">(FRED, 2026)</a>. Notably, in late April, the Federal Open Market Committee declared their target range for rates would remain between 3.50% and 3.75%, which would allow risky assets to remain appealing while safe assets remain a relevant alternative <a class="cite" href="#ref-3">(Trading Economics, 2026)</a>. When safe assets have low yields, investors are more likely to buy stocks, real estate, or anything else that might offer more upside. However, when government bonds, widely considered the safest asset to own, brandish nearly a 5% return, the attractiveness of stocks and other risky assets fade, and they must perform better to justify their current prices.</p>
 
-    <figure class="article-figure">
-      <img src="/blog/images/data-center.jpg" alt="A Google data center hallway in Council Bluffs, Iowa, with colorful fiber-optic cable trays running overhead between rows of server racks." loading="lazy">
+    <figure class="article-figure wide-chart">
+      <img src="/blog/images/fred-10-year-yield.png" alt="FRED chart showing 10-year Treasury yields over the past year." loading="lazy">
       <figcaption>
         <span>
-          A Google data center in Council Bluffs, Iowa.
-          <span class="credit">Image: Google Data Centers Photo Gallery</span>
+          10-year Treasury yields over the past year.
+          <span class="credit">Image: Federal Reserve Bank of St. Louis</span>
         </span>
       </figcaption>
     </figure>
 
-    <p>The first layer of spillover is straightforward: other firms in the semiconductor industry. Some of these companies are connected to Nvidia through the supply chain, like TSMC, Micron, and SK Hynix, while others, like AMD, are direct competitors. Broadcom, which sells chips and networking equipment, and Arm, which provides chip designs, have slightly less direct connections, but still benefit from the same growth in demand for AI. The market reaction made that link clear, with TSMC, Micron, and Broadcom trading lower alongside Nvidia, falling 0.4%, 0.8%, and 0.3%, respectively. Because these firms are all governed by the same demand cycle, Nvidia's earnings have become a proxy for the health of the semiconductor industry as a whole. However, the company's influence reaches beyond semiconductors, widening into major indexes, where its sheer size confers market-wide importance upon each earnings report.</p>
+    <p>The equity risk premium quantifies the behavior detailed above. Defined as the difference between expected market return and the risk-free rate of return, the equity risk premium equates to how much additional compensation investors require to stomach the increased risk of owning equities. Another important metric is earnings yield, which is the inverse of price-to-earnings ratio. The S&amp;P 500's earnings yield is often employed in the risk premium equation in place of expected market return because actual future returns are unknown, while current earnings provide a rough measure of future return potential, since they set the foundation for dividends and price appreciation. The S&amp;P 500's earnings yield most recently came in at 4.73%, barely above the 10-year Treasury yield of 4.56%, creating an extremely narrow risk premium <a class="cite" href="#ref-4">(Axios, 2026)</a>. This indicates that investors who park their money in the stock market gain very little extra return in exchange for a lot more uncertainty.</p>
 
-    <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. Consequently, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#ref-6">(Shalett, 2023)</a>.</p>
+    <p>In addition, higher yields apply downward pressure to stock prices by affecting how investors price future earnings. In terms of economic theory, a stock is worth the present value of its future cash flows. In order to determine how much these future payments are worth in the present day, they must be discounted, which involves reducing their value based on the return investors could earn elsewhere (typically assumed to be the risk-free rate). This is especially important in the current market environment, being dominated by high-growth tech stocks, where value is derived primarily from expected profits many years in the future. Intuitively, higher yields hit firms like this especially hard. Last week, we covered how Nvidia's strong earnings report failed to impress investors due to aggressive future growth that has already been incorporated into the stock price; higher yields only amplify this problem by making that future growth worth even less in today's dollars.</p>
+
+    <p>Despite these potentially damaging effects, many investors overlook rising rates because the mechanisms by which they move the market can be faint or slow-acting. Unlike an unexpected macro headline, higher yields do not destroy the market in one dramatic move. Instead, over time, they will make disciplined investors more hesitant to chase rallies, less tolerant of weak outlooks, and more selective about how or when they participate in the market for equities. This brings us back to the role of sentiment, a theme that came up heavily in last week's discussion of Nvidia. With fintech platforms making retail trading more accessible than ever, market psychology plays a large role in short-term price action. This results in a market that can still move higher, but with a weaker and more vulnerable foundation.</p>
+
+    <p>Beyond the stock market, Treasury yields influence borrowing costs, including mortgage rates, auto loans, corporate debt, and government financing. Freddie Mac's 30-year fixed mortgage rate rose to 6.51% as of May 21, reaching its highest level in months, moving in parallel with T-bond yields <a class="cite" href="#ref-5">(Freddie Mac, 2026)</a>. This relationship exists because in the same way that a higher risk-free rate raises the return investors require from stocks, it also raises the minimum return lenders require before taking on credit risk. For consumers, this means higher monthly payments, leaving them with less spending money to invest or otherwise stimulate the greater economy. In addition, companies are forced to be more careful when issuing new debt, potentially slowing growth across the market. These effects do not materialize all at once, but they gradually work their way through the economy, quietly tightening financial conditions and setting the stage for a broader slowdown.</p>
 
     <figure class="article-figure">
-      <img src="/blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
+      <img src="/blog/images/freddie-mac-mortgage-rates.png" alt="Freddie Mac chart showing 30-year fixed mortgage rates over the past year." loading="lazy">
       <figcaption>
         <span>
-          The New York Stock Exchange during trading hours.
-          <span class="credit">Image: Wikimedia Commons</span>
+          30-year fixed mortgage rates over the past year.
+          <span class="credit">Image: Freddie Mac</span>
         </span>
       </figcaption>
     </figure>
 
-    <p>However, the impact is not only mechanical; because the S&amp;P 500 is a benchmark investors use to judge the market overall, a move driven by Nvidia and co. influences broader sentiment and risk appetite as a whole. If Nvidia pulls the index higher, it can reinforce momentum and make investors more willing to stay exposed to high-valuation growth stocks. On the other hand, if it pulls the index lower, the market can feel more fragile, even for investors whose portfolios have no direct connection to semiconductors. At this point, the ripple effect has little to do with operational proximity to Nvidia and everything to do with collective investor confidence <a class="cite" href="#ref-7">(Baker &amp; Wurgler, 2006)</a>.</p>
-
-    <p>That shift in confidence is what brings unrelated stocks into the picture. Once Nvidia influences the index, the backdrop against which other stocks are valued changes, and effects can start to trickle down. Although a retailer, bank, or healthcare company may not have even a tangential link to Nvidia, stocks do not trade in a vacuum. In a strong market, investors may be willing to pay a premium for growth or scalability; in a weaker one, that premium can shrink, and unrelated stocks can fall even without unfavorable company-specific news. This sums up the pressure Nvidia can create: it doesn't change other businesses directly, but by changing the market environment, it can affect how investors are willing to price them.</p>
+    <p>But why have yields been rising in the first place? Put simply, investors are demanding higher returns for lending money to the government. The first reason behind this is sticky inflation: when the inflation rate is slow to fall, future T-bond cash flows have lower present value, making the asset class less desirable. Further, when the government issues more debt, the supply of Treasuries increases, leading to a temporary surplus if not matched by an equal increase in demand. Together, these factors make T-bonds less attractive to investors at existing prices. In order to entice enough buyers, prices must fall, which inversely raises yields. The takeaway here for investors is that rising yields are not only a benchmark for the price of debt or stock valuation, but also signaling collective concerns about inflation and the national deficit.</p>
 
     <aside class="pullquote" aria-hidden="true">
-      <p class="pq-text">Buy side expectations probably got a little bit ahead of themselves.</p>
-      <p class="pq-attr"><b>Christopher Rolland</b>, Susquehanna analyst</p>
+      <p class="pq-text">A higher hurdle rate for risk assets and a narrower path to sustained equity outperformance.</p>
+      <p class="pq-attr"><b>State Street</b>, market note</p>
     </aside>
-    <p>Now, as I alluded to earlier, this logic can also help us understand the after-hours decline immediately after Nvidia's positive earnings report. The problem is that Nvidia's influence has become circular: its growth supports optimism across AI, semiconductors, and broader indexes, but that same optimism then raises the bar Nvidia has to reach each quarter. This meant that a strong quarter would not be enough to raise NVDA by itself. Instead, earnings had to be a slam dunk, giving investors a genuine reason to heighten their expectations even further. While Nvidia's report confirmed that demand remained strong, that strength was already priced in. According to Susquehanna analyst Christopher Rolland, "Buy side expectations probably got a little bit ahead of themselves" <a class="cite" href="#ref-8">(Marino-Nachison, 2026)</a>. Despite validating the market's existing sentiment, earnings left no reason for NVDA to move higher.</p>
+    <p>Worryingly, Goldman Sachs Research recently warned that rising bond yields have increased the risk of a stock market correction if the economic backdrop weakens, especially if earnings slow or the labor market loses momentum <a class="cite" href="#ref-6">(Goldman Sachs, 2026)</a>. Reuters also reported that some models classify a 10-year Treasury yield of 4.5% as a key threshold where further increases could begin to weigh more heavily on equities <a class="cite" href="#ref-7">(Reuters, 2026)</a>. These warnings should not be interpreted as guarantees, but they do demonstrate an important reality: the market's ability to withstand higher yields is not unlimited. State Street's market note from a couple months ago articulates this well, warning that high rates create "a higher hurdle rate for risk assets and a narrower path to sustained equity outperformance" <a class="cite" href="#ref-8">(State Street, 2026)</a>.</p>
 
-    <p class="clear-pq">The main question going forward is whether the AI boom can produce returns large enough to match the prices investors are paying today. Right now, the largest tech companies are pouring money into AI infrastructure, much of that spending flows to Nvidia, and Nvidia's growth then reinforces the valuation of those same companies funding AI expansion <a class="cite" href="#ref-9">(Milmo, 2025)</a>. That positive feedback loop has remained stable so far, but it also creates unease and uncertainty among investors. As valuations climb to extreme levels and beyond, the AI sector has begun to blur the line between unusually strong growth and a test of how much optimism investors are willing to tolerate. In fact, Nvidia's market cap has become so large that it is comparable to the total value of every acre of land in Australia <a class="cite" href="#ref-10">(Australian Bureau of Statistics, 2024)</a>. While comparisons like that are not proof of a bubble, they do show how much future success investors are already pricing in, which could be a cause for concern.</p>
-
-    <p>For the average investor, the takeaway should not be that every stock depends on Nvidia in the same way. Rather, for the time being, Nvidia's earnings give investors a valuable read on several parts of the market at once. In such a concentrated market environment, information like this matters to everyone because broad exposure is not as far removed from single-company risk as it may appear. Even investors who never own NVDA are still playing in a market where the AI chip giant sets much of the tone. There isn't only risk in holding NVDA; there's also risk in assuming you are unaffected by Nvidia just because it's not in your portfolio.</p>
+    <p class="clear-pq">Still, this doesn't mean investors should panic. A high-yield environment is not automatically bearish; however, it would still be a mistake to assume Treasury yields are just a passive variable. T-bonds are an integral benchmark for the economy against which almost every other asset is measured. When that benchmark is raised, the entire market has a higher standard to reach. While rising yields do not run the risk of an immediate, unexpected crash, they make the market's apparent strength very conditional. With uncertainty and skepticism already present in the current environment, I would posit that the market stands on somewhat thinner ice than the constant stream of blockbuster tech headlines and glowing executive commentary suggests.</p>
 
   </div>
 
@@ -1100,19 +1110,17 @@ body::before {
   <section class="references">
     <div class="references-head">
       <span class="h">References</span>
-      <span class="note">10 sources · Click any in-text citation to jump</span>
+      <span class="note">8 sources · Click any in-text citation to jump</span>
     </div>
     <ol>
-      <li id="ref-1"><span><b>Nvidia.</b> (2026, May 20). NVIDIA announces financial results for first quarter fiscal 2027. <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027" target="_blank" rel="noopener">nvidianews.nvidia.com</a></span></li>
-      <li id="ref-2"><span><b>Bratton, L.</b> (2026, February 6). Big Tech set to spend $650 billion in 2026 as AI investments soar. Yahoo Finance. <a href="https://finance.yahoo.com/news/big-tech-set-to-spend-650-billion-in-2026-as-ai-investments-soar-163907630.html" target="_blank" rel="noopener">finance.yahoo.com</a></span></li>
-      <li id="ref-3"><span><b>Mbachu, J.</b> (2026, February 6). Big tech will spend $600B on AI in 2026: 5 stocks cashing the checks. Investing.com. <a href="https://www.investing.com/analysis/big-tech-will-spend-600b-on-ai-in-2026-5-stocks-cashing-the-checks-200674615" target="_blank" rel="noopener">investing.com</a></span></li>
-      <li id="ref-4"><span><b>SlickCharts.</b> (2026). S&amp;P 500 companies by market cap. <a href="https://www.slickcharts.com/sp500" target="_blank" rel="noopener">slickcharts.com/sp500</a></span></li>
-      <li id="ref-5"><span><b>Foelber, D.</b> (2025, November 17). Nvidia and 19 other stocks now make up 50% of the S&amp;P 500. Here's what it means for your investment portfolio. Nasdaq. <a href="https://www.nasdaq.com/articles/nvidia-and-19-other-stocks-now-make-50-sp-500-heres-what-it-means-your-investment" target="_blank" rel="noopener">nasdaq.com</a></span></li>
-      <li id="ref-6"><span><b>Shalett, L.</b> (2023, May 24). Why investing in the S&amp;P 500 isn't true diversification. Morgan Stanley. <a href="https://www.morganstanley.com/ideas/concentration-risk-high-s-and-p-500-q2-2023" target="_blank" rel="noopener">morganstanley.com</a></span></li>
-      <li id="ref-7"><span><b>Baker, M., &amp; Wurgler, J.</b> (2006). Investor sentiment and the cross-section of stock returns. <em>The Journal of Finance, 61</em>(4), 1645–1680. <a href="https://doi.org/10.1111/j.1540-6261.2006.00885.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.2006.00885.x</a></span></li>
-      <li id="ref-8"><span><b>Marino-Nachison, D.</b> (2026, May 20). Nvidia earnings live: AI chip giant beats Street expectations on profits, sales. Investopedia. <a href="https://www.investopedia.com/nvidia-earnings-live-coverage-q1-fy2027-nvda-stock-11974368" target="_blank" rel="noopener">investopedia.com</a></span></li>
-      <li id="ref-9"><span><b>Milmo, D.</b> (2025, October 8). Do OpenAI's multibillion-dollar deals mean exuberance has got out of hand? The Guardian. <a href="https://www.theguardian.com/business/2025/oct/08/openai-multibillion-dollar-deals-exuberance-circular-nvidia-amd" target="_blank" rel="noopener">theguardian.com</a></span></li>
-      <li id="ref-10"><span><b>Australian Bureau of Statistics.</b> (2024, November 27). National Land Account, Experimental Estimates, 2021. <a href="https://www.abs.gov.au/statistics/environment/environmental-accounts/national-land-account-experimental-estimates/latest-release" target="_blank" rel="noopener">abs.gov.au</a></span></li>
+      <li id="ref-1"><span><b>YCharts.</b> (2026). 10 Year Treasury Rate. <a href="https://ycharts.com/indicators/10_year_treasury_rate" target="_blank" rel="noopener">ycharts.com</a></span></li>
+      <li id="ref-2"><span><b>Federal Reserve Bank of St. Louis.</b> (2026). Market Yield on U.S. Treasury Securities at 30-Year Constant Maturity, Quoted on an Investment Basis. FRED. <a href="https://fred.stlouisfed.org/series/DGS30" target="_blank" rel="noopener">fred.stlouisfed.org</a></span></li>
+      <li id="ref-3"><span><b>Trading Economics.</b> (2026). United States Fed Funds Interest Rate. <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">tradingeconomics.com</a></span></li>
+      <li id="ref-4"><span><b>Phillips, M.</b> (2026, May 27). The stock market's skimpy returns. Axios. <a href="https://www.axios.com/2026/05/27/stocks-bonds-yields-premium" target="_blank" rel="noopener">axios.com</a></span></li>
+      <li id="ref-5"><span><b>Freddie Mac.</b> (2026). Primary Mortgage Market Survey. <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">freddiemac.com/pmms</a></span></li>
+      <li id="ref-6"><span><b>Goldman Sachs.</b> (2026, May 22). Stock Markets Are Increasingly Vulnerable to Rising Bond Yields. <a href="https://www.goldmansachs.com/insights/articles/stock-markets-are-increasingly-vulnerable-to-rising-bond-yields" target="_blank" rel="noopener">goldmansachs.com</a></span></li>
+      <li id="ref-7"><span><b>Dolan, M.</b> (2026, May 27). U.S. bonds about to bite stocks. Reuters. <a href="https://www.reuters.com/commentary/reuters-open-interest/us-bonds-about-bite-stocks-2026-05-27/" target="_blank" rel="noopener">reuters.com</a></span></li>
+      <li id="ref-8"><span><b>Smith, D., &amp; Perry, G.</b> (2026, March 26). The yield curve's message for equity markets. State Street Global Advisors. <a href="https://www.ssga.com/us/en/institutional/insights/mind-on-the-market-26-march-2026" target="_blank" rel="noopener">ssga.com</a></span></li>
     </ol>
   </section>
 
@@ -1125,10 +1133,10 @@ body::before {
       <span class="title">All Market Opinions</span>
       <span class="meta">Article index</span>
     </a>
-    <a class="foot-cell right" href="/the-quiet-pressure-of-higher-yields/">
+    <a class="foot-cell right" href="#" aria-disabled="true" title="Coming June 4, 2026">
       <span class="k">Next →</span>
-      <span class="title">The quiet pressure of higher yields</span>
-      <span class="meta">May 28, 2026 · 6 min</span>
+      <span class="title">Beyond AI: the two forces defining the next tech frontier</span>
+      <span class="meta">June 4, 2026 · Coming Thursday</span>
     </a>
   </nav>
 
@@ -1163,7 +1171,7 @@ body::before {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
         All articles
       </a>
-      <a class="mt-badge" href="/the-quiet-pressure-of-higher-yields/">
+      <a class="mt-badge" href="#" aria-disabled="true" title="Coming June 4, 2026">
         Next article
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
       </a>
@@ -1177,95 +1185,86 @@ body::before {
       <span class="section-label-dot" aria-hidden="true"></span>
       <span class="label">Market Opinions</span>
       <span class="spacer"></span>
-      <span class="tag">Stock market</span>
+      <span class="tag">Interest rates</span>
     </div>
 
-    <h1 class="mt-title">Why you should watch Nvidia earnings even if you don't own the stock</h1>
+    <h1 class="mt-title">The quiet pressure of higher yields</h1>
 
     <div class="mt-meta">
-      <div class="m"><span class="k">Published</span><span class="v">May 21, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-      <div class="m"><span class="k">Time to read</span><span class="v">5 min.</span></div>
+      <div class="m"><span class="k">Published</span><span class="v">May 28, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
+      <div class="m"><span class="k">Time to read</span><span class="v">6 min.</span></div>
       <div class="m author"><span class="k">Author</span><span class="v">Mason Lancellotti</span></div>
     </div>
 
     <div class="mt-body">
 
-      <p class="mt-lede">Nvidia's (NVDA) quarterly results have become one of the most highly anticipated events in the market, but it's not because of Nvidia alone. When the company reports its recent financials, stocks that have nothing to do with chips also move. This spillover effect functions through a few different mechanisms that are imperative for all investors to understand, even if they own shares of a seemingly unrelated company or only have broad exposure through a whole-market index fund.</p>
-
-      <p>On May 20, Nvidia reported a fiscal first-quarter 2027 revenue of $81.6 billion, up 85% from the year prior, with data center revenue making up more than 92% of the total <a class="cite" href="#mt-ref-1">(Nvidia, 2026)</a>. In addition, the company projects next quarter's revenue to reach $91 billion, with CEO Jensen Huang describing the AI buildout as "the largest infrastructure expansion in human history" <a class="cite" href="#mt-ref-1">(Nvidia, 2026)</a>. Despite these positive developments, NVDA fell 1.5% in after-hours trading. While these results at first may seem contradictory, the reason for the decline becomes clearer once we understand why and how Nvidia now influences so many different parts of the market.</p>
-
-      <aside class="mt-pullquote">
-        <p class="pq-text">The largest infrastructure expansion in human history.</p>
-        <p class="pq-attr"><b>Jensen Huang</b>, Nvidia CEO</p>
-      </aside>
+      <p class="mt-lede">Over the past year, investors have had no shortage of things to worry about. Between volatile earnings reports, rising tariffs, foreign conflicts, and oil prices, every few weeks, there always seems to be a new, unexpected event changing the market narrative. These factors are important, of course, but they also tend to steal attention from a much humbler force underpinning the entire market: Treasury yields. Higher yields do not produce the same knee-jerk market reaction as a surprise earnings miss or a big Fed decision; instead, they work slowly, pulling down valuations, pushing up the cost of borrowing, and changing investor tendencies, all of which can subtly make the market more fragile than it looks.</p>
 
       <figure class="mt-figure">
-        <img src="/blog/images/jensen-huang.jpg" alt="Nvidia CEO Jensen Huang on stage with a GPU." loading="lazy">
+        <img src="/blog/images/treasury-building.jpg" alt="The U.S. Treasury Building in Washington, D.C." loading="lazy">
         <figcaption>
           <span>
-            Jensen Huang, Nvidia's founder and CEO.
+            The U.S. Treasury Building in Washington, D.C.
             <span class="credit">Image: Wikimedia Commons</span>
           </span>
         </figcaption>
       </figure>
 
-      <p>Among Nvidia's main products are semiconductor chips, crucial to the modern-day AI buildout, and its customers are spending at massive, unprecedented rates. Microsoft, Amazon, Meta, and Google's parent company, Alphabet, have collectively committed to over $600 billion in spending throughout 2026, a rise of approximately 70% from last year, with most of it going toward chips, data center capacity, and related infrastructure <a class="cite" href="#mt-ref-2">(Bratton, 2026)</a>. Because Nvidia controls about 90% of the market for AI chips <a class="cite" href="#mt-ref-3">(Mbachu, 2026)</a>, much of the money firms spend on AI hardware ends up directly in Nvidia's pockets. Therefore, their quarterly revenue is a direct indicator of the momentum and trajectory of the AI boom, a matter pertinent to far more investors than just those holding NVDA.</p>
+      <p>This topic is worth covering because yields are no longer low enough for investors to get away with ignoring. Currently, the 10-year Treasury yield sits at about 4.5% <a class="cite" href="#mt-ref-1">(YCharts, 2026)</a>, while the 30-year Treasury yield is just above 5% <a class="cite" href="#mt-ref-2">(FRED, 2026)</a>. Notably, in late April, the Federal Open Market Committee declared their target range for rates would remain between 3.50% and 3.75%, which would allow risky assets to remain appealing while safe assets remain a relevant alternative <a class="cite" href="#mt-ref-3">(Trading Economics, 2026)</a>. When safe assets have low yields, investors are more likely to buy stocks, real estate, or anything else that might offer more upside. However, when government bonds, widely considered the safest asset to own, brandish nearly a 5% return, the attractiveness of stocks and other risky assets fade, and they must perform better to justify their current prices.</p>
 
-      <figure class="mt-figure">
-        <img src="/blog/images/data-center.jpg" alt="A Google data center hallway in Council Bluffs, Iowa, with colorful fiber-optic cable trays running overhead between rows of server racks." loading="lazy">
+      <figure class="mt-figure wide-chart">
+        <img src="/blog/images/fred-10-year-yield.png" alt="FRED chart showing 10-year Treasury yields over the past year." loading="lazy">
         <figcaption>
           <span>
-            A Google data center in Council Bluffs, Iowa.
-            <span class="credit">Image: Google Data Centers Photo Gallery</span>
+            10-year Treasury yields over the past year.
+            <span class="credit">Image: Federal Reserve Bank of St. Louis</span>
           </span>
         </figcaption>
       </figure>
 
-      <p>The first layer of spillover is straightforward: other firms in the semiconductor industry. Some of these companies are connected to Nvidia through the supply chain, like TSMC, Micron, and SK Hynix, while others, like AMD, are direct competitors. Broadcom, which sells chips and networking equipment, and Arm, which provides chip designs, have slightly less direct connections, but still benefit from the same growth in demand for AI. The market reaction made that link clear, with TSMC, Micron, and Broadcom trading lower alongside Nvidia, falling 0.4%, 0.8%, and 0.3%, respectively. Because these firms are all governed by the same demand cycle, Nvidia's earnings have become a proxy for the health of the semiconductor industry as a whole. However, the company's influence reaches beyond semiconductors, widening into major indexes, where its sheer size confers market-wide importance upon each earnings report.</p>
+      <p>The equity risk premium quantifies the behavior detailed above. Defined as the difference between expected market return and the risk-free rate of return, the equity risk premium equates to how much additional compensation investors require to stomach the increased risk of owning equities. Another important metric is earnings yield, which is the inverse of price-to-earnings ratio. The S&amp;P 500's earnings yield is often employed in the risk premium equation in place of expected market return because actual future returns are unknown, while current earnings provide a rough measure of future return potential, since they set the foundation for dividends and price appreciation. The S&amp;P 500's earnings yield most recently came in at 4.73%, barely above the 10-year Treasury yield of 4.56%, creating an extremely narrow risk premium <a class="cite" href="#mt-ref-4">(Axios, 2026)</a>. This indicates that investors who park their money in the stock market gain very little extra return in exchange for a lot more uncertainty.</p>
 
-      <p>The numbers display how large this influence really is. As of early 2026, NVDA's weight in the S&amp;P 500 was just over 7%, making it the single largest component of the index <a class="cite" href="#mt-ref-4">(SlickCharts, 2026)</a>. The top ten holdings now account for more than 36% of the S&amp;P 500 <a class="cite" href="#mt-ref-5">(Foelber, 2025)</a>, a concentration not seen since the early 2000s (not exactly comforting, given the dot-com bubble). That group also includes familiar names like Alphabet, Microsoft, Amazon, and Meta, the same companies spending heavily on Nvidia's hardware. As a result, Nvidia's earnings affect the index through two main channels: directly through Nvidia's own weight, and indirectly through what its results indicate about the companies buying its chips. Consequently, while an index fund like this can look diversified on paper, it may still be heavily exposed to a single company's performance <a class="cite" href="#mt-ref-6">(Shalett, 2023)</a>.</p>
+      <p>In addition, higher yields apply downward pressure to stock prices by affecting how investors price future earnings. In terms of economic theory, a stock is worth the present value of its future cash flows. In order to determine how much these future payments are worth in the present day, they must be discounted, which involves reducing their value based on the return investors could earn elsewhere (typically assumed to be the risk-free rate). This is especially important in the current market environment, being dominated by high-growth tech stocks, where value is derived primarily from expected profits many years in the future. Intuitively, higher yields hit firms like this especially hard. Last week, we covered how Nvidia's strong earnings report failed to impress investors due to aggressive future growth that has already been incorporated into the stock price; higher yields only amplify this problem by making that future growth worth even less in today's dollars.</p>
+
+      <p>Despite these potentially damaging effects, many investors overlook rising rates because the mechanisms by which they move the market can be faint or slow-acting. Unlike an unexpected macro headline, higher yields do not destroy the market in one dramatic move. Instead, over time, they will make disciplined investors more hesitant to chase rallies, less tolerant of weak outlooks, and more selective about how or when they participate in the market for equities. This brings us back to the role of sentiment, a theme that came up heavily in last week's discussion of Nvidia. With fintech platforms making retail trading more accessible than ever, market psychology plays a large role in short-term price action. This results in a market that can still move higher, but with a weaker and more vulnerable foundation.</p>
+
+      <p>Beyond the stock market, Treasury yields influence borrowing costs, including mortgage rates, auto loans, corporate debt, and government financing. Freddie Mac's 30-year fixed mortgage rate rose to 6.51% as of May 21, reaching its highest level in months, moving in parallel with T-bond yields <a class="cite" href="#mt-ref-5">(Freddie Mac, 2026)</a>. This relationship exists because in the same way that a higher risk-free rate raises the return investors require from stocks, it also raises the minimum return lenders require before taking on credit risk. For consumers, this means higher monthly payments, leaving them with less spending money to invest or otherwise stimulate the greater economy. In addition, companies are forced to be more careful when issuing new debt, potentially slowing growth across the market. These effects do not materialize all at once, but they gradually work their way through the economy, quietly tightening financial conditions and setting the stage for a broader slowdown.</p>
 
       <figure class="mt-figure">
-        <img src="/blog/images/nyse-floor.jpg" alt="Traders on the New York Stock Exchange floor surrounded by ticker monitors." loading="lazy">
+        <img src="/blog/images/freddie-mac-mortgage-rates.png" alt="Freddie Mac chart showing 30-year fixed mortgage rates over the past year." loading="lazy">
         <figcaption>
           <span>
-            The New York Stock Exchange during trading hours.
-            <span class="credit">Image: Wikimedia Commons</span>
+            30-year fixed mortgage rates over the past year.
+            <span class="credit">Image: Freddie Mac</span>
           </span>
         </figcaption>
       </figure>
 
-      <p>However, the impact is not only mechanical; because the S&amp;P 500 is a benchmark investors use to judge the market overall, a move driven by Nvidia and co. influences broader sentiment and risk appetite as a whole. If Nvidia pulls the index higher, it can reinforce momentum and make investors more willing to stay exposed to high-valuation growth stocks. On the other hand, if it pulls the index lower, the market can feel more fragile, even for investors whose portfolios have no direct connection to semiconductors. At this point, the ripple effect has little to do with operational proximity to Nvidia and everything to do with collective investor confidence <a class="cite" href="#mt-ref-7">(Baker &amp; Wurgler, 2006)</a>.</p>
+      <p>But why have yields been rising in the first place? Put simply, investors are demanding higher returns for lending money to the government. The first reason behind this is sticky inflation: when the inflation rate is slow to fall, future T-bond cash flows have lower present value, making the asset class less desirable. Further, when the government issues more debt, the supply of Treasuries increases, leading to a temporary surplus if not matched by an equal increase in demand. Together, these factors make T-bonds less attractive to investors at existing prices. In order to entice enough buyers, prices must fall, which inversely raises yields. The takeaway here for investors is that rising yields are not only a benchmark for the price of debt or stock valuation, but also signaling collective concerns about inflation and the national deficit.</p>
 
-      <p>That shift in confidence is what brings unrelated stocks into the picture. Once Nvidia influences the index, the backdrop against which other stocks are valued changes, and effects can start to trickle down. Although a retailer, bank, or healthcare company may not have even a tangential link to Nvidia, stocks do not trade in a vacuum. In a strong market, investors may be willing to pay a premium for growth or scalability; in a weaker one, that premium can shrink, and unrelated stocks can fall even without unfavorable company-specific news. This sums up the pressure Nvidia can create: it doesn't change other businesses directly, but by changing the market environment, it can affect how investors are willing to price them.</p>
+      <p>Worryingly, Goldman Sachs Research recently warned that rising bond yields have increased the risk of a stock market correction if the economic backdrop weakens, especially if earnings slow or the labor market loses momentum <a class="cite" href="#mt-ref-6">(Goldman Sachs, 2026)</a>. Reuters also reported that some models classify a 10-year Treasury yield of 4.5% as a key threshold where further increases could begin to weigh more heavily on equities <a class="cite" href="#mt-ref-7">(Reuters, 2026)</a>. These warnings should not be interpreted as guarantees, but they do demonstrate an important reality: the market's ability to withstand higher yields is not unlimited. State Street's market note from a couple months ago articulates this well, warning that high rates create "a higher hurdle rate for risk assets and a narrower path to sustained equity outperformance" <a class="cite" href="#mt-ref-8">(State Street, 2026)</a>.</p>
 
       <aside class="mt-pullquote">
-        <p class="pq-text">Buy side expectations probably got a little bit ahead of themselves.</p>
-        <p class="pq-attr"><b>Christopher Rolland</b>, Susquehanna analyst</p>
+        <p class="pq-text">A higher hurdle rate for risk assets and a narrower path to sustained equity outperformance.</p>
+        <p class="pq-attr"><b>State Street</b>, market note</p>
       </aside>
 
-      <p>Now, as I alluded to earlier, this logic can also help us understand the after-hours decline immediately after Nvidia's positive earnings report. The problem is that Nvidia's influence has become circular: its growth supports optimism across AI, semiconductors, and broader indexes, but that same optimism then raises the bar Nvidia has to reach each quarter. This meant that a strong quarter would not be enough to raise NVDA by itself. Instead, earnings had to be a slam dunk, giving investors a genuine reason to heighten their expectations even further. While Nvidia's report confirmed that demand remained strong, that strength was already priced in. According to Susquehanna analyst Christopher Rolland, "Buy side expectations probably got a little bit ahead of themselves" <a class="cite" href="#mt-ref-8">(Marino-Nachison, 2026)</a>. Despite validating the market's existing sentiment, earnings left no reason for NVDA to move higher.</p>
-
-      <p>The main question going forward is whether the AI boom can produce returns large enough to match the prices investors are paying today. Right now, the largest tech companies are pouring money into AI infrastructure, much of that spending flows to Nvidia, and Nvidia's growth then reinforces the valuation of those same companies funding AI expansion <a class="cite" href="#mt-ref-9">(Milmo, 2025)</a>. That positive feedback loop has remained stable so far, but it also creates unease and uncertainty among investors. As valuations climb to extreme levels and beyond, the AI sector has begun to blur the line between unusually strong growth and a test of how much optimism investors are willing to tolerate. In fact, Nvidia's market cap has become so large that it is comparable to the total value of every acre of land in Australia <a class="cite" href="#mt-ref-10">(Australian Bureau of Statistics, 2024)</a>. While comparisons like that are not proof of a bubble, they do show how much future success investors are already pricing in, which could be a cause for concern.</p>
-
-      <p>For the average investor, the takeaway should not be that every stock depends on Nvidia in the same way. Rather, for the time being, Nvidia's earnings give investors a valuable read on several parts of the market at once. In such a concentrated market environment, information like this matters to everyone because broad exposure is not as far removed from single-company risk as it may appear. Even investors who never own NVDA are still playing in a market where the AI chip giant sets much of the tone. There isn't only risk in holding NVDA; there's also risk in assuming you are unaffected by Nvidia just because it's not in your portfolio.</p>
+      <p>Still, this doesn't mean investors should panic. A high-yield environment is not automatically bearish; however, it would still be a mistake to assume Treasury yields are just a passive variable. T-bonds are an integral benchmark for the economy against which almost every other asset is measured. When that benchmark is raised, the entire market has a higher standard to reach. While rising yields do not run the risk of an immediate, unexpected crash, they make the market's apparent strength very conditional. With uncertainty and skepticism already present in the current environment, I would posit that the market stands on somewhat thinner ice than the constant stream of blockbuster tech headlines and glowing executive commentary suggests.</p>
 
     </div>
 
     <section class="mt-references">
       <span class="h">References</span>
-      <span class="note">10 sources · Tap any in-text citation to jump</span>
+      <span class="note">8 sources · Tap any in-text citation to jump</span>
       <ol>
-        <li id="mt-ref-1"><span><b>Nvidia.</b> (2026, May 20). NVIDIA announces financial results for first quarter fiscal 2027. <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027" target="_blank" rel="noopener">nvidianews.nvidia.com</a></span></li>
-        <li id="mt-ref-2"><span><b>Bratton, L.</b> (2026, February 6). Big Tech set to spend $650 billion in 2026 as AI investments soar. Yahoo Finance. <a href="https://finance.yahoo.com/news/big-tech-set-to-spend-650-billion-in-2026-as-ai-investments-soar-163907630.html" target="_blank" rel="noopener">finance.yahoo.com</a></span></li>
-        <li id="mt-ref-3"><span><b>Mbachu, J.</b> (2026, February 6). Big tech will spend $600B on AI in 2026: 5 stocks cashing the checks. Investing.com. <a href="https://www.investing.com/analysis/big-tech-will-spend-600b-on-ai-in-2026-5-stocks-cashing-the-checks-200674615" target="_blank" rel="noopener">investing.com</a></span></li>
-        <li id="mt-ref-4"><span><b>SlickCharts.</b> (2026). S&amp;P 500 companies by market cap. <a href="https://www.slickcharts.com/sp500" target="_blank" rel="noopener">slickcharts.com/sp500</a></span></li>
-        <li id="mt-ref-5"><span><b>Foelber, D.</b> (2025, November 17). Nvidia and 19 other stocks now make up 50% of the S&amp;P 500. Here's what it means for your investment portfolio. Nasdaq. <a href="https://www.nasdaq.com/articles/nvidia-and-19-other-stocks-now-make-50-sp-500-heres-what-it-means-your-investment" target="_blank" rel="noopener">nasdaq.com</a></span></li>
-        <li id="mt-ref-6"><span><b>Shalett, L.</b> (2023, May 24). Why investing in the S&amp;P 500 isn't true diversification. Morgan Stanley. <a href="https://www.morganstanley.com/ideas/concentration-risk-high-s-and-p-500-q2-2023" target="_blank" rel="noopener">morganstanley.com</a></span></li>
-        <li id="mt-ref-7"><span><b>Baker, M., &amp; Wurgler, J.</b> (2006). Investor sentiment and the cross-section of stock returns. <em>The Journal of Finance, 61</em>(4), 1645–1680. <a href="https://doi.org/10.1111/j.1540-6261.2006.00885.x" target="_blank" rel="noopener">doi.org/10.1111/j.1540-6261.2006.00885.x</a></span></li>
-        <li id="mt-ref-8"><span><b>Marino-Nachison, D.</b> (2026, May 20). Nvidia earnings live: AI chip giant beats Street expectations on profits, sales. Investopedia. <a href="https://www.investopedia.com/nvidia-earnings-live-coverage-q1-fy2027-nvda-stock-11974368" target="_blank" rel="noopener">investopedia.com</a></span></li>
-        <li id="mt-ref-9"><span><b>Milmo, D.</b> (2025, October 8). Do OpenAI's multibillion-dollar deals mean exuberance has got out of hand? The Guardian. <a href="https://www.theguardian.com/business/2025/oct/08/openai-multibillion-dollar-deals-exuberance-circular-nvidia-amd" target="_blank" rel="noopener">theguardian.com</a></span></li>
-        <li id="mt-ref-10"><span><b>Australian Bureau of Statistics.</b> (2024, November 27). National Land Account, Experimental Estimates, 2021. <a href="https://www.abs.gov.au/statistics/environment/environmental-accounts/national-land-account-experimental-estimates/latest-release" target="_blank" rel="noopener">abs.gov.au</a></span></li>
+        <li id="mt-ref-1"><span><b>YCharts.</b> (2026). 10 Year Treasury Rate. <a href="https://ycharts.com/indicators/10_year_treasury_rate" target="_blank" rel="noopener">ycharts.com</a></span></li>
+        <li id="mt-ref-2"><span><b>Federal Reserve Bank of St. Louis.</b> (2026). Market Yield on U.S. Treasury Securities at 30-Year Constant Maturity, Quoted on an Investment Basis. FRED. <a href="https://fred.stlouisfed.org/series/DGS30" target="_blank" rel="noopener">fred.stlouisfed.org</a></span></li>
+        <li id="mt-ref-3"><span><b>Trading Economics.</b> (2026). United States Fed Funds Interest Rate. <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">tradingeconomics.com</a></span></li>
+        <li id="mt-ref-4"><span><b>Phillips, M.</b> (2026, May 27). The stock market's skimpy returns. Axios. <a href="https://www.axios.com/2026/05/27/stocks-bonds-yields-premium" target="_blank" rel="noopener">axios.com</a></span></li>
+        <li id="mt-ref-5"><span><b>Freddie Mac.</b> (2026). Primary Mortgage Market Survey. <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">freddiemac.com/pmms</a></span></li>
+        <li id="mt-ref-6"><span><b>Goldman Sachs.</b> (2026, May 22). Stock Markets Are Increasingly Vulnerable to Rising Bond Yields. <a href="https://www.goldmansachs.com/insights/articles/stock-markets-are-increasingly-vulnerable-to-rising-bond-yields" target="_blank" rel="noopener">goldmansachs.com</a></span></li>
+        <li id="mt-ref-7"><span><b>Dolan, M.</b> (2026, May 27). U.S. bonds about to bite stocks. Reuters. <a href="https://www.reuters.com/commentary/reuters-open-interest/us-bonds-about-bite-stocks-2026-05-27/" target="_blank" rel="noopener">reuters.com</a></span></li>
+        <li id="mt-ref-8"><span><b>Smith, D., &amp; Perry, G.</b> (2026, March 26). The yield curve's message for equity markets. State Street Global Advisors. <a href="https://www.ssga.com/us/en/institutional/insights/mind-on-the-market-26-march-2026" target="_blank" rel="noopener">ssga.com</a></span></li>
       </ol>
     </section>
 
@@ -1275,10 +1274,10 @@ body::before {
         <span class="title">All Market Opinions</span>
         <span class="meta">Article index</span>
       </a>
-      <a class="cell right" href="/the-quiet-pressure-of-higher-yields/">
+      <a class="cell right" href="#" aria-disabled="true" title="Coming June 4, 2026">
         <span class="k">Next →</span>
-        <span class="title">The quiet pressure of higher yields</span>
-        <span class="meta">May 28, 2026 · 6 min</span>
+        <span class="title">Beyond AI: the two forces defining the next tech frontier</span>
+        <span class="meta">June 4, 2026 · Coming Thursday</span>
       </a>
     </nav>
 

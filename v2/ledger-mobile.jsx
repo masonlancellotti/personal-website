@@ -15,7 +15,7 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Last modified: 5/25/2026</span>
+        <span>Last modified: 5/28/2026</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">
@@ -297,7 +297,7 @@ function MTBlog() {
               key={i}
               className={`mt-row mt-post${p.upcoming ? ' upcoming' : ''}`}
               onClick={go}
-              disabled={!clickable && !p.upcoming}>
+              disabled={!clickable}>
               <div className="mt-row-top">
                 <span className="mt-post-date">{p.date}</span>
                 <span className="mt-post-len">{p.len}</span>
@@ -314,11 +314,11 @@ function MTBlog() {
         })}
       </div>
 
-      <a className="mt-featured" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
+      <a className="mt-featured" href="/the-quiet-pressure-of-higher-yields/">
         <span className="label">Featured article</span>
-        <span className="date">May 21, 2026</span>
-        <h3 className="title">Why you should watch Nvidia earnings even if you don't own the stock</h3>
-        <p className="excerpt">The market always has bellwether stocks. This piece looks at why Nvidia has become one of the clearest examples in the modern day.</p>
+        <span className="date">May 28, 2026</span>
+        <h3 className="title">The quiet pressure of higher yields</h3>
+        <p className="excerpt">While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields.</p>
         <span className="cta">Read article ↗</span>
       </a>
     </div>

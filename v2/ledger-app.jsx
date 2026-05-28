@@ -113,7 +113,7 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 5/25/2026</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 5/28/2026</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
@@ -355,7 +355,7 @@ function Repos() {
         <span className="note" style={{ fontSize: "13px" }}>Active / maintained</span>
       </div>
       <div style={{ borderTop: '1px solid var(--ink)', borderBottom: '1px solid var(--ink)' }}>
-        <div className="repo-row" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--muted)', letterSpacing: '0.16em', textTransform: 'uppercase', cursor: 'default', background: 'transparent', padding: '10px 0 9px', borderBottom: '1px solid var(--rule)' }}>
+        <div className="repo-row repo-row-head" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--muted)', letterSpacing: '0.16em', textTransform: 'uppercase', cursor: 'default', background: 'transparent', padding: '10px 0 9px', borderBottom: '1px solid var(--rule)' }}>
           <span style={{ fontSize: "12px" }}>Title</span><span style={{ fontSize: "12px" }}>Description</span><span style={{ fontSize: "12px" }}>Language</span><span style={{ fontSize: "12px" }}>Status</span><span></span>
         </div>
         {REPOS.map((r, i) =>
@@ -455,14 +455,14 @@ function Blog() {
           );
         })}
       </div>
-      <a className="featured-article" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
+      <a className="featured-article" href="/the-quiet-pressure-of-higher-yields/">
         <div className="featured-article-side">
           <span className="featured-article-label" style={{ fontSize: "12px" }}>Featured article</span>
-          <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 21, 2026</span>
+          <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 28, 2026</span>
         </div>
         <div className="featured-article-main">
-          <h3 className="featured-article-title">Why you should watch Nvidia earnings even if you don't own the stock</h3>
-          <p className="featured-article-excerpt">The market always has bellwether stocks. This piece looks at why Nvidia has become one of the clearest examples in the modern day.</p>
+          <h3 className="featured-article-title">The quiet pressure of higher yields</h3>
+          <p className="featured-article-excerpt">While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields.</p>
           <span className="featured-article-cta" style={{ fontSize: "12px" }}>Read article <span aria-hidden="true" style={{ fontSize: "12px" }}>↗</span></span>
         </div>
       </a>
@@ -511,11 +511,13 @@ function clearPortfolioTabAddress() {
   const url = new URL(window.location.href);
   const validHashTabs = new Set(['filing', 'repos', 'blog', 'i', 'ii', 'iii', '1', '2', '3', 'experience', 'projects', 'articles', 'writing', 'opinions']);
   const shouldClearHash = validHashTabs.has(url.hash.replace(/^#/, '').toLowerCase());
-  if (!url.searchParams.has('tab') && !url.searchParams.has('page') && !shouldClearHash) return;
+  const cleanPath = url.pathname.replace(/\/index\.html$/i, '/') || '/';
+  const shouldCleanIndexPath = cleanPath !== url.pathname;
+  if (!url.searchParams.has('tab') && !url.searchParams.has('page') && !shouldClearHash && !shouldCleanIndexPath) return;
   url.searchParams.delete('tab');
   url.searchParams.delete('page');
   if (shouldClearHash) url.hash = '';
-  window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  window.history.replaceState(null, '', `${cleanPath}${url.search}${url.hash}`);
 }
 
 function App() {
