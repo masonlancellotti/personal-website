@@ -111,15 +111,15 @@ const REGISTER = [
 // Skills — pulled directly from resume, in the order listed there
 const SKILLS = [
   // Expert
-  { skill: "Python",                 level: "Expert",       n: 5, applied: "Linear Algebra, Econometrics, Machine Learning, trading program development" },
-  { skill: "Excel",                  level: "Expert",       n: 5, applied: "Accounting, financial modeling, system optimization" },
   { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, strategy analysis decks, class presentations" },
   { skill: "AI",                     level: "Expert",       n: 5, applied: "RBmedia projects, coding, simple task automation, research, data cleaning" },
   // Advanced
-  { skill: "SQL",                    level: "Advanced",     n: 4, applied: "Database Systems, trading program development" },
+  { skill: "Python",                 level: "Advanced",     n: 4, applied: "Linear Algebra, Econometrics, Machine Learning, trading program development" },
+  { skill: "Excel",                  level: "Advanced",     n: 4, applied: "Accounting, financial modeling, system optimization" },
   { skill: "Statistical modeling",   level: "Advanced",     n: 4, applied: "Econometrics, Intermediate Microeconomics, investment research, trading program development" },
   { skill: "Financial analysis",     level: "Advanced",     n: 4, applied: "Accounting, Corporate Finance, investment research" },
   // Proficient
+  { skill: "SQL",                    level: "Proficient",   n: 3, applied: "Database Systems, trading program development" },
   { skill: "Tableau",                level: "Proficient",   n: 3, applied: "Process & Systems Management projects, trading program monitoring" },
   { skill: "Java",                   level: "Proficient",   n: 3, applied: "Intro CS, Data Structures and Algorithms" },
   { skill: "Market research",        level: "Proficient",   n: 3, applied: "Emory Economics Review, personal blog writing, Stocks, Bonds, and Financial Markets, personal investing" },
