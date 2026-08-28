@@ -113,7 +113,7 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 5/28/2026</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 6/4/2026</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
@@ -455,14 +455,14 @@ function Blog() {
           );
         })}
       </div>
-      <a className="featured-article" href="/the-quiet-pressure-of-higher-yields/">
+      <a className="featured-article" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
         <div className="featured-article-side">
           <span className="featured-article-label" style={{ fontSize: "12px" }}>Featured article</span>
-          <span className="featured-article-meta" style={{ fontSize: "12px" }}>May 28, 2026</span>
+          <span className="featured-article-meta" style={{ fontSize: "12px" }}>June 4, 2026</span>
         </div>
         <div className="featured-article-main">
-          <h3 className="featured-article-title">The quiet pressure of higher yields</h3>
-          <p className="featured-article-excerpt">While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields.</p>
+          <h3 className="featured-article-title">Beyond AI: the two forces defining the next tech frontier</h3>
+          <p className="featured-article-excerpt">As AI dominates the current market narrative, investors are eager to identify the next "golden ticket," so to speak.</p>
           <span className="featured-article-cta" style={{ fontSize: "12px" }}>Read article <span aria-hidden="true" style={{ fontSize: "12px" }}>↗</span></span>
         </div>
       </a>

@@ -15,7 +15,7 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Last modified: 5/28/2026</span>
+        <span>Last modified: 6/4/2026</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">
@@ -314,11 +314,11 @@ function MTBlog() {
         })}
       </div>
 
-      <a className="mt-featured" href="/the-quiet-pressure-of-higher-yields/">
+      <a className="mt-featured" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
         <span className="label">Featured article</span>
-        <span className="date">May 28, 2026</span>
-        <h3 className="title">The quiet pressure of higher yields</h3>
-        <p className="excerpt">While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields.</p>
+        <span className="date">June 4, 2026</span>
+        <h3 className="title">Beyond AI: the two forces defining the next tech frontier</h3>
+        <p className="excerpt">As AI dominates the current market narrative, investors are eager to identify the next "golden ticket," so to speak.</p>
         <span className="cta">Read article ↗</span>
       </a>
     </div>
