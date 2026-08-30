@@ -23,28 +23,7 @@ const REGISTER = [
     duration: "10 mos."
   },
   {
-    n: 2, start: "2024-05", end: "2025-08",
-    period: "May '24 – Present",
-    kind: "Work",
-    org: "Life Time Fitness",
-    role: "Lifeguard",
-    place: "Gainesville, VA",
-    coords: "38.79°N, 77.61°W",
-    note: "Being a returning seasonal employee for three summers, I have undergone repeated certifications and training. This position has also bolstered my client communication skills.",
-    bullets: [
-      "Monitored pool activities and proactively enforced safety guidelines to prevent accidents.",
-      "Administered first aid on 4 separate occasions, coordinating directly with police and EMS.",
-      "Collaborated with management on aquatics events and served 300+ members daily, resolving issues on the deck."
-    ],
-    stat: { v: "4", sub: "", label: "emergency responses", fn: 5 },
-    photo: null,
-    link: { href: "https://my.lifetime.life/clubs/va/gainesville/programs/swim.html", label: "Life Time Gainesville" },
-    fn: 2,
-    future: false,
-    duration: "Ongoing"
-  },
-  {
-    n: 3, start: "2024-01", end: null,
+    n: 2, start: "2024-01", end: null,
     period: "Jan '24 – Present",
     kind: "Leadership",
     org: "Emory Club Swimming",
@@ -65,17 +44,38 @@ const REGISTER = [
     duration: "Ongoing"
   },
   {
+    n: 3, start: "2024-05", end: "2026-08",
+    period: "May '24 – Aug '26",
+    kind: "Work",
+    org: "Life Time Fitness",
+    role: "Lifeguard",
+    place: "Gainesville, VA",
+    coords: "38.79°N, 77.61°W",
+    note: "Being a returning seasonal employee for three summers, I underwent repeated certifications and training. This position also bolstered my client communication skills.",
+    bullets: [
+      "Monitored pool activities and proactively enforced safety guidelines to prevent accidents.",
+      "Administered first aid on 6 separate occasions, coordinating directly with police and EMS.",
+      "Collaborated with management on aquatics events and served 300+ members daily, resolving issues on the pool deck and locker rooms."
+    ],
+    stat: { v: "6", sub: "", label: "emergency responses", fn: 5 },
+    photo: null,
+    link: { href: "https://my.lifetime.life/clubs/va/gainesville/programs/swim.html", label: "Life Time Gainesville" },
+    fn: 2,
+    future: false,
+    duration: "2 yrs. 4 mos."
+  },
+  {
     n: 4, start: "2025-06", end: "2025-08",
     period: "Jun '25 – Aug '25",
     kind: "Internship",
     org: "RBmedia",
-    role: "Marketing Intern",
+    role: "Business Analytics Intern",
     place: "Landover, MD",
     coords: "38.93°N, 76.87°W",
     note: "This was my first time in a professional setting with a business context. It opened my eyes to the utility of data and how invaluable of a tool it can be for almost any task, goal, or industry.",
     bullets: [
       "Compiled monthly and quarterly sales reports on 2,500+ Audible and Spotify audiobook titles.",
-      "Visualized trends with tables and graphs that guided executive decision-making on future titles.",
+      "Visualized trends with tables and graphs to help guide executive decision-making on a variety of topics.",
       "Assisted in rolling out an automated posting workflow across 12 social media accounts, supervising the first ~1,800 uploads and diagnosing technical issues in real time."
     ],
     stat: { v: "2,500", sub: "+", label: "titles tracked", fn: 7 },
@@ -105,33 +105,53 @@ const REGISTER = [
     fn: 5,
     future: false,
     duration: "Ongoing"
+  },
+  {
+    n: 6, start: "2026-06", end: null,
+    period: "June '26 – Present",
+    kind: "Internship",
+    org: "GROWTH Homes",
+    role: "Digital Marketing Intern",
+    place: "Washington, DC",
+    coords: "38.91°N, 77.04°W",
+    note: "I support ongoing digital marketing, data, and automation projects for a real estate organization on an as-needed basis.",
+    bullets: [
+      "Developed an industry-specific AI application that saved approximately 61 hours of manual labor over an initial test batch of 76 short-form videos.",
+      "Reconciled 4,000+ records for CRM migration, authoring formal documentation to guide adoption, best practices, and efficient utilization.",
+      "Retained on an as-needed basis to support ongoing projects and new emerging needs."
+    ],
+    stat: { v: "61", sub: "hrs.", label: "manual labor saved" },
+    photo: null,
+    link: null,
+    fn: 6,
+    future: false,
+    duration: "Ongoing"
   }
 ];
 
 // Skills — pulled directly from resume, in the order listed there
 const SKILLS = [
   // Expert
-  { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, strategy analysis decks, class presentations" },
-  { skill: "AI",                     level: "Expert",       n: 5, applied: "RBmedia projects, coding, simple task automation, research, data cleaning" },
+  { skill: "PowerPoint",             level: "Expert",       n: 5, applied: "Stock pitches, mock strategy analysis decks, Experimental Economics final presentation, Econometrics final presentation, Topics in Macroeconomics presentations, other miscellaneous class projects" },
+  { skill: "AI automation",          level: "Expert",       n: 5, applied: "Audiobook preview creation/posting workflow (RBmedia), centralized real estate social media marketing app (GROWTH Homes), Data Management & Visualization, various personal projects, daily work streamlining and efficiency" },
   // Advanced
-  { skill: "Python",                 level: "Advanced",     n: 4, applied: "Linear Algebra, Econometrics, Machine Learning, trading program development" },
-  { skill: "Excel",                  level: "Advanced",     n: 4, applied: "Accounting, financial modeling, system optimization" },
-  { skill: "Statistical modeling",   level: "Advanced",     n: 4, applied: "Econometrics, Intermediate Microeconomics, investment research, trading program development" },
-  { skill: "Financial analysis",     level: "Advanced",     n: 4, applied: "Accounting, Corporate Finance, investment research" },
+  { skill: "Python",                 level: "Advanced",     n: 4, applied: "All personal projects (see Project Repositories), Computing Methods in Economics, Data Management & Visualization, course labs for Calculus, Linear Algebra, Econometrics, and Data Science for Economists", reposLink: true },
+  { skill: "Excel",                  level: "Advanced",     n: 4, applied: "Sales data cleaning and analysis (RBmedia), CRM data restructure and transfer (GROWTH Homes), financial modeling (personal investing), Corporate Finance, Accounting, and Process & Systems Management" },
+  { skill: "Financial analysis",     level: "Advanced",     n: 4, applied: "Market research dashboard, Bitcoin price prediction model, Corporate Finance, stock pitches, personal investing" },
+  { skill: "Econometrics",           level: "Advanced",     n: 4, applied: "Econometrics final project, Quantitative Methods I, prediction markets trading program, bitcoin price prediction model" },
+  { skill: "Forecasting",            level: "Advanced",     n: 4, applied: "Bitcoin price prediction model, Econometrics final project, prediction markets trading program, Process & Systems Management, Corporate Finance" },
+  { skill: "Valuation",              level: "Advanced",     n: 4, applied: "Prediction markets trading program, stock pitches, Corporate Finance, personal investing" },
   // Proficient
-  { skill: "SQL",                    level: "Proficient",   n: 3, applied: "Database Systems, trading program development" },
-  { skill: "Tableau",                level: "Proficient",   n: 3, applied: "Process & Systems Management projects, trading program monitoring" },
-  { skill: "Java",                   level: "Proficient",   n: 3, applied: "Intro CS, Data Structures and Algorithms" },
-  { skill: "Market research",        level: "Proficient",   n: 3, applied: "Emory Economics Review, personal blog writing, Stocks, Bonds, and Financial Markets, personal investing" },
+  { skill: "SQL",                    level: "Proficient",   n: 3, applied: "Market research dashboard, prediction markets trading program, centralized real estate social media marketing app, Database Systems" },
+  { skill: "Git",                    level: "Proficient",   n: 3, applied: "All personal projects, Data Management & Visualization" },
+  { skill: "Tableau",                level: "Proficient",   n: 3, applied: "Process & Systems Management, Data Management & Visualization" },
+  { skill: "Macroeconomic analysis", level: "Proficient",   n: 3, applied: "Market research dashboard (regime analysis and sentiment components), Intermediate Macroeconomics, Topics in Macroeconomics, Emory Economics Review, personal blog" },
+  { skill: "Competitive research",   level: "Proficient",   n: 3, applied: "Market research dashboard, ad hoc projects/writeups (RBmedia and GROWTH Homes), Emory Economics Review, personal blog, personal investing" },
+  { skill: "Due diligence",          level: "Proficient",   n: 3, applied: "Market research dashboard, stock pitches, personal investing" },
   // Intermediate
-  { skill: "Power BI",               level: "Intermediate", n: 2, applied: "Econometrics, trading program development" },
-  { skill: "Risk management",        level: "Intermediate", n: 2, applied: "Personal investing, Stocks, Bonds, and Financial Markets, trading program development" },
-  { skill: "KPI reporting",          level: "Intermediate", n: 2, applied: "RBmedia ad hoc leadership briefings, Marketing" },
-  // Elementary
-  { skill: "R",                      level: "Elementary",   n: 1, applied: "Data Science for Economists, Econometrics" },
-  { skill: "Predictive forecasting", level: "Elementary",   n: 1, applied: "Process & Systems Management, personal investing" },
-  // Languages
-  { skill: "Spanish",                level: "Proficient",   n: 3, applied: "Spanish coursework, travel" },
+  { skill: "Power BI",               level: "Intermediate", n: 2, applied: "Econometrics, trading/pricing program dashboards" },
+  { skill: "Stata",                  level: "Intermediate", n: 2, applied: "Data Science for Economists, Econometrics" },
+  { skill: "R",                      level: "Intermediate", n: 2, applied: "Econometrics, Data Management & Visualization" },
 ];
 
 // Full academic transcript — every term, every course
@@ -192,6 +212,15 @@ const TRANSCRIPT = [
       { code: "CS 377",   name: "Database Systems",                            credits: 3, grade: "A",  placeholder: "A heavily SQL-based class covering database design, relational models, normalization, query processing, and maintenance of data integrity." },
       { code: "ISOM 351", name: "Process & Systems Management",                credits: 3, grade: "B-", placeholder: "Studied how businesses analyze and improve operations, allocate resources, and make process decisions, with an emphasis on performance measurement, forecasting accuracy, and reducing costly inefficiencies." },
       { code: "MKT 340",  name: "Marketing Management",                        credits: 3, grade: "A",  placeholder: "Covered how companies understand customers, position products, and construct marketing strategies, ending with an online, multi-week, simulated internship and group presentation on our decision-making throughout the activity." },
+    ]
+  },
+  {
+    term: "Fall 2026", termGpa: null, credits: 13, current: true,
+    courses: [
+      { code: "ECON 480",  name: "Computing Methods in Economics",  credits: 3, grade: "TBD", placeholder: "Capstone course focused on conducting economic analysis through advanced computational techniques, including a variety of different topics, each covering a unique economic model and its implementation using software tools and programming languages." },
+      { code: "ECON 410W", name: "Topics in Macroeconomics",       credits: 4, grade: "TBD", placeholder: "Advanced writing-intensive seminar focused on macroeconomic theory, fiscal policy, and the labor market, bridging the gap between theory and real data, and concluding with a fifteen-page research paper with a defensible position of my own." },
+      { code: "ECON 525",  name: "Data Mgmt. & Visualization",     credits: 3, grade: "TBD", placeholder: "A graduate course on building practical skills required for economic analysis and data science, with an emphasis on acquiring, cleaning, and structuring data, development of reproducible research workflows, and hands-on use of Git, Python, R, Stata, and AI." },
+      { code: "ECON 526",  name: "Quantitative Methods I",         credits: 3, grade: "TBD", placeholder: "Another graduate course setting the foundation for complex econometric work, covering multivariate and integral calculus, matrix algebra, differential equations, and their applications in both static and dynamic analyses." },
     ]
   }
 ];
@@ -256,6 +285,3 @@ const FOOTNOTES = [
 ];
 
 Object.assign(window, { REGISTER, SKILLS, TRANSCRIPT, REPOS, GOAL_REPOS, POSTS, INVOLVEMENT, FOOTNOTES });
-
-
-

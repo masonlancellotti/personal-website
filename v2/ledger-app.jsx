@@ -5,6 +5,12 @@ function renderWithFns(text) {
   return String(text).replace(/\s*\[fn:\d+\]/g, '');
 }
 
+function renderSkillApplied(skill, openRepos) {
+  if (!skill.reposLink) return skill.applied;
+  const [before, after] = skill.applied.split('Project Repositories');
+  return <>{before}<button className="inline-link" type="button" onClick={openRepos}>Project Repositories</button>{after}</>;
+}
+
 // ---------- Tweaks ----------
 function Tweaks({ onChange }) {
   const [open, setOpen] = useState(true);
@@ -113,13 +119,13 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 6/4/2026</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 8/28/2026</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
         <div className="filing-id">
-          <div><b>Emory University</b> · Atlanta, GA</div>
-          <div>Econ + CS · Business minor · <b>GPA 3.93</b></div>
+          <div><b>Emory University</b> · Atlanta, GA · <b>3.93 GPA</b></div>
+          <div>Economics, computer science, and business</div>
           <div><a href="mailto:mason.angelo.lancellotti@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>mason.angelo.lancellotti@gmail.com</a> · (703) 919-3319</div>
         </div>
       </div>
@@ -130,14 +136,13 @@ function Masthead({ active, setActive }) {
           </button>
         )}
         <span className="spacer"></span>
-        <span className="as-of">New blog every Thursday at 6:00 P.M. EST</span>
       </nav>
     </header>);
 
 }
 
 // ---------- Filing (the main page) ----------
-function Filing() {
+function Filing({ setActive }) {
   const [openRow, setOpenRow] = useState(null);
 
   // stats
@@ -151,7 +156,7 @@ function Filing() {
       <section className="summary">
         <div>
           <p className="lede">
-            Undergraduate at <em>Emory University</em> studying economics and computer science, with a business minor and a master's in economics expected in 2028.
+            Undergraduate at <em>Emory University</em> studying economics and computer science with a business minor; master's in economics expected in 2028.
             <small style={{ width: "400px" }}>Below you can find a running archive of my experience, skills, and coursework. Some entries can be expanded to provide more detail. I created this page with the goal of painting a clearer picture of my background than a static resume alone can accomplish.
 
 
@@ -161,7 +166,7 @@ function Filing() {
         <div className="statblock">
           <div><span className="k">Positions held</span><span className="v num">{totalRoles}</span></div>
           <div><span className="k">Active projects</span><span className="v num">{active}</span></div>
-          <div><span className="k">Courses taken</span><span className="v num">31</span></div>
+          <div><span className="k">Courses taken</span><span className="v num">35</span></div>
           <div><span className="k">Tools & skills</span><span className="v num">{skills}</span></div>
         </div>
       </section>
@@ -273,7 +278,7 @@ function Filing() {
                   {[1, 2, 3, 4, 5].map((k) => <span key={k} className={k <= s.n ? 'on' : ''}></span>)}
                 </span>
               </td>
-              <td className="applied">{s.applied}</td>
+              <td className="applied">{renderSkillApplied(s, () => setActive('repos'))}</td>
             </tr>
           )}
         </tbody>
@@ -295,8 +300,8 @@ function Filing() {
         <div key={i} className={`term ${t.current ? 'current' : ''}`}>
             <div className="term-head">
               <div className="term-stat"><span className="k">Term</span><span className="v">{t.term}{t.current ? ' · in progress' : ''}</span></div>
-              {t.termGpa != null &&
-            <div className="term-stat"><span className="k">Term GPA</span><span className="v num">{t.termGpa.toFixed(3)}</span></div>
+              {(t.termGpa != null || t.current) &&
+            <div className="term-stat"><span className="k">Term GPA</span><span className="v num">{t.termGpa != null ? t.termGpa.toFixed(3) : 'TBD'}</span></div>
             }
               <div className="term-stat">
                 <span className="k">Credits</span>
@@ -546,7 +551,7 @@ function App() {
       <div className="desktop-only">
         <div className="doc" data-screen-label={active}>
           <Masthead active={active} setActive={setActive} />
-          {active === 'filing' && <Filing />}
+          {active === 'filing' && <Filing setActive={setActive} />}
           {active === 'repos' && <Repos />}
           {active === 'blog' && <Blog />}
           <Colophon />

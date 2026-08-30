@@ -15,16 +15,16 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Last modified: 6/4/2026</span>
+        <span>Last modified: 8/28/2026</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">
-        <div><b>Emory University</b> · Atlanta, GA</div>
-        <div>Econ + CS · Business minor · <b>GPA 3.93</b></div>
+        <div><b>Emory University</b> · Atlanta, GA · <b>3.93 GPA</b></div>
+        <div>Economics, computer science, and business</div>
         <div>
           <a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a>
+          {' · (703) 919-3319'}
         </div>
-        <div>(703) 919-3319</div>
       </div>
       <nav className="mt-tabstrip">
         {tabs.map((t) =>
@@ -58,7 +58,7 @@ function MTSectionHead({ numeral, title, note, link }) {
   );
 }
 
-function MTFiling() {
+function MTFiling({ setActive }) {
   const [openRow, setOpenRow] = useStateMT(null);
 
   const totalRoles = REGISTER.filter((r) => !r.future).length;
@@ -70,8 +70,8 @@ function MTFiling() {
       {/* Summary */}
       <section className="mt-summary">
         <p className="mt-lede">
-          Undergraduate at <em>Emory University</em> studying economics and computer science,
-          with a business minor and a master's in economics expected in 2028.
+          Undergraduate at <em>Emory University</em> studying economics and computer science
+          with a business minor; master's in economics expected in 2028.
         </p>
         <p className="mt-lede-small">
           Below you can find a running archive of my experience, skills, and coursework.
@@ -81,7 +81,7 @@ function MTFiling() {
         <div className="mt-statblock">
           <div><span className="k">Positions held</span><span className="v">{totalRoles}</span></div>
           <div><span className="k">Active projects</span><span className="v">{active}</span></div>
-          <div><span className="k">Courses taken</span><span className="v">31</span></div>
+          <div><span className="k">Courses taken</span><span className="v">35</span></div>
           <div><span className="k">Tools & skills</span><span className="v">{skills}</span></div>
         </div>
       </section>
@@ -119,7 +119,7 @@ function MTFiling() {
                 )}
                 {r.photos && (
                   <div className="mt-row-collage">
-                    {r.photos.map((src, k) => <img key={k} src={src} alt="" loading="lazy" />)}
+                    {r.photos.map((src, k) => <img key={k} src={src} alt="" loading="eager" fetchPriority="high" />)}
                   </div>
                 )}
                 {r.photo && <img className="mt-row-photo" src={r.photo} alt="" loading="lazy" />}
@@ -171,7 +171,7 @@ function MTFiling() {
             <div className="mt-skill-bars">
               {[1, 2, 3, 4, 5].map((k) => <span key={k} className={k <= s.n ? 'on' : ''}></span>)}
             </div>
-            <div className="mt-skill-applied">{s.applied}</div>
+            <div className="mt-skill-applied">{renderSkillApplied(s, () => setActive('repos'))}</div>
           </div>
         ))}
       </div>
@@ -187,7 +187,7 @@ function MTFiling() {
           <div key={i} className={`mt-term${t.current ? ' current' : ''}`}>
             <div className="mt-term-head">
               <div><span className="k">Term</span><span className="v">{t.term}{t.current ? ' · in progress' : ''}</span></div>
-              {t.termGpa != null && <div><span className="k">Term GPA</span><span className="v">{t.termGpa.toFixed(3)}</span></div>}
+              {(t.termGpa != null || t.current) && <div><span className="k">Term GPA</span><span className="v">{t.termGpa != null ? t.termGpa.toFixed(3) : 'TBD'}</span></div>}
               <div><span className="k">Credits</span><span className="v">{t.credits}</span></div>
             </div>
             <div className="mt-courses">
@@ -346,7 +346,7 @@ function MobileTabletApp({ active, setActive }) {
   return (
     <div className="mt-doc" data-screen-label={`mt-${active}`}>
       <MTMasthead active={active} setActive={setActive} />
-      {active === 'filing' && <MTFiling />}
+      {active === 'filing' && <MTFiling setActive={setActive} />}
       {active === 'repos'  && <MTRepos />}
       {active === 'blog'   && <MTBlog />}
       <MTColophon />
