@@ -15,7 +15,7 @@ function MTMasthead({ active, setActive }) {
     <header className="mt-masthead">
       <div className="mt-mast-strip">
         <span>Expanded resume</span>
-        <span>Last modified: 8/28/2026</span>
+        <span>Last modified: 8/30/2026</span>
       </div>
       <h1 className="mt-name">Mason Lancellotti</h1>
       <div className="mt-mast-meta">
@@ -250,6 +250,15 @@ function MTRepos() {
             {openRepo === i && (
               <div className="mt-row-detail">
                 <p className="mt-row-note">{r.longDesc}</p>
+                {r.subs && r.subs.map((s, k) => (
+                  <div key={k} style={{ marginTop: 14 }}>
+                    <p className="mt-row-note" style={{ fontWeight: 600, marginBottom: 4 }}>{s.title}</p>
+                    <p className="mt-row-note">{s.text}</p>
+                    <a className="mt-row-link" href={s.link.href} target="_blank" rel="noopener noreferrer">
+                      {s.link.label} <span aria-hidden="true">&#8599;</span>
+                    </a>
+                  </div>
+                ))}
                 {r.link && (
                   <a className="mt-row-link" href={r.link.href} target="_blank" rel="noopener noreferrer">
                     {r.link.label} <span aria-hidden="true">↗</span>
@@ -261,6 +270,7 @@ function MTRepos() {
         ))}
       </div>
 
+      {GOAL_REPOS.length > 0 && <>
       <MTSectionHead numeral="II" title="Coming Soon" note="Tentative future projects · Subject to change" />
       <div className="mt-goal-grid">
         {GOAL_REPOS.map((r, i) => (
@@ -280,6 +290,7 @@ function MTRepos() {
           </div>
         ))}
       </div>
+      </>}
     </div>
   );
 }

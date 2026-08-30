@@ -227,13 +227,60 @@ const TRANSCRIPT = [
 
 const REPOS = [
   {
-    title: "Prediction Market Trading System",
-    name: "prediction-markets-program",
-    desc: "Automated prediction market infrastructure for fair value edge identification, orderbook analysis, cross-venue arbitrage evaluation.",
+    title: "Prediction Markets",
+    name: "four repositories",
+    desc: "Trading research across Kalshi and Polymarket: a crypto contract backtesting system, a cross-venue arbitrage scanner, a trading terminal, and a weather contract pricing model.",
+    lang: "Py / TS / JS",
+    status: "Research",
+    longDesc: "A sustained research program built on one thesis: inefficiencies should be easier to identify and more common in prediction markets, which are much less mature than traditional financial markets and are still dominated by a largely non-institutional trader base. Testing that thesis honestly produced four systems, and the recurring finding is that the interesting work is proving which apparent opportunities are real.",
+    subs: [
+      {
+        title: "Crypto Contract Backtesting System",
+        text: "Tests whether fifteen-minute crypto contracts on Kalshi can be beaten after costs: leakage-safe point-in-time features, purged cross-validation, calibrated models, and fee-aware backtests that fill at executable prices, across thirty-eight strategy hypotheses and millions of real trade prints. The market won. The one strategy that survived the statistical screen was rejected anyway, because it collected a few cents per trade against a ninety-six cent loss tail the statistics could not see. 677 offline tests, keyless demo.",
+        link: { label: "github.com/masonlancellotti/crypto-contract-backtesting-system", href: "https://github.com/masonlancellotti/crypto-contract-backtesting-system" }
+      },
+      {
+        title: "Arbitrage Scanner",
+        text: "Builds the logical relationship graph across both venues, prices the bounds those relationships require, and reports live violations with the exact arbitrage construction and fee-adjusted net profit. The second half reconciles which contracts are actually the same bet before believing any price gap: on a recorded live run of 152,000 instruments and 298,000 quotes it rejected 797 arbitrages that only looked riskless. The hard problem is not finding opportunities, it is correctly throwing them away.",
+        link: { label: "github.com/masonlancellotti/prediction-market-arbitrage-scanner", href: "https://github.com/masonlancellotti/prediction-market-arbitrage-scanner" }
+      },
+      {
+        title: "Trading Terminal",
+        text: "A Bloomberg-style four-panel workspace wired to live public data from both venues: command-line driven with function keys, most-active and biggest-mover screens, news, charts, order book depth, and a local paper-trading blotter that fills simulated orders against the real book. Zero dependencies, no framework, no build step, and it runs fully offline on a recorded snapshot of real API responses.",
+        link: { label: "github.com/masonlancellotti/prediction-market-trading-terminal", href: "https://github.com/masonlancellotti/prediction-market-trading-terminal" }
+      },
+      {
+        title: "Weather Contract Pricing Model",
+        text: "Prices daily temperature contracts by parsing each market's settlement rules down to the exact National Weather Service station, then running a Gaussian model over forecasts and recent history to produce its own probability for each outcome. Built to refuse rather than guess: unclear rules, an ambiguous station, stale weather data, a thin order book, or insufficient edge all return a skip instead of a signal, and live execution stays disabled behind risk checks and a kill switch. This was the first substantial project I built, and most of what I know about handling real market data started here.",
+        link: { label: "github.com/masonlancellotti/weather-contract-pricing-model", href: "https://github.com/masonlancellotti/weather-contract-pricing-model" }
+      }
+    ] },
+
+  {
+    title: "Market Intelligence Agent",
+    name: "market-intelligence-agent",
+    desc: "Local-first research daemon that produces cited investment briefs and Brier-scores every forecast it makes onto a calibration curve.",
     lang: "Python",
-    status: "Development",
-    link: { label: "github.com/masonlancellotti/prediction-markets-program", href: "https://github.com/masonlancellotti/prediction-markets-program" },
-    longDesc: "A multi-arm trading research system specifically built to trade contracts in prediction markets like Kalshi and Polymarket. It connects live API data, orderbook depth, multiple cross-platform comparisons, paper execution logs, backtesting functionality, and graph-based contract relationships into a single workflow for evaluating whether a profitable opportunity, either through a detected edge, arbitrage opportunity, or liquidity gap, can actually be profitable after fees. I decided to create this program based on the thesis that inefficiencies would be easier to identify and more common in prediction markets, which are much less mature than traditional financial markets and are still dominated by a largely non-institutional trader base." },
+    status: "Complete",
+    link: { label: "github.com/masonlancellotti/market-intelligence-agent", href: "https://github.com/masonlancellotti/market-intelligence-agent" },
+    longDesc: "A local-first research system that runs continuously and produces structured investment briefs. It ingests equities, crypto, news, SEC filings, macroeconomic data, and prediction markets, computes a composite risk regime across them, and runs an agent pipeline, triage through analysts through red team through fact-checker, that turns the result into cited morning briefs, strategy notes, and hedge ideas. The part that makes it useful is the discipline layer: every forecast is Brier-scored onto a calibration curve, and no trade thesis can be marked live until it passes a ten-item conviction gate and an automated red-team review. It ships with a frozen demo database, so it boots and shows real briefs with no API keys. I built it because research is easy to do inconsistently, and I wanted a standardized process that keeps a running record of how often my own calls are actually right." },
+
+  {
+    title: "Resale Price Gap Engine",
+    name: "resale-price-gap-engine",
+    desc: "Compliance-first resale arbitrage: the full discover, value, underwrite, buy, list, reprice, ship, account loop over an exact double-entry ledger.",
+    lang: "TypeScript",
+    status: "Complete",
+    link: { label: "github.com/masonlancellotti/resale-price-gap-engine", href: "https://github.com/masonlancellotti/resale-price-gap-engine" },
+    longDesc: "A secondhand marketplace engine that evaluates listings against recent comparable sales and runs the full transaction workflow behind them, from discovery and valuation through purchasing, listing, repricing, and shipping, with every movement of money recorded in an exact integer-cents double-entry ledger. Every external system it touches, including marketplaces, carriers, and language models, sits behind an interface with a deterministic stand-in, so the entire pipeline runs and is tested offline: 305 tests, no keys, no network, no database. The market for secondhand goods is ripe for mispricing, and flipping done programmatically is effectively a watered-down, ultra-concrete version of financial arbitrage." },
+
+  {
+    title: "Real Estate Social Marketing App",
+    name: "private / employer-owned",
+    desc: "One application that takes a real estate developer from raw walkthrough footage to a scheduled, fact-checked social post.",
+    lang: "Py / TS",
+    status: "In production",
+    longDesc: "A production application built for GROWTH Homes that turns raw property footage into scheduled social media content. It centralizes strategy, content libraries, video production, scheduling, and predictive analytics in one workflow: finding the usable moments in a walkthrough, cutting them, writing copy checked against facts the company has already approved, rendering the video, and handing the finished post to a publishing schedule, with an audit trail on every claim it publishes. Across a pilot batch of seventy-six publication-ready videos it saved an estimated sixty-one hours of manual work. The code is owned by the company, so there is no public repository." },
 
   {
     title: "Personal Website",
@@ -244,10 +291,7 @@ const REPOS = [
     link: { label: "github.com/masonlancellotti/personal-website", href: "https://github.com/masonlancellotti/personal-website" },
     longDesc: "A modular React-based portfolio website intended to offer a more complete picture of my background and experience, in addition to displaying how I can utilize my skillset in a practical setting to produce a concrete, high-quality deliverable. I used Claude for much of the build process to implement, debug, and refine the frontend while I crafted focused prompts and feedback to ensure the final product reflected my initial vision." }];
 
-const GOAL_REPOS = [
-  { title: "Market Intelligence Agent",           name: "goal-project-01", desc: "Market research system for tracking news, macro data, filings, price movement, and technical signals to produce structured investment briefs, strategy notes, and hedge ideas. Runs continuously on local Mac Mini infrastructure, with important notifications routed to other devices like my phone or laptop.", why: "Technical and fundamental research can be tedious, and it's easy to miss small but important details. Since I find it necessary to build strong conviction before opening a new position in my brokerage account or crypto wallet, I think a program like this would be beneficial in helping to standardize my decision-making process and make me a more disciplined investor.", lang: "—", status: "queued" },
-  { title: "Resale Price Gap Engine",             name: "goal-project-03", desc: "Secondhand marketplace scanner that evaluates listings against recent resales, taking into account item condition and price history to identify potentially profitable opportunities and trigger seller outreach or transaction workflows when platform regulations permit.", why: "I like this idea because the market for secondhand goods is ripe for mispricing and inefficiencies. In addition, while flipping has existed for decades, programming can make the process much faster by removing almost all of the manual work and applying a higher standard of analysis to the workflow, greatly increasing potential upside. It intrigues me how this is effectively a watered-down, ultra-concrete version of financial arbitrage.", lang: "—", status: "queued" },
-];
+const GOAL_REPOS = [];
 
 const POSTS = [
   { date: "June 4, 2026", title: "Beyond AI: the two forces defining the next tech frontier", excerpt: "As AI dominates the current market narrative, investors are eager to identify the next \"golden ticket,\" so to speak. While sectors like nuclear energy and quantum computing are still in their early stages, some speculate they have the potential to explode alongside rising demands for power and advanced computation.", tags: ["Technology"], len: "7 min", href: "/beyond-ai-the-two-forces-defining-the-next-tech-frontier/" },

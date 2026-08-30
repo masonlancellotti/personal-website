@@ -119,7 +119,7 @@ function Masthead({ active, setActive }) {
       <div className="masthead-strip">
         <span style={{ fontSize: "13px" }}>Expanded resume</span>
         <span style={{ textAlign: 'center', fontSize: "13px" }}>Personal portfolio</span>
-        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 8/28/2026</span>
+        <span style={{ textAlign: 'right', fontSize: "13px" }}>Last modified: 8/30/2026</span>
       </div>
       <div className="name-row">
         <h1 className="name">Mason Lancellotti</h1>
@@ -382,6 +382,15 @@ function Repos() {
           <div className="repo-detail">
               <div className="repo-detail-inner">
                 <p className="repo-detail-note" style={{ width: "1100px" }}>{r.longDesc}</p>
+                {r.subs && r.subs.map((s, k) =>
+              <div key={k} style={{ marginTop: 16 }}>
+                  <p className="repo-detail-note" style={{ width: "1100px", fontWeight: 600, marginBottom: 4 }}>{s.title}</p>
+                  <p className="repo-detail-note" style={{ width: "1100px" }}>{s.text}</p>
+                  <a className="row-link" href={s.link.href} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>
+                    {s.link.label} <span aria-hidden="true">&#8599;</span>
+                  </a>
+                </div>
+              )}
                 {r.link &&
               <a className="row-link" href={r.link.href} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>
                   {r.link.label} <span aria-hidden="true">↗</span>
@@ -394,6 +403,7 @@ function Repos() {
         )}
       </div>
 
+      {GOAL_REPOS.length > 0 && <>
       <div className="section-head">
         <span className="title"><span className="numeral">II</span><span className="dot">·</span>Coming Soon</span>
         <span className="rule"></span>
@@ -417,6 +427,7 @@ function Repos() {
           </div>
         )}
       </div>
+      </>}
     </div>);
 
 }
