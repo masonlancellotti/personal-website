@@ -112,6 +112,11 @@ function MTFiling({ setActive }) {
                 <ul>
                   {r.bullets.map((b, j) => <li key={j}>{String(b).replace(/\s*\[fn:\d+\]/g, '')}</li>)}
                 </ul>
+                {r.why && (
+                  <p className="mt-row-note" style={{ marginTop: 12, fontStyle: "italic" }}>
+                    <b>Why:</b> {r.why}
+                  </p>
+                )}
                 {r.link && (
                   <a className="mt-row-link" href={r.link.href} target="_blank" rel="noopener noreferrer">
                     {r.link.label} <span aria-hidden="true">↗</span>

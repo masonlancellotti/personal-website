@@ -391,6 +391,11 @@ function Repos() {
                   </a>
                 </div>
               )}
+                {r.why &&
+              <p className="repo-detail-note" style={{ width: "1100px", marginTop: 14, fontStyle: "italic" }}>
+                  <b>Why:</b> {r.why}
+                </p>
+              }
                 {r.link &&
               <a className="row-link" href={r.link.href} target="_blank" rel="noopener" onClick={(e) => e.stopPropagation()}>
                   {r.link.label} <span aria-hidden="true">↗</span>
