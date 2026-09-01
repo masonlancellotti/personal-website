@@ -1,1313 +1,164 @@
 <!doctype html>
-<html lang="en" data-palette="ink" data-typeface="helvetica">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The quiet pressure of higher yields | Mason Lancellotti</title>
-<style>
-/* ==========================================================
-   Article page — inherits the Ledger filing aesthetic
-   ========================================================== */
-
-[data-typeface="helvetica"] { --font-stack: 'Helvetica Neue', Arial, sans-serif; }
-
-[data-palette="ink"] {
-  --bg: oklch(0.97 0.005 250);
-  --bg-2: oklch(0.945 0.007 250);
-  --ink: oklch(0.16 0.02 255);
-  --ink-2: oklch(0.35 0.02 255);
-  --muted: oklch(0.54 0.015 255);
-  --rule: oklch(0.82 0.008 255);
-  --rule-soft: oklch(0.88 0.006 255);
-  --paper: oklch(0.993 0.003 255);
-  --accent: oklch(0.45 0.15 255);
-  --accent-bg: oklch(0.97 0.02 255);
-}
-
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-stack);
-  font-size: 15px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "tnum" 1, "lnum" 1;
-}
-
-a { color: inherit; }
-
-/* paper grain */
-body::before {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: multiply;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-/* ==========================================================
-   TOP BAR — sticky, small name + section tabs + next article
-   ========================================================== */
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--rule);
-}
-.topbar-inner {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 56px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 32px;
-  height: 72px;
-}
-.topbar .bar-name {
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 9px 14px 9px 12px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  font-size: 13.5px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  transition: border-color 0.15s, background 0.15s;
-}
-.topbar .bar-name:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.topbar .bar-name .home-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--ink-2);
-  opacity: 0.55;
-  display: block;
-  flex-shrink: 0;
-}
-.topbar .bar-name .home-icon svg { width: 100%; height: 100%; display: block; }
-.topbar .bar-tabs {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-.topbar .bar-tabs a {
-  font-size: 12.5px;
-  color: var(--muted);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  padding: 8px 11px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.topbar .bar-tabs a:hover,
-.topbar .bar-tabs a:focus-visible {
-  color: var(--ink);
-  border-color: var(--rule);
-  background: var(--bg-2);
-}
-.topbar .bar-tabs a.active {
-  color: var(--ink);
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 6%, var(--paper));
-}
-.topbar .bar-tabs a .roman {
-  font-size: 11px;
-  color: var(--ink-2);
-  opacity: 0.55;
-}
-.topbar .bar-tabs a.active .roman { color: var(--accent); opacity: 1; }
-.topbar .bar-next {
-  justify-self: end;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 8px 12px 8px 14px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  font-size: 12.5px;
-  transition: border-color 0.15s, background 0.15s;
-}
-.topbar .bar-next:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.topbar .bar-next .next-label {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  line-height: 1.2;
-  margin-bottom: 1px;
-}
-.topbar .bar-next .next-title {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.2;
-  max-width: 240px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.topbar .bar-next .next-arrow {
-  width: 18px;
-  height: 18px;
-  color: var(--ink-2);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-.topbar .bar-next .next-arrow svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.topbar .bar-next[aria-disabled="true"] {
-  cursor: default;
-  opacity: 0.65;
-}
-.topbar .bar-next[aria-disabled="true"]:hover {
-  border-color: var(--rule);
-  background: var(--paper);
-}
-
-/* ==========================================================
-   ARTICLE
-   ========================================================== */
-.article {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 64px 32px 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.article-kicker {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--rule);
-}
-.article-kicker .numeral { color: var(--accent); font-weight: 500; }
-.article-kicker .section-label-dot {
-  display: inline-block;
-  width: 2px;
-  height: 2px;
-  min-width: 2px;
-  min-height: 2px;
-  border-radius: 999px;
-  background-color: currentColor;
-  margin: 0 0.65rem;
-  color: var(--accent);
-  opacity: 1;
-  vertical-align: middle;
-  transform: translateY(-2px);
-}
-.article-kicker .label { color: var(--accent); }
-.article-kicker .spacer { flex: 1; }
-.article-kicker .tag {
-  font-size: 10.5px;
-  color: var(--accent);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-  padding: 3px 9px;
-  letter-spacing: 0.05em;
-}
-
-.article-title {
-  font-size: 44px;
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  margin: 28px 0 18px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-
-.article-meta {
-  display: grid;
-  grid-template-columns: repeat(2, auto) 1fr;
-  gap: 28px;
-  align-items: baseline;
-  padding: 14px 0 16px;
-  border-top: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-  margin: 0 0 36px;
-}
-.article-meta .m {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.article-meta .m .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.article-meta .m .v {
-  font-size: 13.5px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-.article-meta .m .v-sub {
-  font-size: 13.5px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  margin-top: 1px;
-}
-.article-meta .author {
-  justify-self: end;
-  font-size: 12.5px;
-  color: var(--ink-2);
-  align-self: center;
-}
-.article-meta .author b { color: var(--ink); font-weight: 500; }
-
-.article-lede {
-  font-size: 19px;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  font-weight: 400;
-  margin: 0 0 28px;
-  text-wrap: pretty;
-}
-
-.article-body p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--ink);
-  margin: 0 0 22px;
-  text-wrap: pretty;
-}
-
-.article-body p .cite {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dotted color-mix(in oklab, var(--accent) 50%, transparent);
-  padding-bottom: 1px;
-  cursor: pointer;
-  font-variant-numeric: tabular-nums;
-}
-.article-body p .cite:hover {
-  border-bottom-style: solid;
-  border-bottom-color: var(--accent);
-}
-
-.article-body em {
-  font-style: italic;
-}
-
-/* editorial figure — centered, inset within the text column */
-.article-figure {
-  margin: 36px auto;
-  display: block;
-  width: 78%;
-  max-width: 560px;
-  clear: both;
-}
-.article-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-}
-.article-figure figcaption {
-  margin: 10px 0 0;
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 10px;
-  align-items: start;
-}
-.article-figure figcaption::before {
-  content: "";
-  display: block;
-  width: 14px;
-  height: 1px;
-  background: var(--ink-2);
-  margin-top: 9px;
-  opacity: 0.6;
-}
-.article-figure figcaption .credit {
-  display: block;
-  margin-top: 4px;
-  font-size: 11px;
-  color: var(--muted);
-}
-.article-figure.wide-chart {
-  width: 100%;
-  max-width: 700px;
-}
-
-/* pullquote — floated accent quote, body text wraps around it */
-.article-body .pullquote {
-  float: right;
-  clear: right;
-  width: 300px;
-  margin: 6px -16px 20px 30px;
-  padding: 22px 22px 18px;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  color: var(--ink);
-  position: relative;
-  shape-outside: inset(0);
-}
-.article-body .pullquote.left {
-  float: left;
-  clear: left;
-  margin: 6px 30px 20px -16px;
-  border-left: none;
-  border-right: 3px solid var(--accent);
-}
-.article-body .pullquote::before {
-  content: "“";
-  position: absolute;
-  top: -14px;
-  left: 14px;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--accent);
-  opacity: 0.55;
-  font-family: Georgia, "Times New Roman", serif;
-}
-.article-body .pullquote.left::before {
-  left: auto;
-  right: 14px;
-}
-.article-body .pullquote .pq-text {
-  margin: 6px 0 0;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  font-style: italic;
-  text-wrap: balance;
-}
-.article-body .pullquote .pq-attr {
-  margin: 12px 0 0;
-  font-size: 11.5px;
-  color: var(--ink-2);
-  letter-spacing: 0.02em;
-  font-style: normal;
-}
-.article-body .pullquote .pq-attr b {
-  color: var(--ink);
-  font-weight: 500;
-}
-.article-body .clear-pq { clear: right; }
-
-/* legacy pullquote — (replaced by floated version above) */
-
-/* ==========================================================
-   REFERENCES
-   ========================================================== */
-.references {
-  margin: 56px 0 0;
-  padding: 24px 0 0;
-  border-top: 2px solid var(--ink);
-}
-.references-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.references-head .h {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-}
-.references-head .note {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
-.references ol {
-  list-style: none;
-  counter-reset: ref;
-  padding: 0;
-  margin: 0;
-}
-.references ol li {
-  counter-increment: ref;
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  scroll-margin-top: 80px;
-}
-.references ol li::before {
-  content: "[" counter(ref) "]";
-  font-size: 11.5px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  padding-top: 2px;
-}
-.references ol li:target {
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-}
-.references ol li:target::before {
-  color: var(--accent);
-  font-weight: 600;
-}
-.references ol li b { color: var(--ink); font-weight: 500; }
-.references ol li a {
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-word;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-}
-.references ol li a:hover { border-bottom-color: var(--accent); }
-
-/* ==========================================================
-   FOOT — back link + next article (bottom)
-   ========================================================== */
-.article-foot {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 48px 0 24px;
-  padding: 18px 0;
-  border-top: 1px solid var(--rule);
-  align-items: stretch;
-}
-.foot-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  text-decoration: none;
-  color: var(--ink);
-  min-height: 88px;
-  transition: border-color 0.15s, background 0.15s;
-}
-.foot-cell:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.foot-cell .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.foot-cell .title {
-  font-size: 14.5px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.foot-cell .meta {
-  margin-top: auto;
-  font-size: 11.5px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-.foot-cell.right { text-align: right; align-items: flex-end; }
-.foot-cell[aria-disabled="true"] { opacity: 0.62; cursor: default; }
-.foot-cell[aria-disabled="true"]:hover { border-color: var(--rule); background: var(--paper); }
-
-/* ==========================================================
-   COLOPHON
-   ========================================================== */
-.colophon {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 18px 56px 36px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 24px;
-  border-top: 1px solid var(--rule);
-  font-size: 12px;
-  color: var(--ink-2);
-  position: relative;
-  z-index: 2;
-}
-.colophon a { text-decoration: none; color: inherit; }
-.colophon a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.colophon .center { text-align: center; }
-.colophon .right { text-align: right; display: flex; gap: 18px; justify-content: flex-end; flex-wrap: wrap; }
-
-/* ==========================================================
-   DESKTOP / MOBILE-TABLET VISIBILITY SWITCH
-   Single alternate layout for everything ≤1024px.
-   ========================================================== */
-.desktop-only      { display: block; }
-.mobile-tablet-only{ display: none; }
-@media (max-width: 1024px) {
-  .desktop-only       { display: none !important; }
-  .mobile-tablet-only { display: block; }
-}
-
-/* ==========================================================
-   MOBILE / TABLET ARTICLE LAYOUT
-   - phone: full-width, compact
-   - tablet (≥640px): centered max-width container, looser
-   ========================================================== */
-.mt-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in oklab, var(--bg) 94%, transparent);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--rule);
-}
-.mt-topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.mt-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  padding: 8px 12px 8px 10px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  min-height: 44px;
-  box-sizing: border-box;
-}
-.mt-home svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
-.mt-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink-2);
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 8px 10px;
-  min-height: 44px;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-.mt-badge svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
-.mt-badge[aria-disabled="true"] {
-  cursor: default;
-  opacity: 0.65;
-}
-.mt-badge[aria-disabled="true"]:hover {
-  border-color: var(--rule);
-  background: var(--paper);
-}
-
-.mt-article {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 24px 18px 8px;
-  position: relative;
-  z-index: 2;
-}
-.mt-kicker {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
-}
-.mt-kicker .num { color: var(--accent); font-weight: 500; }
-.mt-kicker .section-label-dot {
-  display: inline-block;
-  width: 2px;
-  height: 2px;
-  min-width: 2px;
-  min-height: 2px;
-  border-radius: 999px;
-  background-color: currentColor;
-  margin: 0 0.65rem;
-  color: var(--accent);
-  opacity: 1;
-  vertical-align: middle;
-  transform: translateY(-2px);
-}
-.mt-kicker .label { color: var(--accent); }
-.mt-kicker .spacer { flex: 1; }
-.mt-kicker .tag {
-  font-size: 10px;
-  color: var(--accent);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-  padding: 3px 8px;
-  letter-spacing: 0.05em;
-}
-
-.mt-title {
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 20px 0 14px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-
-.mt-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 18px;
-  padding: 12px 0 14px;
-  border-top: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-  margin: 0 0 24px;
-}
-.mt-meta .m { display: flex; flex-direction: column; gap: 2px; }
-.mt-meta .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.mt-meta .v {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.005em;
-}
-.mt-meta .v-sub {
-  font-size: 13px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  margin-top: 1px;
-}
-.mt-meta .author {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--rule-soft);
-}
-
-.mt-lede {
-  font-size: 17.5px;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  font-weight: 400;
-  margin: 0 0 22px;
-  text-wrap: pretty;
-}
-.mt-body p {
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--ink);
-  margin: 0 0 20px;
-  text-wrap: pretty;
-}
-.mt-body p .cite {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dotted color-mix(in oklab, var(--accent) 50%, transparent);
-  padding-bottom: 1px;
-  font-variant-numeric: tabular-nums;
-}
-.mt-body p .cite:hover { border-bottom-style: solid; }
-
-.mt-figure {
-  margin: 26px -2px;
-  display: block;
-}
-.mt-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-}
-.mt-figure figcaption {
-  margin: 10px 2px 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 10px;
-  align-items: start;
-}
-.mt-figure figcaption::before {
-  content: "";
-  display: block;
-  width: 14px;
-  height: 1px;
-  background: var(--ink-2);
-  margin-top: 9px;
-  opacity: 0.6;
-}
-.mt-figure figcaption .credit {
-  display: block;
-  margin-top: 4px;
-  font-size: 10.5px;
-  color: var(--muted);
-}
-.mt-figure.wide-chart {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-.mt-pullquote {
-  margin: 24px 0;
-  padding: 18px 18px 16px;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  position: relative;
-}
-.mt-pullquote::before {
-  content: "“";
-  position: absolute;
-  top: -16px;
-  left: 12px;
-  font-size: 56px;
-  line-height: 1;
-  color: var(--accent);
-  opacity: 0.55;
-  font-family: Georgia, "Times New Roman", serif;
-}
-.mt-pullquote .pq-text {
-  margin: 6px 0 0;
-  font-size: 17px;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  font-style: italic;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.mt-pullquote .pq-attr {
-  margin: 10px 0 0;
-  font-size: 11.5px;
-  color: var(--ink-2);
-}
-.mt-pullquote .pq-attr b { color: var(--ink); font-weight: 500; }
-
-.mt-references {
-  margin: 40px 0 0;
-  padding: 20px 0 0;
-  border-top: 2px solid var(--ink);
-}
-.mt-references .h {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
-.mt-references .note {
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  display: block;
-  margin: 4px 0 14px;
-}
-.mt-references ol {
-  list-style: none;
-  counter-reset: mt-ref;
-  padding: 0;
-  margin: 0;
-}
-.mt-references ol li {
-  counter-increment: mt-ref;
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 8px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  font-size: 12.5px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  scroll-margin-top: 80px;
-}
-.mt-references ol li::before {
-  content: "[" counter(mt-ref) "]";
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  padding-top: 1px;
-}
-.mt-references ol li:target {
-  background: color-mix(in oklab, var(--accent) 6%, transparent);
-}
-.mt-references ol li:target::before { color: var(--accent); font-weight: 600; }
-.mt-references ol li b { color: var(--ink); font-weight: 500; }
-.mt-references ol li a {
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-word;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-}
-
-.mt-foot {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin: 36px 0 24px;
-  padding: 16px 0 0;
-  border-top: 1px solid var(--rule);
-}
-.mt-foot .cell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  text-decoration: none;
-  color: var(--ink);
-  min-height: 76px;
-  box-sizing: border-box;
-}
-.mt-foot .cell .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.mt-foot .cell .title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.mt-foot .cell .meta {
-  margin-top: auto;
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.mt-foot .cell[aria-disabled="true"] { opacity: 0.62; cursor: default; }
-
-.mt-colophon {
-  border-top: 1px solid var(--rule);
-  margin-top: 8px;
-  padding: 18px 18px 28px;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 12px;
-  color: var(--ink-2);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  z-index: 2;
-}
-.mt-colophon a { color: inherit; text-decoration: none; }
-.mt-colophon a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.mt-colophon .links { display: flex; gap: 16px; flex-wrap: wrap; }
-
-/* Tablet ≥640px: centered, looser */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .mt-topbar-inner { padding: 14px 32px; }
-  .mt-article { padding: 40px 40px 16px; }
-  .mt-title { font-size: 38px; line-height: 1.08; }
-  .mt-lede { font-size: 19px; }
-  .mt-body p { font-size: 16.5px; line-height: 1.7; }
-  .mt-meta { grid-template-columns: repeat(3, auto) 1fr; align-items: baseline; gap: 28px; }
-  .mt-meta .author { grid-column: auto; border-top: none; padding-top: 0; justify-self: end; text-align: right; }
-  .mt-foot { grid-template-columns: 1fr 1fr; }
-  .mt-foot .cell.right { text-align: right; align-items: flex-end; }
-  .mt-colophon { padding: 22px 40px 32px; flex-direction: row; justify-content: space-between; align-items: center; }
-}
-
-/* ==========================================================
-   Responsive
-   ========================================================== */
-@media (max-width: 900px) {
-  .topbar-inner { padding: 0 24px; grid-template-columns: 1fr auto; gap: 14px; height: 64px; }
-  .topbar .bar-tabs { display: none; }
-  .topbar .bar-next .next-title { max-width: 140px; }
-  .article { padding: 36px 24px 24px; }
-  .article-title { font-size: 32px; }
-  .article-meta { grid-template-columns: 1fr 1fr; gap: 14px 24px; }
-  .article-meta .author { grid-column: 1 / -1; justify-self: start; }
-  .article-body .pullquote { float: none; width: auto; margin: 28px 0; }
-  .article-figure { margin: 28px auto; width: 100%; max-width: 100%; }
-  .article-figure figcaption { margin-left: 0; margin-right: 0; }
-  .article-foot { grid-template-columns: 1fr; }
-  .foot-cell.right { text-align: left; align-items: flex-start; }
-  .colophon { padding: 18px 24px 32px; grid-template-columns: 1fr; gap: 8px; }
-  .colophon .center, .colophon .right { text-align: left; justify-content: flex-start; }
-}
-</style>
-  <meta name="description" content="While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.">
+<meta name="description" content="While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The quiet pressure of higher yields">
+<meta property="og:description" content="Elevated Treasury yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css?v=20260831-7">
 </head>
 <body>
 
-<!-- =========================================================
-     DESKTOP LAYOUT (>=1025px) - original markup, unchanged
-     ========================================================= -->
-<div class="desktop-only">
+<div class="wrap article-page">
 
-<!-- =========================================================
-     TOP BAR
-     ========================================================= -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="bar-name" href="/?tab=blog" data-tab="blog">
-      <span class="home-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
-      Back to articles
-    </a>
+<aside class="dir">
+<div class="dir-in">
+  <p class="modified muted">Last modified: 8/30/2026</p>
+  <p class="dir-name"><a href="/">Mason Lancellotti</a></p>
+  <p class="contact">
+    Emory University · Atlanta, GA · 3.93 GPA<br>
+    Economics, computer science, and business
+  </p>
 
-    <nav class="bar-tabs">
-      <a href="/?tab=filing" data-tab="filing"><span class="roman">I.</span>Experience</a>
-      <a href="/?tab=repos" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
-      <a href="/?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
-    </nav>
-
-    <a class="bar-next" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
-      <span>
-        <span class="next-label">Next article</span>
-        <span class="next-title">Beyond AI: the two forces defining the next tech frontier</span>
-      </span>
-      <span class="next-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
-    </a>
+  <div class="side-group">
+    <p class="side-label">Contact</p>
+    <ul class="side-links">
+      <li><a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a></li>
+      <li class="plain">(703) 919-3319</li>
+    </ul>
   </div>
-</header>
 
-<!-- =========================================================
-     ARTICLE
-     ========================================================= -->
+  <div class="side-group">
+    <p class="side-label">Pages</p>
+    <ul class="side-links">
+      <li><a href="/?tab=filing">Experience</a></li>
+      <li><a href="/?tab=repos">Project Repositories</a></li>
+      <li><a href="/?tab=blog">Market Opinions</a></li>
+    </ul>
+  </div>
+
+  <div class="side-group">
+    <p class="side-label">Materials</p>
+    <ul class="side-links">
+      <li><a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume<span class="tag">PDF</span></a></li>
+      <li><a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript<span class="tag">PDF</span></a></li>
+      <li><a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT Report<span class="tag">PDF</span></a></li>
+    </ul>
+  </div>
+
+  <div class="side-group">
+    <p class="side-label">External Links</p>
+    <ul class="side-links">
+      <li><a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">↗</span></a></li>
+    </ul>
+  </div>
+</div>
+</aside>
+
+
+<main class="art-col">
 <article class="article">
 
-  <div class="article-kicker">
-    <span class="numeral">III</span>
-    <span class="section-label-dot" aria-hidden="true"></span>
-    <span class="label">Market Opinions</span>
-    <span class="spacer"></span>
-    <span class="tag">Interest rates</span>
-  </div>
 
-  <h1 class="article-title" style="width: 650px">The quiet pressure of higher yields</h1>
+  <h1>The quiet pressure of higher yields</h1>
 
-  <div class="article-meta">
-    <div class="m"><span class="k">Published</span><span class="v">May 28, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-    <div class="m"><span class="k">Time to read</span><span class="v">6 min.</span></div>
-    <div class="author">By&nbsp;Mason Lancellotti</div>
-  </div>
+  <p class="byline">May 28, 2026 · 6 min · Interest rates · By Mason Lancellotti</p>
 
-  <div class="article-body">
+  <div>
 
-    <p class="article-lede">Over the past year, investors have had no shortage of things to worry about. Between volatile earnings reports, rising tariffs, foreign conflicts, and oil prices, every few weeks, there always seems to be a new, unexpected event changing the market narrative. These factors are important, of course, but they also tend to steal attention from a much humbler force underpinning the entire market: Treasury yields. Higher yields do not produce the same knee-jerk market reaction as a surprise earnings miss or a big Fed decision; instead, they work slowly, pulling down valuations, pushing up the cost of borrowing, and changing investor tendencies, all of which can subtly make the market more fragile than it looks.</p>
+    <p>Over the past year, investors have had no shortage of things to worry about. Between volatile earnings reports, rising tariffs, foreign conflicts, and oil prices, every few weeks, there always seems to be a new, unexpected event changing the market narrative. These factors are important, of course, but they also tend to steal attention from a much humbler force underpinning the entire market: Treasury yields. Higher yields do not produce the same knee-jerk market reaction as a surprise earnings miss or a big Fed decision; instead, they work slowly, pulling down valuations, pushing up the cost of borrowing, and changing investor tendencies, all of which can subtly make the market more fragile than it looks.</p>
 
-    <figure class="article-figure">
+    <figure>
       <img src="/blog/images/treasury-building.jpg" alt="The U.S. Treasury Building in Washington, D.C." loading="lazy">
-      <figcaption>
-        <span>
-          The U.S. Treasury Building in Washington, D.C.
-          <span class="credit">Image: Wikimedia Commons</span>
-        </span>
-      </figcaption>
+      <figcaption>The U.S. Treasury Building in Washington, D.C. <span class="credit">Image: Wikimedia Commons</span></figcaption>
     </figure>
 
-    <p>This topic is worth covering because yields are no longer low enough for investors to get away with ignoring. Currently, the 10-year Treasury yield sits at about 4.5% <a class="cite" href="#ref-1">(YCharts, 2026)</a>, while the 30-year Treasury yield is just above 5% <a class="cite" href="#ref-2">(FRED, 2026)</a>. Notably, in late April, the Federal Open Market Committee declared their target range for rates would remain between 3.50% and 3.75%, which would allow risky assets to still be appealing while safe assets remain a relevant alternative <a class="cite" href="#ref-3">(Trading Economics, 2026)</a>. When risk-free assets have low yields, investors are more likely to buy stocks, real estate, or anything else that might offer more upside. However, when government bonds, widely considered the safest asset to own, brandish nearly a 5% return, the attractiveness of stocks and other risky assets fade, and they must perform better to justify their current prices.</p>
+    <p>This topic is worth covering because yields are no longer low enough for investors to get away with ignoring. Currently, the 10-year Treasury yield sits at about 4.5% <a href="#ref-1">(YCharts, 2026)</a>, while the 30-year Treasury yield is just above 5% <a href="#ref-2">(FRED, 2026)</a>. Notably, in late April, the Federal Open Market Committee declared their target range for rates would remain between 3.50% and 3.75%, which would allow risky assets to still be appealing while safe assets remain a relevant alternative <a href="#ref-3">(Trading Economics, 2026)</a>. When risk-free assets have low yields, investors are more likely to buy stocks, real estate, or anything else that might offer more upside. However, when government bonds, widely considered the safest asset to own, brandish nearly a 5% return, the attractiveness of stocks and other risky assets fade, and they must perform better to justify their current prices.</p>
 
-    <figure class="article-figure wide-chart">
+    <figure>
       <img src="/blog/images/fred-10-year-yield.png" alt="FRED chart showing 10-year Treasury yields over the past year." loading="lazy">
-      <figcaption>
-        <span>
-          10-year Treasury yields over the past year.
-          <span class="credit">Image: Federal Reserve Bank of St. Louis</span>
-        </span>
-      </figcaption>
+      <figcaption>10-year Treasury yields over the past year. <span class="credit">Image: Federal Reserve Bank of St. Louis</span></figcaption>
     </figure>
 
-    <p>The equity risk premium quantifies the behavior detailed above. Defined as the difference between expected market return and the risk-free rate of return, the equity risk premium equates to how much additional compensation investors require to stomach the increased risk of owning equities. Another important metric is earnings yield, which is the inverse of price-to-earnings ratio. The S&amp;P 500's earnings yield is often employed in the risk premium equation in place of expected market return because actual future returns are unknown, while current earnings provide a rough measure of future return potential since they set the foundation for dividends and price appreciation. The S&amp;P 500's earnings yield most recently came in at 4.73%, barely above the 10-year Treasury yield of 4.56%, creating an extremely narrow risk premium <a class="cite" href="#ref-4">(Axios, 2026)</a>. This indicates that investors who park their money in the stock market are granted very little extra return in exchange for a lot more uncertainty.</p>
+    <p>The equity risk premium quantifies the behavior detailed above. Defined as the difference between expected market return and the risk-free rate of return, the equity risk premium equates to how much additional compensation investors require to stomach the increased risk of owning equities. Another important metric is earnings yield, which is the inverse of price-to-earnings ratio. The S&amp;P 500's earnings yield is often employed in the risk premium equation in place of expected market return because actual future returns are unknown, while current earnings provide a rough measure of future return potential since they set the foundation for dividends and price appreciation. The S&amp;P 500's earnings yield most recently came in at 4.73%, barely above the 10-year Treasury yield of 4.56%, creating an extremely narrow risk premium <a href="#ref-4">(Axios, 2026)</a>. This indicates that investors who park their money in the stock market are granted very little extra return in exchange for a lot more uncertainty.</p>
 
     <p>In addition, higher yields apply downward pressure to stocks by affecting how investors price future earnings. In terms of economic theory, a stock is worth the present value of its future cash flows. In order to determine how much these future payments are worth in the present day, they must be discounted, which involves reducing their value based on the return investors could earn elsewhere (typically assumed to be the risk-free rate). This is especially important in the current market environment, being dominated by high-growth tech stocks, where value is derived primarily from expected profits many years in the future. Intuitively, higher yields hit firms like this especially hard. Last week, we covered how Nvidia's strong earnings report failed to impress investors due to aggressive future growth that has already been incorporated into the stock price; higher yields only amplify this problem by making that future growth worth even less in today's dollars.</p>
 
     <p>Despite these potentially damaging effects, many investors overlook rising rates because the mechanisms by which they move the market can be faint or slow-acting. Unlike an unexpected macro headline, higher yields do not destroy the market in one dramatic move. Instead, over time, they will make disciplined investors more hesitant to chase rallies, less tolerant of weak outlooks, and more selective about how or when they participate in the market for equities. This brings us back to the role of sentiment, a theme that came up heavily in last week's discussion of Nvidia. With fintech platforms making retail trading more accessible than ever, market psychology plays a large role in short-term price action. High yields create a market that can still move higher, but with a weaker and more vulnerable foundation.</p>
 
-    <p>Beyond the stock market, Treasury yields influence borrowing costs, including mortgage rates, auto loans, corporate debt, and government financing. Freddie Mac's 30-year fixed mortgage rate rose to 6.51% as of May 21, reaching its highest level in months, moving in parallel with T-bond yields <a class="cite" href="#ref-5">(Freddie Mac, 2026)</a>. This relationship exists because in the same way that a higher risk-free rate raises the return investors require from stocks, it also raises the return lenders require for taking on credit risk. For consumers, this means higher monthly payments, leaving them with less spending money to invest or otherwise stimulate the greater economy. In addition, companies are forced to be more careful when issuing new debt, potentially slowing growth across the market. These effects do not materialize all at once, but they gradually work their way through the economy, quietly tightening financial conditions and setting the stage for a broader slowdown.</p>
+    <p>Beyond the stock market, Treasury yields influence borrowing costs, including mortgage rates, auto loans, corporate debt, and government financing. Freddie Mac's 30-year fixed mortgage rate rose to 6.51% as of May 21, reaching its highest level in months, moving in parallel with T-bond yields <a href="#ref-5">(Freddie Mac, 2026)</a>. This relationship exists because in the same way that a higher risk-free rate raises the return investors require from stocks, it also raises the return lenders require for taking on credit risk. For consumers, this means higher monthly payments, leaving them with less spending money to invest or otherwise stimulate the greater economy. In addition, companies are forced to be more careful when issuing new debt, potentially slowing growth across the market. These effects do not materialize all at once, but they gradually work their way through the economy, quietly tightening financial conditions and setting the stage for a broader slowdown.</p>
 
-    <figure class="article-figure">
+    <figure>
       <img src="/blog/images/freddie-mac-mortgage-rates.png" alt="Freddie Mac chart showing 30-year fixed mortgage rates over the past year." loading="lazy">
-      <figcaption>
-        <span>
-          30-year fixed mortgage rates over the past year.
-          <span class="credit">Image: Freddie Mac</span>
-        </span>
-      </figcaption>
+      <figcaption>30-year fixed mortgage rates over the past year. <span class="credit">Image: Freddie Mac</span></figcaption>
     </figure>
 
     <p>But why have yields been rising in the first place? Put simply, investors are demanding higher returns for lending money to the government. The first reason behind this is sticky inflation: when the inflation rate is slow to fall, future T-bond cash flows have lower present value, making the asset class less desirable. Further, when the government issues more debt, the supply of Treasuries increases, leading to a temporary surplus if not matched by an equal increase in demand. Together, these factors make T-bonds less attractive to investors at existing prices. In order to entice enough buyers, prices must fall, which inversely raises yields. The takeaway here for investors is that rising yields are not only a benchmark for the price of debt or stock valuation, but also signal collective concerns about inflation and the national deficit.</p>
 
-    <aside class="pullquote" aria-hidden="true">
-      <p class="pq-text">A higher hurdle rate for risk assets and a narrower path to sustained equity outperformance.</p>
-      <p class="pq-attr"><b>State Street Investment Management</b></p>
-    </aside>
-    <p>Worryingly, Goldman Sachs Research recently warned that rising bond yields have increased the risk of a stock market correction, especially if the economic backdrop weakens, which could occur if earnings falter or the labor market loses momentum <a class="cite" href="#ref-6">(Goldman Sachs, 2026)</a>. Reuters also reported that some models classify a 10-year Treasury yield of 4.5% as a key threshold after which further increases could begin to have more constricting effects on the stock market <a class="cite" href="#ref-7">(Reuters, 2026)</a>. These warnings are far from guarantees, but they do demonstrate an important reality: the market's ability to withstand higher yields is not unlimited. State Street Investment Management articulates this well, warning that rising yields create "a higher hurdle rate for risk assets and a narrower path to sustained equity outperformance" <a class="cite" href="#ref-8">(State Street, 2026)</a>.</p>
+    <p>Worryingly, Goldman Sachs Research recently warned that rising bond yields have increased the risk of a stock market correction, especially if the economic backdrop weakens, which could occur if earnings falter or the labor market loses momentum <a href="#ref-6">(Goldman Sachs, 2026)</a>. Reuters also reported that some models classify a 10-year Treasury yield of 4.5% as a key threshold after which further increases could begin to have more constricting effects on the stock market <a href="#ref-7">(Reuters, 2026)</a>. These warnings are far from guarantees, but they do demonstrate an important reality: the market's ability to withstand higher yields is not unlimited. State Street Investment Management articulates this well, warning that rising yields create "a higher hurdle rate for risk assets and a narrower path to sustained equity outperformance" <a href="#ref-8">(State Street, 2026)</a>.</p>
 
-    <p class="clear-pq">Still, this doesn't mean investors should panic. A high-yield environment is not automatically bearish; however, it would be a mistake to assume Treasury yields are just a passive variable. On the contrary, T-bonds are an integral benchmark for the economy against which almost every other asset is measured. When that benchmark is raised, the entire market has a higher standard to reach. As stated earlier, while rising yields do not run the risk of an immediate, unexpected crash, they make the market's apparent strength very conditional. With uncertainty and skepticism already present in the current environment, I would posit that the market stands on somewhat thinner ice than the constant stream of blockbuster tech headlines and glowing executive commentary suggests.</p>
+    <p>Still, this doesn't mean investors should panic. A high-yield environment is not automatically bearish; however, it would be a mistake to assume Treasury yields are just a passive variable. On the contrary, T-bonds are an integral benchmark for the economy against which almost every other asset is measured. When that benchmark is raised, the entire market has a higher standard to reach. As stated earlier, while rising yields do not run the risk of an immediate, unexpected crash, they make the market's apparent strength very conditional. With uncertainty and skepticism already present in the current environment, I would posit that the market stands on somewhat thinner ice than the constant stream of blockbuster tech headlines and glowing executive commentary suggests.</p>
 
   </div>
 
-  <!-- =========================================================
-       REFERENCES
-       ========================================================= -->
-  <section class="references">
-    <div class="references-head">
-      <span class="h">References</span>
-      <span class="note">8 sources</span>
+  <h2>References</h2>
+  <ol class="refs">
+      <li id="ref-1"><b>YCharts.</b> (2026). 10 Year Treasury Rate. <a href="https://ycharts.com/indicators/10_year_treasury_rate" target="_blank" rel="noopener">ycharts.com</a></li>
+      <li id="ref-2"><b>Federal Reserve Bank of St. Louis.</b> (2026). Market Yield on U.S. Treasury Securities at 30-Year Constant Maturity, Quoted on an Investment Basis. FRED. <a href="https://fred.stlouisfed.org/series/DGS30" target="_blank" rel="noopener">fred.stlouisfed.org</a></li>
+      <li id="ref-3"><b>Trading Economics.</b> (2026). United States Fed Funds Interest Rate. <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">tradingeconomics.com</a></li>
+      <li id="ref-4"><b>Phillips, M.</b> (2026, May 27). The stock market's skimpy returns. Axios. <a href="https://www.axios.com/2026/05/27/stocks-bonds-yields-premium" target="_blank" rel="noopener">axios.com</a></li>
+      <li id="ref-5"><b>Freddie Mac.</b> (2026). Primary Mortgage Market Survey. <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">freddiemac.com/pmms</a></li>
+      <li id="ref-6"><b>Goldman Sachs.</b> (2026, May 22). Stock Markets Are Increasingly Vulnerable to Rising Bond Yields. <a href="https://www.goldmansachs.com/insights/articles/stock-markets-are-increasingly-vulnerable-to-rising-bond-yields" target="_blank" rel="noopener">goldmansachs.com</a></li>
+      <li id="ref-7"><b>Dolan, M.</b> (2026, May 27). U.S. bonds about to bite stocks. Reuters. <a href="https://www.reuters.com/commentary/reuters-open-interest/us-bonds-about-bite-stocks-2026-05-27/" target="_blank" rel="noopener">reuters.com</a></li>
+      <li id="ref-8"><b>Smith, D., &amp; Perry, G.</b> (2026, March 26). The yield curve's message for equity markets. State Street Global Advisors. <a href="https://www.ssga.com/us/en/institutional/insights/mind-on-the-market-26-march-2026" target="_blank" rel="noopener">ssga.com</a></li>
+  </ol>
+
+  <nav class="post-foot" aria-label="More articles">
+    <div class="pf-row">
+      <a class="pf prev" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/"><span class="lbl">← Previous</span><span class="t">Why you should watch Nvidia earnings even if you don't own the stock</span></a>
+      <a class="pf next" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/"><span class="lbl">Next →</span><span class="t">Beyond AI: the two forces defining the next tech frontier</span></a>
     </div>
-    <ol>
-      <li id="ref-1"><span><b>YCharts.</b> (2026). 10 Year Treasury Rate. <a href="https://ycharts.com/indicators/10_year_treasury_rate" target="_blank" rel="noopener">ycharts.com</a></span></li>
-      <li id="ref-2"><span><b>Federal Reserve Bank of St. Louis.</b> (2026). Market Yield on U.S. Treasury Securities at 30-Year Constant Maturity, Quoted on an Investment Basis. FRED. <a href="https://fred.stlouisfed.org/series/DGS30" target="_blank" rel="noopener">fred.stlouisfed.org</a></span></li>
-      <li id="ref-3"><span><b>Trading Economics.</b> (2026). United States Fed Funds Interest Rate. <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">tradingeconomics.com</a></span></li>
-      <li id="ref-4"><span><b>Phillips, M.</b> (2026, May 27). The stock market's skimpy returns. Axios. <a href="https://www.axios.com/2026/05/27/stocks-bonds-yields-premium" target="_blank" rel="noopener">axios.com</a></span></li>
-      <li id="ref-5"><span><b>Freddie Mac.</b> (2026). Primary Mortgage Market Survey. <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">freddiemac.com/pmms</a></span></li>
-      <li id="ref-6"><span><b>Goldman Sachs.</b> (2026, May 22). Stock Markets Are Increasingly Vulnerable to Rising Bond Yields. <a href="https://www.goldmansachs.com/insights/articles/stock-markets-are-increasingly-vulnerable-to-rising-bond-yields" target="_blank" rel="noopener">goldmansachs.com</a></span></li>
-      <li id="ref-7"><span><b>Dolan, M.</b> (2026, May 27). U.S. bonds about to bite stocks. Reuters. <a href="https://www.reuters.com/commentary/reuters-open-interest/us-bonds-about-bite-stocks-2026-05-27/" target="_blank" rel="noopener">reuters.com</a></span></li>
-      <li id="ref-8"><span><b>Smith, D., &amp; Perry, G.</b> (2026, March 26). The yield curve's message for equity markets. State Street Global Advisors. <a href="https://www.ssga.com/us/en/institutional/insights/mind-on-the-market-26-march-2026" target="_blank" rel="noopener">ssga.com</a></span></li>
-    </ol>
-  </section>
-
-  <!-- =========================================================
-       FOOT NAV — prev article (back to index) + next
-       ========================================================= -->
-  <nav class="article-foot">
-    <a class="foot-cell" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
-      <span class="k">← Previous</span>
-      <span class="title">Why you should watch Nvidia earnings even if you don't own the stock</span>
-      <span class="meta">May 21, 2026 · 5 min</span>
-    </a>
-    <a class="foot-cell right" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
-      <span class="k">Next →</span>
-      <span class="title">Beyond AI: the two forces defining the next tech frontier</span>
-      <span class="meta">June 4, 2026 · 7 min</span>
-    </a>
   </nav>
-
 </article>
 
-<!-- =========================================================
-     COLOPHON
-     ========================================================= -->
-<footer class="colophon">
-  <span>© 2026 Mason Lancellotti</span>
-  <span class="center"><a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a></span>
-  <span class="right">
-    <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
-    <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
-    <a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
-    <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
-  </span>
-</footer>
+<div class="art-rail">
+  <div class="art-rail-in">
+    <p class="side-label">Market Opinions</p>
+    <ul class="rail-list">
+      <li><a href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/"><span class="rt"><img src="/blog/images/three-mile-island.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">Beyond AI: the two forces defining the next tech frontier</span><span class="d">June 4, 2026</span></span></a></li>
+      <li class="here"><a href="/the-quiet-pressure-of-higher-yields/"><span class="rt"><img src="/blog/images/treasury-building.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">The quiet pressure of higher yields</span><span class="d">May 28, 2026</span></span></a></li>
+      <li><a href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/"><span class="rt"><img src="/blog/images/jensen-huang.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">Why you should watch Nvidia earnings even if you don't own the stock</span><span class="d">May 21, 2026</span></span></a></li>
+    </ul>
+    <a class="rail-home" href="/">&#8592; Home</a>
+  </div>
+</div>
+</main>
 
-</div><!-- /.desktop-only -->
 
-<!-- =========================================================
-     MOBILE / TABLET LAYOUT (<=1024px)
-     Same content, restructured for narrow viewports.
-     ========================================================= -->
-<div class="mobile-tablet-only">
 
-  <header class="mt-topbar">
-    <div class="mt-topbar-inner">
-      <a class="mt-home" href="/?tab=blog" data-tab="blog">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-        All articles
-      </a>
-      <a class="mt-badge" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
-        Next article
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-    </div>
-  </header>
-
-  <article class="mt-article">
-
-    <div class="mt-kicker">
-      <span class="num">III</span>
-      <span class="section-label-dot" aria-hidden="true"></span>
-      <span class="label">Market Opinions</span>
-      <span class="spacer"></span>
-      <span class="tag">Interest rates</span>
-    </div>
-
-    <h1 class="mt-title">The quiet pressure of higher yields</h1>
-
-    <div class="mt-meta">
-      <div class="m"><span class="k">Published</span><span class="v">May 28, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-      <div class="m"><span class="k">Time to read</span><span class="v">6 min.</span></div>
-      <div class="m author"><span class="k">Author</span><span class="v">Mason Lancellotti</span></div>
-    </div>
-
-    <div class="mt-body">
-
-      <p class="mt-lede">Over the past year, investors have had no shortage of things to worry about. Between volatile earnings reports, rising tariffs, foreign conflicts, and oil prices, every few weeks, there always seems to be a new, unexpected event changing the market narrative. These factors are important, of course, but they also tend to steal attention from a much humbler force underpinning the entire market: Treasury yields. Higher yields do not produce the same knee-jerk market reaction as a surprise earnings miss or a big Fed decision; instead, they work slowly, pulling down valuations, pushing up the cost of borrowing, and changing investor tendencies, all of which can subtly make the market more fragile than it looks.</p>
-
-      <figure class="mt-figure">
-        <img src="/blog/images/treasury-building.jpg" alt="The U.S. Treasury Building in Washington, D.C." loading="lazy">
-        <figcaption>
-          <span>
-            The U.S. Treasury Building in Washington, D.C.
-            <span class="credit">Image: Wikimedia Commons</span>
-          </span>
-        </figcaption>
-      </figure>
-
-      <p>This topic is worth covering because yields are no longer low enough for investors to get away with ignoring. Currently, the 10-year Treasury yield sits at about 4.5% <a class="cite" href="#mt-ref-1">(YCharts, 2026)</a>, while the 30-year Treasury yield is just above 5% <a class="cite" href="#mt-ref-2">(FRED, 2026)</a>. Notably, in late April, the Federal Open Market Committee declared their target range for rates would remain between 3.50% and 3.75%, which would allow risky assets to still be appealing while safe assets remain a relevant alternative <a class="cite" href="#mt-ref-3">(Trading Economics, 2026)</a>. When risk-free assets have low yields, investors are more likely to buy stocks, real estate, or anything else that might offer more upside. However, when government bonds, widely considered the safest asset to own, brandish nearly a 5% return, the attractiveness of stocks and other risky assets fade, and they must perform better to justify their current prices.</p>
-
-      <figure class="mt-figure wide-chart">
-        <img src="/blog/images/fred-10-year-yield.png" alt="FRED chart showing 10-year Treasury yields over the past year." loading="lazy">
-        <figcaption>
-          <span>
-            10-year Treasury yields over the past year.
-            <span class="credit">Image: Federal Reserve Bank of St. Louis</span>
-          </span>
-        </figcaption>
-      </figure>
-
-      <p>The equity risk premium quantifies the behavior detailed above. Defined as the difference between expected market return and the risk-free rate of return, the equity risk premium equates to how much additional compensation investors require to stomach the increased risk of owning equities. Another important metric is earnings yield, which is the inverse of price-to-earnings ratio. The S&amp;P 500's earnings yield is often employed in the risk premium equation in place of expected market return because actual future returns are unknown, while current earnings provide a rough measure of future return potential since they set the foundation for dividends and price appreciation. The S&amp;P 500's earnings yield most recently came in at 4.73%, barely above the 10-year Treasury yield of 4.56%, creating an extremely narrow risk premium <a class="cite" href="#mt-ref-4">(Axios, 2026)</a>. This indicates that investors who park their money in the stock market are granted very little extra return in exchange for a lot more uncertainty.</p>
-
-      <p>In addition, higher yields apply downward pressure to stocks by affecting how investors price future earnings. In terms of economic theory, a stock is worth the present value of its future cash flows. In order to determine how much these future payments are worth in the present day, they must be discounted, which involves reducing their value based on the return investors could earn elsewhere (typically assumed to be the risk-free rate). This is especially important in the current market environment, being dominated by high-growth tech stocks, where value is derived primarily from expected profits many years in the future. Intuitively, higher yields hit firms like this especially hard. Last week, we covered how Nvidia's strong earnings report failed to impress investors due to aggressive future growth that has already been incorporated into the stock price; higher yields only amplify this problem by making that future growth worth even less in today's dollars.</p>
-
-      <p>Despite these potentially damaging effects, many investors overlook rising rates because the mechanisms by which they move the market can be faint or slow-acting. Unlike an unexpected macro headline, higher yields do not destroy the market in one dramatic move. Instead, over time, they will make disciplined investors more hesitant to chase rallies, less tolerant of weak outlooks, and more selective about how or when they participate in the market for equities. This brings us back to the role of sentiment, a theme that came up heavily in last week's discussion of Nvidia. With fintech platforms making retail trading more accessible than ever, market psychology plays a large role in short-term price action. High yields create a market that can still move higher, but with a weaker and more vulnerable foundation.</p>
-
-      <p>Beyond the stock market, Treasury yields influence borrowing costs, including mortgage rates, auto loans, corporate debt, and government financing. Freddie Mac's 30-year fixed mortgage rate rose to 6.51% as of May 21, reaching its highest level in months, moving in parallel with T-bond yields <a class="cite" href="#mt-ref-5">(Freddie Mac, 2026)</a>. This relationship exists because in the same way that a higher risk-free rate raises the return investors require from stocks, it also raises the return lenders require for taking on credit risk. For consumers, this means higher monthly payments, leaving them with less spending money to invest or otherwise stimulate the greater economy. In addition, companies are forced to be more careful when issuing new debt, potentially slowing growth across the market. These effects do not materialize all at once, but they gradually work their way through the economy, quietly tightening financial conditions and setting the stage for a broader slowdown.</p>
-
-      <figure class="mt-figure">
-        <img src="/blog/images/freddie-mac-mortgage-rates.png" alt="Freddie Mac chart showing 30-year fixed mortgage rates over the past year." loading="lazy">
-        <figcaption>
-          <span>
-            30-year fixed mortgage rates over the past year.
-            <span class="credit">Image: Freddie Mac</span>
-          </span>
-        </figcaption>
-      </figure>
-
-      <p>But why have yields been rising in the first place? Put simply, investors are demanding higher returns for lending money to the government. The first reason behind this is sticky inflation: when the inflation rate is slow to fall, future T-bond cash flows have lower present value, making the asset class less desirable. Further, when the government issues more debt, the supply of Treasuries increases, leading to a temporary surplus if not matched by an equal increase in demand. Together, these factors make T-bonds less attractive to investors at existing prices. In order to entice enough buyers, prices must fall, which inversely raises yields. The takeaway here for investors is that rising yields are not only a benchmark for the price of debt or stock valuation, but also signal collective concerns about inflation and the national deficit.</p>
-
-      <p>Worryingly, Goldman Sachs Research recently warned that rising bond yields have increased the risk of a stock market correction, especially if the economic backdrop weakens, which could occur if earnings falter or the labor market loses momentum <a class="cite" href="#mt-ref-6">(Goldman Sachs, 2026)</a>. Reuters also reported that some models classify a 10-year Treasury yield of 4.5% as a key threshold after which further increases could begin to have more constricting effects on the stock market <a class="cite" href="#mt-ref-7">(Reuters, 2026)</a>. These warnings are far from guarantees, but they do demonstrate an important reality: the market's ability to withstand higher yields is not unlimited. State Street Investment Management articulates this well, warning that rising yields create "a higher hurdle rate for risk assets and a narrower path to sustained equity outperformance" <a class="cite" href="#mt-ref-8">(State Street, 2026)</a>.</p>
-
-      <aside class="mt-pullquote">
-        <p class="pq-text">A higher hurdle rate for risk assets and a narrower path to sustained equity outperformance.</p>
-        <p class="pq-attr"><b>State Street Investment Management</b></p>
-      </aside>
-
-      <p>Still, this doesn't mean investors should panic. A high-yield environment is not automatically bearish; however, it would be a mistake to assume Treasury yields are just a passive variable. On the contrary, T-bonds are an integral benchmark for the economy against which almost every other asset is measured. When that benchmark is raised, the entire market has a higher standard to reach. As stated earlier, while rising yields do not run the risk of an immediate, unexpected crash, they make the market's apparent strength very conditional. With uncertainty and skepticism already present in the current environment, I would posit that the market stands on somewhat thinner ice than the constant stream of blockbuster tech headlines and glowing executive commentary suggests.</p>
-
-    </div>
-
-    <section class="mt-references">
-      <span class="h">References</span>
-      <span class="note">8 sources</span>
-      <ol>
-        <li id="mt-ref-1"><span><b>YCharts.</b> (2026). 10 Year Treasury Rate. <a href="https://ycharts.com/indicators/10_year_treasury_rate" target="_blank" rel="noopener">ycharts.com</a></span></li>
-        <li id="mt-ref-2"><span><b>Federal Reserve Bank of St. Louis.</b> (2026). Market Yield on U.S. Treasury Securities at 30-Year Constant Maturity, Quoted on an Investment Basis. FRED. <a href="https://fred.stlouisfed.org/series/DGS30" target="_blank" rel="noopener">fred.stlouisfed.org</a></span></li>
-        <li id="mt-ref-3"><span><b>Trading Economics.</b> (2026). United States Fed Funds Interest Rate. <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">tradingeconomics.com</a></span></li>
-        <li id="mt-ref-4"><span><b>Phillips, M.</b> (2026, May 27). The stock market's skimpy returns. Axios. <a href="https://www.axios.com/2026/05/27/stocks-bonds-yields-premium" target="_blank" rel="noopener">axios.com</a></span></li>
-        <li id="mt-ref-5"><span><b>Freddie Mac.</b> (2026). Primary Mortgage Market Survey. <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">freddiemac.com/pmms</a></span></li>
-        <li id="mt-ref-6"><span><b>Goldman Sachs.</b> (2026, May 22). Stock Markets Are Increasingly Vulnerable to Rising Bond Yields. <a href="https://www.goldmansachs.com/insights/articles/stock-markets-are-increasingly-vulnerable-to-rising-bond-yields" target="_blank" rel="noopener">goldmansachs.com</a></span></li>
-        <li id="mt-ref-7"><span><b>Dolan, M.</b> (2026, May 27). U.S. bonds about to bite stocks. Reuters. <a href="https://www.reuters.com/commentary/reuters-open-interest/us-bonds-about-bite-stocks-2026-05-27/" target="_blank" rel="noopener">reuters.com</a></span></li>
-        <li id="mt-ref-8"><span><b>Smith, D., &amp; Perry, G.</b> (2026, March 26). The yield curve's message for equity markets. State Street Global Advisors. <a href="https://www.ssga.com/us/en/institutional/insights/mind-on-the-market-26-march-2026" target="_blank" rel="noopener">ssga.com</a></span></li>
-      </ol>
-    </section>
-
-    <nav class="mt-foot">
-      <a class="cell" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
-        <span class="k">← Previous</span>
-        <span class="title">Why you should watch Nvidia earnings even if you don't own the stock</span>
-        <span class="meta">May 21, 2026 · 5 min</span>
-      </a>
-      <a class="cell right" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
-        <span class="k">Next →</span>
-        <span class="title">Beyond AI: the two forces defining the next tech frontier</span>
-        <span class="meta">June 4, 2026 · 7 min</span>
-      </a>
-    </nav>
-
-  </article>
-
-  <footer class="mt-colophon">
-    <span>© 2026 Mason Lancellotti</span>
-    <a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a>
-    <span class="links">
-      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+<footer>
+  <div class="foot-row">
+    <p class="fl-left">&#169; 2026 Mason Lancellotti</p>
+    <nav class="fl-mid" aria-label="Materials">
       <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
       <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
-    </span>
-  </footer>
+    </nav>
+    <nav class="fl-right" aria-label="Elsewhere">
+      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:mason.angelo.lancellotti@gmail.com">Email</a>
+    </nav>
+  </div>
+</footer>
 
-</div><!-- /.mobile-tablet-only -->
-
-<script>
-  // Stop the "coming Thursday" cards from navigating
-  document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
-    el.addEventListener('click', (e) => e.preventDefault());
-  });
-</script>
+</div>
 
 </body>
 </html>
-
-
-
-
-
-

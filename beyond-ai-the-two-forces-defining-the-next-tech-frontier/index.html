@@ -1,1279 +1,158 @@
 <!doctype html>
-<html lang="en" data-palette="ink" data-typeface="helvetica">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Beyond AI: the two forces defining the next tech frontier | Mason Lancellotti</title>
-<style>
-/* ==========================================================
-   Article page — inherits the Ledger filing aesthetic
-   ========================================================== */
-
-[data-typeface="helvetica"] { --font-stack: 'Helvetica Neue', Arial, sans-serif; }
-
-[data-palette="ink"] {
-  --bg: oklch(0.97 0.005 250);
-  --bg-2: oklch(0.945 0.007 250);
-  --ink: oklch(0.16 0.02 255);
-  --ink-2: oklch(0.35 0.02 255);
-  --muted: oklch(0.54 0.015 255);
-  --rule: oklch(0.82 0.008 255);
-  --rule-soft: oklch(0.88 0.006 255);
-  --paper: oklch(0.993 0.003 255);
-  --accent: oklch(0.45 0.15 255);
-  --accent-bg: oklch(0.97 0.02 255);
-}
-
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-stack);
-  font-size: 15px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "tnum" 1, "lnum" 1;
-}
-
-a { color: inherit; }
-
-/* paper grain */
-body::before {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: multiply;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-/* ==========================================================
-   TOP BAR — sticky, small name + section tabs + next article
-   ========================================================== */
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--rule);
-}
-.topbar-inner {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 56px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 32px;
-  height: 72px;
-}
-.topbar .bar-name {
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 9px 14px 9px 12px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  font-size: 13.5px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  transition: border-color 0.15s, background 0.15s;
-}
-.topbar .bar-name:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.topbar .bar-name .home-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--ink-2);
-  opacity: 0.55;
-  display: block;
-  flex-shrink: 0;
-}
-.topbar .bar-name .home-icon svg { width: 100%; height: 100%; display: block; }
-.topbar .bar-tabs {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-.topbar .bar-tabs a {
-  font-size: 12.5px;
-  color: var(--muted);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  padding: 8px 11px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.topbar .bar-tabs a:hover,
-.topbar .bar-tabs a:focus-visible {
-  color: var(--ink);
-  border-color: var(--rule);
-  background: var(--bg-2);
-}
-.topbar .bar-tabs a.active {
-  color: var(--ink);
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 6%, var(--paper));
-}
-.topbar .bar-tabs a .roman {
-  font-size: 11px;
-  color: var(--ink-2);
-  opacity: 0.55;
-}
-.topbar .bar-tabs a.active .roman { color: var(--accent); opacity: 1; }
-.topbar .bar-next {
-  justify-self: end;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 8px 12px 8px 14px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  font-size: 12.5px;
-  transition: border-color 0.15s, background 0.15s;
-}
-.topbar .bar-next:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.topbar .bar-next .next-label {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  line-height: 1.2;
-  margin-bottom: 1px;
-}
-.topbar .bar-next .next-title {
-  display: block;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.2;
-  max-width: 240px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.topbar .bar-next .next-arrow {
-  width: 18px;
-  height: 18px;
-  color: var(--ink-2);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-.topbar .bar-next .next-arrow svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.topbar .bar-next[aria-disabled="true"] {
-  cursor: default;
-  opacity: 0.65;
-}
-.topbar .bar-next[aria-disabled="true"]:hover {
-  border-color: var(--rule);
-  background: var(--paper);
-}
-
-/* ==========================================================
-   ARTICLE
-   ========================================================== */
-.article {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 64px 32px 24px;
-  position: relative;
-  z-index: 2;
-}
-
-.article-kicker {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--rule);
-}
-.article-kicker .numeral { color: var(--accent); font-weight: 500; }
-.article-kicker .section-label-dot {
-  display: inline-block;
-  width: 2px;
-  height: 2px;
-  min-width: 2px;
-  min-height: 2px;
-  border-radius: 999px;
-  background-color: currentColor;
-  margin: 0 0.65rem;
-  color: var(--accent);
-  opacity: 1;
-  vertical-align: middle;
-  transform: translateY(-2px);
-}
-.article-kicker .label { color: var(--accent); }
-.article-kicker .spacer { flex: 1; }
-.article-kicker .tag {
-  font-size: 10.5px;
-  color: var(--accent);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-  padding: 3px 9px;
-  letter-spacing: 0.05em;
-}
-
-.article-title {
-  font-size: 44px;
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  margin: 28px 0 18px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-
-.article-meta {
-  display: grid;
-  grid-template-columns: repeat(2, auto) 1fr;
-  gap: 28px;
-  align-items: baseline;
-  padding: 14px 0 16px;
-  border-top: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-  margin: 0 0 36px;
-}
-.article-meta .m {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.article-meta .m .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.article-meta .m .v {
-  font-size: 13.5px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-.article-meta .m .v-sub {
-  font-size: 13.5px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  margin-top: 1px;
-}
-.article-meta .author {
-  justify-self: end;
-  font-size: 12.5px;
-  color: var(--ink-2);
-  align-self: center;
-}
-.article-meta .author b { color: var(--ink); font-weight: 500; }
-
-.article-lede {
-  font-size: 19px;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  font-weight: 400;
-  margin: 0 0 28px;
-  text-wrap: pretty;
-}
-
-.article-body p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--ink);
-  margin: 0 0 22px;
-  text-wrap: pretty;
-}
-
-.article-body p .cite {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dotted color-mix(in oklab, var(--accent) 50%, transparent);
-  padding-bottom: 1px;
-  cursor: pointer;
-  font-variant-numeric: tabular-nums;
-}
-.article-body p .cite:hover {
-  border-bottom-style: solid;
-  border-bottom-color: var(--accent);
-}
-
-.article-body em {
-  font-style: italic;
-}
-
-/* editorial figure — centered, inset within the text column */
-.article-figure {
-  margin: 36px auto;
-  display: block;
-  width: 78%;
-  max-width: 560px;
-  clear: both;
-}
-.article-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-}
-.article-figure figcaption {
-  margin: 10px 0 0;
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 10px;
-  align-items: start;
-}
-.article-figure figcaption::before {
-  content: "";
-  display: block;
-  width: 14px;
-  height: 1px;
-  background: var(--ink-2);
-  margin-top: 9px;
-  opacity: 0.6;
-}
-.article-figure figcaption .credit {
-  display: block;
-  margin-top: 4px;
-  font-size: 11px;
-  color: var(--muted);
-}
-.article-figure.wide-chart {
-  width: 100%;
-  max-width: 700px;
-}
-
-/* pullquote — floated accent quote, body text wraps around it */
-.article-body .pullquote {
-  float: right;
-  clear: right;
-  width: 300px;
-  margin: 6px -16px 20px 30px;
-  padding: 22px 22px 18px;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  color: var(--ink);
-  position: relative;
-  shape-outside: inset(0);
-}
-.article-body .pullquote.left {
-  float: left;
-  clear: left;
-  margin: 6px 30px 20px -16px;
-  border-left: none;
-  border-right: 3px solid var(--accent);
-}
-.article-body .pullquote::before {
-  content: "“";
-  position: absolute;
-  top: -14px;
-  left: 14px;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--accent);
-  opacity: 0.55;
-  font-family: Georgia, "Times New Roman", serif;
-}
-.article-body .pullquote.left::before {
-  left: auto;
-  right: 14px;
-}
-.article-body .pullquote .pq-text {
-  margin: 6px 0 0;
-  font-size: 18px;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  font-style: italic;
-  text-wrap: balance;
-}
-.article-body .pullquote .pq-attr {
-  margin: 12px 0 0;
-  font-size: 11.5px;
-  color: var(--ink-2);
-  letter-spacing: 0.02em;
-  font-style: normal;
-}
-.article-body .pullquote .pq-attr b {
-  color: var(--ink);
-  font-weight: 500;
-}
-.article-body .clear-pq { clear: right; }
-
-/* legacy pullquote — (replaced by floated version above) */
-
-/* ==========================================================
-   REFERENCES
-   ========================================================== */
-.references {
-  margin: 56px 0 0;
-  padding: 24px 0 0;
-  border-top: 2px solid var(--ink);
-}
-.references-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.references-head .h {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-}
-.references-head .note {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
-.references ol {
-  list-style: none;
-  counter-reset: ref;
-  padding: 0;
-  margin: 0;
-}
-.references ol li {
-  counter-increment: ref;
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  scroll-margin-top: 80px;
-}
-.references ol li::before {
-  content: "[" counter(ref) "]";
-  font-size: 11.5px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  padding-top: 2px;
-}
-.references ol li:target {
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-}
-.references ol li:target::before {
-  color: var(--accent);
-  font-weight: 600;
-}
-.references ol li b { color: var(--ink); font-weight: 500; }
-.references ol li a {
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-word;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-}
-.references ol li a:hover { border-bottom-color: var(--accent); }
-
-/* ==========================================================
-   FOOT — back link + next article (bottom)
-   ========================================================== */
-.article-foot {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 48px 0 24px;
-  padding: 18px 0;
-  border-top: 1px solid var(--rule);
-  align-items: stretch;
-}
-.foot-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  text-decoration: none;
-  color: var(--ink);
-  min-height: 88px;
-  transition: border-color 0.15s, background 0.15s;
-}
-.foot-cell:hover {
-  border-color: var(--ink-2);
-  background: var(--bg-2);
-}
-.foot-cell .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.foot-cell .title {
-  font-size: 14.5px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.foot-cell .meta {
-  margin-top: auto;
-  font-size: 11.5px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-}
-.foot-cell.right { text-align: right; align-items: flex-end; }
-.foot-cell[aria-disabled="true"] { opacity: 0.62; cursor: default; }
-.foot-cell[aria-disabled="true"]:hover { border-color: var(--rule); background: var(--paper); }
-
-/* ==========================================================
-   COLOPHON
-   ========================================================== */
-.colophon {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 18px 56px 36px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 24px;
-  border-top: 1px solid var(--rule);
-  font-size: 12px;
-  color: var(--ink-2);
-  position: relative;
-  z-index: 2;
-}
-.colophon a { text-decoration: none; color: inherit; }
-.colophon a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.colophon .center { text-align: center; }
-.colophon .right { text-align: right; display: flex; gap: 18px; justify-content: flex-end; flex-wrap: wrap; }
-
-/* ==========================================================
-   DESKTOP / MOBILE-TABLET VISIBILITY SWITCH
-   Single alternate layout for everything ≤1024px.
-   ========================================================== */
-.desktop-only      { display: block; }
-.mobile-tablet-only{ display: none; }
-@media (max-width: 1024px) {
-  .desktop-only       { display: none !important; }
-  .mobile-tablet-only { display: block; }
-}
-
-/* ==========================================================
-   MOBILE / TABLET ARTICLE LAYOUT
-   - phone: full-width, compact
-   - tablet (≥640px): centered max-width container, looser
-   ========================================================== */
-.mt-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in oklab, var(--bg) 94%, transparent);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--rule);
-}
-.mt-topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.mt-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  padding: 8px 12px 8px 10px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  min-height: 44px;
-  box-sizing: border-box;
-}
-.mt-home svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
-.mt-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink-2);
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 8px 10px;
-  min-height: 44px;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-.mt-badge svg { width: 16px; height: 16px; color: var(--ink-2); opacity: 0.7; flex-shrink: 0; }
-.mt-badge[aria-disabled="true"] {
-  cursor: default;
-  opacity: 0.65;
-}
-.mt-badge[aria-disabled="true"]:hover {
-  border-color: var(--rule);
-  background: var(--paper);
-}
-
-.mt-article {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 24px 18px 8px;
-  position: relative;
-  z-index: 2;
-}
-.mt-kicker {
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
-}
-.mt-kicker .num { color: var(--accent); font-weight: 500; }
-.mt-kicker .section-label-dot {
-  display: inline-block;
-  width: 2px;
-  height: 2px;
-  min-width: 2px;
-  min-height: 2px;
-  border-radius: 999px;
-  background-color: currentColor;
-  margin: 0 0.65rem;
-  color: var(--accent);
-  opacity: 1;
-  vertical-align: middle;
-  transform: translateY(-2px);
-}
-.mt-kicker .label { color: var(--accent); }
-.mt-kicker .spacer { flex: 1; }
-.mt-kicker .tag {
-  font-size: 10px;
-  color: var(--accent);
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--rule));
-  background: color-mix(in oklab, var(--accent) 5%, transparent);
-  padding: 3px 8px;
-  letter-spacing: 0.05em;
-}
-
-.mt-title {
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 20px 0 14px;
-  color: var(--ink);
-  text-wrap: balance;
-}
-
-.mt-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 18px;
-  padding: 12px 0 14px;
-  border-top: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-  margin: 0 0 24px;
-}
-.mt-meta .m { display: flex; flex-direction: column; gap: 2px; }
-.mt-meta .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.mt-meta .v {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.005em;
-}
-.mt-meta .v-sub {
-  font-size: 13px;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  margin-top: 1px;
-}
-.mt-meta .author {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--rule-soft);
-}
-
-.mt-lede {
-  font-size: 17.5px;
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  font-weight: 400;
-  margin: 0 0 22px;
-  text-wrap: pretty;
-}
-.mt-body p {
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--ink);
-  margin: 0 0 20px;
-  text-wrap: pretty;
-}
-.mt-body p .cite {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dotted color-mix(in oklab, var(--accent) 50%, transparent);
-  padding-bottom: 1px;
-  font-variant-numeric: tabular-nums;
-}
-.mt-body p .cite:hover { border-bottom-style: solid; }
-
-.mt-figure {
-  margin: 26px -2px;
-  display: block;
-}
-.mt-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-}
-.mt-figure figcaption {
-  margin: 10px 2px 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 10px;
-  align-items: start;
-}
-.mt-figure figcaption::before {
-  content: "";
-  display: block;
-  width: 14px;
-  height: 1px;
-  background: var(--ink-2);
-  margin-top: 9px;
-  opacity: 0.6;
-}
-.mt-figure figcaption .credit {
-  display: block;
-  margin-top: 4px;
-  font-size: 10.5px;
-  color: var(--muted);
-}
-.mt-figure.wide-chart {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-.mt-pullquote {
-  margin: 24px 0;
-  padding: 18px 18px 16px;
-  border-left: 3px solid var(--accent);
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  position: relative;
-}
-.mt-pullquote::before {
-  content: "“";
-  position: absolute;
-  top: -16px;
-  left: 12px;
-  font-size: 56px;
-  line-height: 1;
-  color: var(--accent);
-  opacity: 0.55;
-  font-family: Georgia, "Times New Roman", serif;
-}
-.mt-pullquote .pq-text {
-  margin: 6px 0 0;
-  font-size: 17px;
-  line-height: 1.4;
-  letter-spacing: -0.005em;
-  font-style: italic;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.mt-pullquote .pq-attr {
-  margin: 10px 0 0;
-  font-size: 11.5px;
-  color: var(--ink-2);
-}
-.mt-pullquote .pq-attr b { color: var(--ink); font-weight: 500; }
-
-.mt-references {
-  margin: 40px 0 0;
-  padding: 20px 0 0;
-  border-top: 2px solid var(--ink);
-}
-.mt-references .h {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
-.mt-references .note {
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-  display: block;
-  margin: 4px 0 14px;
-}
-.mt-references ol {
-  list-style: none;
-  counter-reset: mt-ref;
-  padding: 0;
-  margin: 0;
-}
-.mt-references ol li {
-  counter-increment: mt-ref;
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 8px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  font-size: 12.5px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  scroll-margin-top: 80px;
-}
-.mt-references ol li::before {
-  content: "[" counter(mt-ref) "]";
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  padding-top: 1px;
-}
-.mt-references ol li:target {
-  background: color-mix(in oklab, var(--accent) 6%, transparent);
-}
-.mt-references ol li:target::before { color: var(--accent); font-weight: 600; }
-.mt-references ol li b { color: var(--ink); font-weight: 500; }
-.mt-references ol li a {
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-word;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-}
-
-.mt-foot {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin: 36px 0 24px;
-  padding: 16px 0 0;
-  border-top: 1px solid var(--rule);
-}
-.mt-foot .cell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  text-decoration: none;
-  color: var(--ink);
-  min-height: 76px;
-  box-sizing: border-box;
-}
-.mt-foot .cell .k {
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.mt-foot .cell .title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.mt-foot .cell .meta {
-  margin-top: auto;
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.mt-foot .cell[aria-disabled="true"] { opacity: 0.62; cursor: default; }
-
-.mt-colophon {
-  border-top: 1px solid var(--rule);
-  margin-top: 8px;
-  padding: 18px 18px 28px;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 12px;
-  color: var(--ink-2);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  z-index: 2;
-}
-.mt-colophon a { color: inherit; text-decoration: none; }
-.mt-colophon a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.mt-colophon .links { display: flex; gap: 16px; flex-wrap: wrap; }
-
-/* Tablet ≥640px: centered, looser */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .mt-topbar-inner { padding: 14px 32px; }
-  .mt-article { padding: 40px 40px 16px; }
-  .mt-title { font-size: 38px; line-height: 1.08; }
-  .mt-lede { font-size: 19px; }
-  .mt-body p { font-size: 16.5px; line-height: 1.7; }
-  .mt-meta { grid-template-columns: repeat(3, auto) 1fr; align-items: baseline; gap: 28px; }
-  .mt-meta .author { grid-column: auto; border-top: none; padding-top: 0; justify-self: end; text-align: right; }
-  .mt-foot { grid-template-columns: 1fr 1fr; }
-  .mt-foot .cell.right { text-align: right; align-items: flex-end; }
-  .mt-colophon { padding: 22px 40px 32px; flex-direction: row; justify-content: space-between; align-items: center; }
-}
-
-/* ==========================================================
-   Responsive
-   ========================================================== */
-@media (max-width: 900px) {
-  .topbar-inner { padding: 0 24px; grid-template-columns: 1fr auto; gap: 14px; height: 64px; }
-  .topbar .bar-tabs { display: none; }
-  .topbar .bar-next .next-title { max-width: 140px; }
-  .article { padding: 36px 24px 24px; }
-  .article-title { font-size: 32px; }
-  .article-meta { grid-template-columns: 1fr 1fr; gap: 14px 24px; }
-  .article-meta .author { grid-column: 1 / -1; justify-self: start; }
-  .article-body .pullquote { float: none; width: auto; margin: 28px 0; }
-  .article-figure { margin: 28px auto; width: 100%; max-width: 100%; }
-  .article-figure figcaption { margin-left: 0; margin-right: 0; }
-  .article-foot { grid-template-columns: 1fr; }
-  .foot-cell.right { text-align: left; align-items: flex-start; }
-  .colophon { padding: 18px 24px 32px; grid-template-columns: 1fr; gap: 8px; }
-  .colophon .center, .colophon .right { text-align: left; justify-content: flex-start; }
-}
-</style>
-  <meta name="description" content="As AI dominates the current market narrative, investors are eager to identify the next &quot;golden ticket,&quot; so to speak. While sectors like nuclear energy and quantum computing are still in their early stages, some speculate they have the potential to explode alongside rising demands for power and advanced computation.">
+<meta name="description" content="Nuclear energy and quantum computing could address the power and computation bottlenecks that will eventually constrain AI's growth.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beyond AI: the two forces defining the next tech frontier">
+<meta property="og:description" content="Nuclear energy and quantum computing could address the power and computation bottlenecks that will eventually constrain AI's growth.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css?v=20260831-7">
 </head>
 <body>
 
-<!-- =========================================================
-     DESKTOP LAYOUT (>=1025px) - original markup, unchanged
-     ========================================================= -->
-<div class="desktop-only">
+<div class="wrap article-page">
 
-<!-- =========================================================
-     TOP BAR
-     ========================================================= -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="bar-name" href="/?tab=blog" data-tab="blog">
-      <span class="home-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
-      Back to articles
-    </a>
+<aside class="dir">
+<div class="dir-in">
+  <p class="modified muted">Last modified: 8/30/2026</p>
+  <p class="dir-name"><a href="/">Mason Lancellotti</a></p>
+  <p class="contact">
+    Emory University · Atlanta, GA · 3.93 GPA<br>
+    Economics, computer science, and business
+  </p>
 
-    <nav class="bar-tabs">
-      <a href="/?tab=filing" data-tab="filing"><span class="roman">I.</span>Experience</a>
-      <a href="/?tab=repos" data-tab="repos"><span class="roman">II.</span>Project Repositories</a>
-      <a href="/?tab=blog" data-tab="blog" class="active"><span class="roman">III.</span>Market Opinions</a>
-    </nav>
-
-    <a class="bar-next" href="#" aria-disabled="true" title="No newer article yet">
-      <span>
-        <span class="next-label">Next article</span>
-        <span class="next-title">No newer article yet</span>
-      </span>
-      <span class="next-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
-    </a>
+  <div class="side-group">
+    <p class="side-label">Contact</p>
+    <ul class="side-links">
+      <li><a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a></li>
+      <li class="plain">(703) 919-3319</li>
+    </ul>
   </div>
-</header>
 
-<!-- =========================================================
-     ARTICLE
-     ========================================================= -->
+  <div class="side-group">
+    <p class="side-label">Pages</p>
+    <ul class="side-links">
+      <li><a href="/?tab=filing">Experience</a></li>
+      <li><a href="/?tab=repos">Project Repositories</a></li>
+      <li><a href="/?tab=blog">Market Opinions</a></li>
+    </ul>
+  </div>
+
+  <div class="side-group">
+    <p class="side-label">Materials</p>
+    <ul class="side-links">
+      <li><a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume<span class="tag">PDF</span></a></li>
+      <li><a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript<span class="tag">PDF</span></a></li>
+      <li><a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT Report<span class="tag">PDF</span></a></li>
+    </ul>
+  </div>
+
+  <div class="side-group">
+    <p class="side-label">External Links</p>
+    <ul class="side-links">
+      <li><a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">↗</span></a></li>
+    </ul>
+  </div>
+</div>
+</aside>
+
+
+<main class="art-col">
 <article class="article">
+  <h1>Beyond AI: the two forces defining the next tech frontier</h1>
+  <p class="byline">June 4, 2026 · 7 min · Technology · By Mason Lancellotti</p>
 
-  <div class="article-kicker">
-    <span class="numeral">III</span>
-    <span class="section-label-dot" aria-hidden="true"></span>
-    <span class="label">Market Opinions</span>
-    <span class="spacer"></span>
-    <span class="tag">Technology</span>
-  </div>
-
-  <h1 class="article-title">Beyond AI: the two forces defining the next tech frontier</h1>
-
-  <div class="article-meta">
-    <div class="m"><span class="k">Published</span><span class="v">June 4, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-    <div class="m"><span class="k">Time to read</span><span class="v">7 min.</span></div>
-    <div class="author">By&nbsp;Mason Lancellotti</div>
-  </div>
-
-  <div class="article-body">
-
-    <p class="article-lede">Unless you’re living under a rock, AI has likely become a topic of conversation in your household at some point or another. While artificial intelligence has existed for decades, the last four years have transformed it from a specialized research field into a dominant force bridging the gap between industries, shaping tech, business, and markets. Because of this surge, many investors are already asking the natural question: what is the next so-called golden ticket? The answer, if there is one, will not come randomly, but rather can be logically deduced by looking at the two bottlenecks that could limit further AI expansion: power and computation.</p>
+  <div>
+    <p>Unless you’re living under a rock, AI has likely become a topic of conversation in your household at some point or another. While artificial intelligence has existed for decades, the last four years have transformed it from a specialized research field into a dominant force bridging the gap between industries, shaping tech, business, and markets. Because of this surge, many investors are already asking the natural question: what is the next so-called golden ticket? The answer, if there is one, will not come randomly, but rather can be logically deduced by looking at the two bottlenecks that could limit further AI expansion: power and computation.</p>
 
     <p>Nuclear energy and quantum computing are two industries currently in the awkward teenage stage between reality and speculation. Nuclear power already produces real electricity at a meaningful scale, but most of the field’s intriguing investment stories revolve around reactors that are yet to be constructed. Similarly, quantum computing has shown promise through narrow, real-world applications, but its commercial value remains more theoretical than concrete. Together, early signs of potential have pushed these sectors to the edge of mainstream market attention, with investors starting to look past today’s winners and proactively search for those of tomorrow.</p>
 
-    <p>The first major constraint on further AI buildout is physical: electricity. According to the International Energy Agency, data centers used around 415 terawatt-hours of electricity in 2024, accounting for about 1.5% of global electricity consumption. By 2030, that figure is projected to more than double to roughly 945 terawatt-hours, greater than Japan's current total electricity consumption <a class="cite" href="#ref-1">(IEA, 2025)</a>. AI is not the only cause of that growth, but it is certainly the primary driver, with big tech firms like Google and Amazon rushing to expand their data center capacity to train and run more advanced AI models. While chips tend to garner most of the attention directed at physical capital in this industry, they’re only useful if there’s enough power to keep them running.</p>
+    <p>The first major constraint on further AI buildout is physical: electricity. According to the International Energy Agency, data centers used around 415 terawatt-hours of electricity in 2024, accounting for about 1.5% of global electricity consumption. By 2030, that figure is projected to more than double to roughly 945 terawatt-hours, greater than Japan's current total electricity consumption <a href="#ref-1">(IEA, 2025)</a>. AI is not the only cause of that growth, but it is certainly the primary driver, with big tech firms like Google and Amazon rushing to expand their data center capacity to train and run more advanced AI models. While chips tend to garner most of the attention directed at physical capital in this industry, they’re only useful if there’s enough power to keep them running.</p>
 
-    <figure class="article-figure wide-chart">
-      <img src="/blog/images/iea-data-centre-electricity-demand.png" alt="IEA chart comparing data-centre electricity consumption in server stock and server capacity from 2020 to 2030." loading="lazy">
-      <figcaption><span>Global data-centre electricity demand is set to more than double by 2030.<span class="credit">Chart: International Energy Agency</span></span></figcaption>
+    <figure>
+      <img src="/blog/images/iea-data-centre-electricity-demand.png" alt="IEA chart comparing data-center electricity consumption from 2020 to 2030." loading="lazy">
+      <figcaption>Global data-center electricity demand is set to more than double by 2030. <span class="credit">Chart: International Energy Agency</span></figcaption>
     </figure>
 
     <p>While solar and wind power are crucial parts of the energy mix used to keep data centers running, these methods of power generation are intermittent; they rely on mother nature. In addition, while natural gas is reliable, its massive emissions create problems for companies and nations that have spent years touting their clean energy goals. Nuclear power solves both of these problems because it can provide massive amounts of electricity around-the-clock without further contributing to carbon emissions. In addition, nuclear power plants have a relatively small physical footprint, though they can be expensive, slow to build, and present regulatory problems, making them a less than perfect but still appealing alternative to traditional power-generation methods.</p>
 
-    <p>Big tech firms certainly recognize this and are already working to secure the infrastructure necessary to support further growth in this relatively new industry. In 2024, Microsoft signed a 20-year agreement with Constellation, an energy utility firm, to restart a previously closed nuclear reactor in Pennsylvania <a class="cite" href="#ref-2">(Constellation, 2024)</a>. Constellation plans to spend around $1.6 billion to fulfill their side of the deal. Similarly, Google signed an agreement with Kairos Power in the same year focused on the development of more advanced, next-gen reactors, with a deadline in 2030 <a class="cite" href="#ref-3">(Google, 2024)</a>. Amazon and X-energy have also partnered on a broader plan to construct a pipeline of small nuclear projects throughout the United States, <a class="cite" href="#ref-4">(X-energy, 2024)</a>, with Amazon leading the charge in X-energy’s $500 million financing round.</p>
+    <p>Big tech firms certainly recognize this and are already working to secure the infrastructure necessary to support further growth in this relatively new industry. In 2024, Microsoft signed a 20-year agreement with Constellation, an energy utility firm, to restart a previously closed nuclear reactor in Pennsylvania <a href="#ref-2">(Constellation, 2024)</a>. Constellation plans to spend around $1.6 billion to fulfill their side of the deal. Similarly, Google signed an agreement with Kairos Power in the same year focused on the development of more advanced, next-gen reactors, with a deadline in 2030 <a href="#ref-3">(Google, 2024)</a>. Amazon and X-energy have also partnered on a broader plan to construct a pipeline of small nuclear projects throughout the United States <a href="#ref-4">(X-energy, 2024)</a>, with Amazon leading the charge in X-energy’s $500 million financing round.</p>
 
-    <figure class="article-figure">
+    <figure>
       <img src="/blog/images/three-mile-island.jpg" alt="Aerial view of the Three Mile Island nuclear power plant in Pennsylvania." loading="lazy">
-      <figcaption><span>The Three Mile Island reactor, slated to restart and power Microsoft's datacenters under a 20-year agreement.<span class="credit">Image: Wikimedia Commons</span></span></figcaption>
+      <figcaption>The Three Mile Island reactor, slated to restart and power Microsoft's data centers under a 20-year agreement. <span class="credit">Image: Wikimedia Commons</span></figcaption>
     </figure>
 
     <p>The second main factor limiting AI infrastructure expansion in the long run is intangible but no less important: computing capacity. While classical computers process information using bits, which are represented in binary, a computing language comprised solely of zeroes and ones, quantum computers use qubits (pronounced “Q-bits”), which can behave differently because of quantum properties like superposition, the idea that a qubit can exist as both a zero and a one simultaneously until it has been concretely observed, and entanglement, the notion that two qubits can become inseparably linked in such a way that, upon observation, one reveals the state of the other, no matter how far apart they are located. To make a long story short, concepts like these give quantum computers the ability to handle certain problems, especially when it comes to topics like chemistry, physics, optimization, and cryptography, in ways normal computers struggle to match.</p>
 
-    <p>Most relevant to AI is the optimization part of things; the training of AI models, which is essentially just one giant optimization problem, is actually the most costly part of the business. In fact, most data centers and water consumption by juggernaut firms like OpenAI and Anthropic are allocated towards the training of new, more capable models that have not yet been seen by the public. The ability to make further advances and train new models more efficiently is therefore highly sought after, and startups, enterprise labs, and even national governments have been experimenting with how quantum computing can revolutionize the AI industry. McKinsey estimates that quantum computing could create up to $2.7 trillion in economic value worldwide by 2035, while revenue generated by quantum computing companies exceeded $1 billion in 2025 and could reach as much as $4.4 billion by 2028 <a class="cite" href="#ref-5">(McKinsey, 2026)</a>. Google's Willow chip, an initiative described by the company as a foundational step toward practical quantum machine learning, showed progress in error correction and performed a benchmark computation in under five minutes that would take a supercomputer ten septillion years <a class="cite" href="#ref-6">(Neven, 2024)</a>. With frequent advancements like this being made, it’s only a matter of time before hybrid quantum machines are picked up by larger AI firms, which will only create a positive feedback loop of more intensive industry development.</p>
+    <p>Most relevant to AI is the optimization part of things; the training of AI models, which is essentially just one giant optimization problem, is actually the most costly part of the business. In fact, most data centers and water consumption by juggernaut firms like OpenAI and Anthropic are allocated towards the training of new, more capable models that have not yet been seen by the public. The ability to make further advances and train new models more efficiently is therefore highly sought after, and startups, enterprise labs, and even national governments have been experimenting with how quantum computing can revolutionize the AI industry. McKinsey estimates that quantum computing could create up to $2.7 trillion in economic value worldwide by 2035, while revenue generated by quantum computing companies exceeded $1 billion in 2025 and could reach as much as $4.4 billion by 2028 <a href="#ref-5">(McKinsey, 2026)</a>. Google's Willow chip, an initiative described by the company as a foundational step toward practical quantum machine learning, showed progress in error correction and performed a benchmark computation in under five minutes that would take a supercomputer ten septillion years <a href="#ref-6">(Neven, 2024)</a>. With frequent advancements like this being made, it’s only a matter of time before hybrid quantum machines are picked up by larger AI firms, which will only create a positive feedback loop of more intensive industry development.</p>
 
-    <aside class="pullquote" aria-hidden="true">
-      <p class="pq-text">The investment case is centered on the long-term potential of quantum computing.</p>
-      <p class="pq-attr"><b>Kat Liu, IPOX Schuster analyst</b></p>
-    </aside>
-    <p>According to Kat Liu, “The investment case is centered on the long-term potential of quantum computing” <a class="cite" href="#ref-7">(Srivastava &amp; Biswas, 2026)</a>. Quantum has the kind of upside investors love because the breadth of potential applications is enormous. However, it’s important to realize that the quantum business model as a whole is still young. Quantinuum's Nasdaq debut this week valued the Honeywell-backed company at about $17.6 billion, even though Reuters reported that commercial adoption remains limited and that Japan's RIKEN institute accounted for roughly 60% of its 2025 revenue <a class="cite" href="#ref-7">(Srivastava &amp; Biswas, 2026)</a>. Similar to the ongoing AI stock boom, investors are buying into future expectations, which can be even riskier in less mature industries like quantum.</p>
+    <p>According to Kat Liu, “The investment case is centered on the long-term potential of quantum computing” <a href="#ref-7">(Srivastava &amp; Biswas, 2026)</a>. Quantum has the kind of upside investors love because the breadth of potential applications is enormous. However, it’s important to realize that the quantum business model as a whole is still young. Quantinuum's Nasdaq debut this week valued the Honeywell-backed company at about $17.6 billion, even though Reuters reported that commercial adoption remains limited and that Japan's RIKEN institute accounted for roughly 60% of its 2025 revenue <a href="#ref-7">(Srivastava &amp; Biswas, 2026)</a>. Similar to the ongoing AI stock boom, investors are buying into future expectations, which can be even riskier in less mature industries like quantum.</p>
 
-    <p class="clear-pq">The current problem is that modern quantum machines do not have enough stable qubits to consistently avoid error. They are still very prone to noise, meaning the computers can lose or distort information significantly during a calculation. Due to this, while certain machines may be impressive in a lab environment, they still might not be ready to work on real-world problems. Therefore, when the percentage of quantum firms’ customers that <em>aren’t</em> research institutes or universities begins to rise, the potential for sizable upside in this industry can be considered much more certain.</p>
+    <p>The current problem is that modern quantum machines do not have enough stable qubits to consistently avoid error. They are still very prone to noise, meaning the computers can lose or distort information significantly during a calculation. Due to this, while certain machines may be impressive in a lab environment, they still might not be ready to work on real-world problems. Therefore, when the percentage of quantum firms’ customers that <em>aren’t</em> research institutes or universities begins to rise, the potential for sizable upside in this industry can be considered much more certain.</p>
 
-    <figure class="article-figure">
+    <figure>
       <img src="/blog/images/quantum-computing-hardware.jpg" alt="Quantum computing hardware inside a dilution refrigerator." loading="lazy">
-      <figcaption><span>Quantum computers require highly specialized hardware to remain stable, with inconsistency and errors remaining major barriers to widespread commercial adoption.<span class="credit">Image: IBM Research</span></span></figcaption>
+      <figcaption>Quantum computers require highly specialized hardware to remain stable, with inconsistency and errors remaining major barriers to widespread commercial adoption. <span class="credit">Image: IBM Research</span></figcaption>
     </figure>
 
     <p>To circle back, while nuclear energy and quantum computing may seem unrelated, they both can potentially resolve the bottlenecks that will eventually cap the AI boom’s growth. Neither is a replacement for AI, and if anyone tells you that’s the case, they are severely misinformed. Instead, both are extensions of the industry, potentially signalling a future shift in the market’s focus from software and semiconductors toward the next-gen drivers of scale, giving keen investors a more than welcome head start ahead of an possible expansion race that could define the world’s next period of technological progress and innovation. The primary takeaway here should not be to chase every stock related to nuclear energy or quantum computing. However, the industries and ticker symbols associated with them should be very much on every retail trader’s radar. AI made chips and semiconductors explode, and there’s a high chance that nuclear energy and quantum computing are on deck.</p>
-
   </div>
 
-  <!-- =========================================================
-       REFERENCES
-       ========================================================= -->
-  <section class="references">
-    <div class="references-head">
-      <span class="h">References</span>
-      <span class="note">7 sources</span>
+  <h2>References</h2>
+  <ol class="refs">
+    <li id="ref-1"><b>International Energy Agency.</b> (2025, April 10). Executive summary: Energy and AI. <a href="https://www.iea.org/reports/energy-and-ai/executive-summary" target="_blank" rel="noopener">iea.org</a></li>
+    <li id="ref-2"><b>Constellation.</b> (2024, September 20). Constellation to launch Crane Clean Energy Center, restoring jobs and carbon-free power to the grid. <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html" target="_blank" rel="noopener">constellationenergy.com</a></li>
+    <li id="ref-3"><b>Google.</b> (2024, October 14). New nuclear clean energy agreement with Kairos Power. <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/" target="_blank" rel="noopener">blog.google</a></li>
+    <li id="ref-4"><b>X-energy.</b> (2024, October 16). Amazon invests in X-energy to support advanced small modular nuclear reactors and expand carbon-free power. <a href="https://x-energy.com/news/amazon-invests-in-x-energy-to-support-advanced-small-modular-nuclear-reactors-and-expand-carbon-free-power/" target="_blank" rel="noopener">x-energy.com</a></li>
+    <li id="ref-5"><b>McKinsey &amp; Company.</b> (2026, April 28). McKinsey Quantum Technology Monitor 2026: A commercial tipping point. <a href="https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/mckinsey-quantum-technology-monitor-2026-a-commercial-tipping-point" target="_blank" rel="noopener">mckinsey.com</a></li>
+    <li id="ref-6"><b>Neven, H.</b> (2024, December 9). Meet Willow, our state-of-the-art quantum chip. Google. <a href="https://blog.google/innovation-and-ai/technology/research/google-willow-quantum-chip/" target="_blank" rel="noopener">blog.google</a></li>
+    <li id="ref-7"><b>Srivastava, P., &amp; Biswas, P.</b> (2026, June 4). Honeywell's Quantinuum valued at $17.6 billion as shares rise in Nasdaq debut. Reuters. <a href="https://www.reuters.com/business/honeywells-quantinuum-valued-176-billion-shares-rise-nasdaq-debut-2026-06-04/" target="_blank" rel="noopener">reuters.com</a></li>
+  </ol>
+  <nav class="post-foot" aria-label="More articles">
+    <div class="pf-row">
+      <a class="pf prev" href="/the-quiet-pressure-of-higher-yields/"><span class="lbl">← Previous</span><span class="t">The quiet pressure of higher yields</span></a>
+      <a class="pf next pf-home" href="/"><span class="lbl">Home &#8594;</span><span class="t">Back to the main page</span></a>
     </div>
-    <ol>
-      <li id="ref-1"><span><b>International Energy Agency.</b> (2025, April 10). Executive summary: Energy and AI. <a href="https://www.iea.org/reports/energy-and-ai/executive-summary" target="_blank" rel="noopener">iea.org</a></span></li>
-      <li id="ref-2"><span><b>Constellation.</b> (2024, September 20). Constellation to launch Crane Clean Energy Center, restoring jobs and carbon-free power to the grid. <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html" target="_blank" rel="noopener">constellationenergy.com</a></span></li>
-      <li id="ref-3"><span><b>Google.</b> (2024, October 14). New nuclear clean energy agreement with Kairos Power. <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/" target="_blank" rel="noopener">blog.google</a></span></li>
-      <li id="ref-4"><span><b>X-energy.</b> (2024, October 16). Amazon invests in X-energy to support advanced small modular nuclear reactors and expand carbon-free power. <a href="https://x-energy.com/news/amazon-invests-in-x-energy-to-support-advanced-small-modular-nuclear-reactors-and-expand-carbon-free-power/" target="_blank" rel="noopener">x-energy.com</a></span></li>
-      <li id="ref-5"><span><b>McKinsey &amp; Company.</b> (2026, April 28). McKinsey Quantum Technology Monitor 2026: A commercial tipping point. <a href="https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/mckinsey-quantum-technology-monitor-2026-a-commercial-tipping-point" target="_blank" rel="noopener">mckinsey.com</a></span></li>
-      <li id="ref-6"><span><b>Neven, H.</b> (2024, December 9). Meet Willow, our state-of-the-art quantum chip. Google. <a href="https://blog.google/innovation-and-ai/technology/research/google-willow-quantum-chip/" target="_blank" rel="noopener">blog.google</a></span></li>
-      <li id="ref-7"><span><b>Srivastava, P., &amp; Biswas, P.</b> (2026, June 4). Honeywell's Quantinuum valued at $17.6 billion as shares rise in Nasdaq debut. Reuters. <a href="https://www.reuters.com/business/honeywells-quantinuum-valued-176-billion-shares-rise-nasdaq-debut-2026-06-04/" target="_blank" rel="noopener">reuters.com</a></span></li>
-    </ol>
-  </section>
-
-  <!-- =========================================================
-       FOOT NAV — prev article (back to index) + next
-       ========================================================= -->
-  <nav class="article-foot">
-    <a class="foot-cell" href="/the-quiet-pressure-of-higher-yields/">
-      <span class="k">← Previous</span>
-      <span class="title">The quiet pressure of higher yields</span>
-      <span class="meta">May 28, 2026 · 6 min</span>
-    </a>
-    <a class="foot-cell right" href="#" aria-disabled="true" title="No newer article yet">
-      <span class="k">Next →</span>
-      <span class="title">No newer article yet</span>
-      <span class="meta">—</span>
-    </a>
   </nav>
-
 </article>
 
-<!-- =========================================================
-     COLOPHON
-     ========================================================= -->
-<footer class="colophon">
-  <span>© 2026 Mason Lancellotti</span>
-  <span class="center"><a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a></span>
-  <span class="right">
-    <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
-    <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
-    <a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
-    <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
-  </span>
-</footer>
+<div class="art-rail">
+  <div class="art-rail-in">
+    <p class="side-label">Market Opinions</p>
+    <ul class="rail-list">
+      <li class="here"><a href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/"><span class="rt"><img src="/blog/images/three-mile-island.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">Beyond AI: the two forces defining the next tech frontier</span><span class="d">June 4, 2026</span></span></a></li>
+      <li><a href="/the-quiet-pressure-of-higher-yields/"><span class="rt"><img src="/blog/images/treasury-building.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">The quiet pressure of higher yields</span><span class="d">May 28, 2026</span></span></a></li>
+      <li><a href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/"><span class="rt"><img src="/blog/images/jensen-huang.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">Why you should watch Nvidia earnings even if you don't own the stock</span><span class="d">May 21, 2026</span></span></a></li>
+    </ul>
+    <a class="rail-home" href="/">&#8592; Home</a>
+  </div>
+</div>
+</main>
 
-</div><!-- /.desktop-only -->
 
-<!-- =========================================================
-     MOBILE / TABLET LAYOUT (<=1024px)
-     Same content, restructured for narrow viewports.
-     ========================================================= -->
-<div class="mobile-tablet-only">
 
-  <header class="mt-topbar">
-    <div class="mt-topbar-inner">
-      <a class="mt-home" href="/?tab=blog" data-tab="blog">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-        All articles
-      </a>
-      <a class="mt-badge" href="#" aria-disabled="true" title="No newer article yet">
-        Next article
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-      </a>
-    </div>
-  </header>
-
-  <article class="mt-article">
-
-    <div class="mt-kicker">
-      <span class="num">III</span>
-      <span class="section-label-dot" aria-hidden="true"></span>
-      <span class="label">Market Opinions</span>
-      <span class="spacer"></span>
-      <span class="tag">Technology</span>
-    </div>
-
-    <h1 class="mt-title">Beyond AI: the two forces defining the next tech frontier</h1>
-
-    <div class="mt-meta">
-      <div class="m"><span class="k">Published</span><span class="v">June 4, 2026</span><span class="v-sub">6:00 P.M. EST</span></div>
-      <div class="m"><span class="k">Time to read</span><span class="v">7 min.</span></div>
-      <div class="m author"><span class="k">Author</span><span class="v">Mason Lancellotti</span></div>
-    </div>
-
-    <div class="mt-body">
-
-      <p class="mt-lede">Unless you’re living under a rock, AI has likely become a topic of conversation in your household at some point or another. While artificial intelligence has existed for decades, the last four years have transformed it from a specialized research field into a dominant force bridging the gap between industries, shaping tech, business, and markets. Because of this surge, many investors are already asking the natural question: what is the next so-called golden ticket? The answer, if there is one, will not come randomly, but rather can be logically deduced by looking at the two bottlenecks that could limit further AI expansion: power and computation.</p>
-
-      <p>Nuclear energy and quantum computing are two industries currently in the awkward teenage stage between reality and speculation. Nuclear power already produces real electricity at a meaningful scale, but most of the field’s intriguing investment stories revolve around reactors that are yet to be constructed. Similarly, quantum computing has shown promise through narrow, real-world applications, but its commercial value remains more theoretical than concrete. Together, early signs of potential have pushed these sectors to the edge of mainstream market attention, with investors starting to look past today’s winners and proactively search for those of tomorrow.</p>
-
-      <p>The first major constraint on further AI buildout is physical: electricity. According to the International Energy Agency, data centers used around 415 terawatt-hours of electricity in 2024, accounting for about 1.5% of global electricity consumption. By 2030, that figure is projected to more than double to roughly 945 terawatt-hours, greater than Japan's current total electricity consumption <a class="cite" href="#mt-ref-1">(IEA, 2025)</a>. AI is not the only cause of that growth, but it is certainly the primary driver, with big tech firms like Google and Amazon rushing to expand their data center capacity to train and run more advanced AI models. While chips tend to garner most of the attention directed at physical capital in this industry, they’re only useful if there’s enough power to keep them running.</p>
-
-      <figure class="mt-figure wide-chart">
-        <img src="/blog/images/iea-data-centre-electricity-demand.png" alt="IEA chart comparing data-centre electricity consumption in server stock and server capacity from 2020 to 2030." loading="lazy">
-        <figcaption><span>Global data-centre electricity demand is set to more than double by 2030.<span class="credit">Chart: International Energy Agency</span></span></figcaption>
-      </figure>
-
-      <p>While solar and wind power are crucial parts of the energy mix used to keep data centers running, these methods of power generation are intermittent; they rely on mother nature. In addition, while natural gas is reliable, its massive emissions create problems for companies and nations that have spent years touting their clean energy goals. Nuclear power solves both of these problems because it can provide massive amounts of electricity around-the-clock without further contributing to carbon emissions. In addition, nuclear power plants have a relatively small physical footprint, though they can be expensive, slow to build, and present regulatory problems, making them a less than perfect but still appealing alternative to traditional power-generation methods.</p>
-
-      <p>Big tech firms certainly recognize this and are already working to secure the infrastructure necessary to support further growth in this relatively new industry. In 2024, Microsoft signed a 20-year agreement with Constellation, an energy utility firm, to restart a previously closed nuclear reactor in Pennsylvania <a class="cite" href="#mt-ref-2">(Constellation, 2024)</a>. Constellation plans to spend around $1.6 billion to fulfill their side of the deal. Similarly, Google signed an agreement with Kairos Power in the same year focused on the development of more advanced, next-gen reactors, with a deadline in 2030 <a class="cite" href="#mt-ref-3">(Google, 2024)</a>. Amazon and X-energy have also partnered on a broader plan to construct a pipeline of small nuclear projects throughout the United States, <a class="cite" href="#mt-ref-4">(X-energy, 2024)</a>, with Amazon leading the charge in X-energy’s $500 million financing round.</p>
-
-      <figure class="mt-figure">
-        <img src="/blog/images/three-mile-island.jpg" alt="Aerial view of the Three Mile Island nuclear power plant in Pennsylvania." loading="lazy">
-        <figcaption><span>The Three Mile Island reactor, slated to restart and power Microsoft's datacenters under a 20-year agreement.<span class="credit">Image: Wikimedia Commons</span></span></figcaption>
-      </figure>
-
-      <p>The second main factor limiting AI infrastructure expansion in the long run is intangible but no less important: computing capacity. While classical computers process information using bits, which are represented in binary, a computing language comprised solely of zeroes and ones, quantum computers use qubits (pronounced “Q-bits”), which can behave differently because of quantum properties like superposition, the idea that a qubit can exist as both a zero and a one simultaneously until it has been concretely observed, and entanglement, the notion that two qubits can become inseparably linked in such a way that, upon observation, one reveals the state of the other, no matter how far apart they are located. To make a long story short, concepts like these give quantum computers the ability to handle certain problems, especially when it comes to topics like chemistry, physics, optimization, and cryptography, in ways normal computers struggle to match.</p>
-
-      <p>Most relevant to AI is the optimization part of things; the training of AI models, which is essentially just one giant optimization problem, is actually the most costly part of the business. In fact, most data centers and water consumption by juggernaut firms like OpenAI and Anthropic are allocated towards the training of new, more capable models that have not yet been seen by the public. The ability to make further advances and train new models more efficiently is therefore highly sought after, and startups, enterprise labs, and even national governments have been experimenting with how quantum computing can revolutionize the AI industry. McKinsey estimates that quantum computing could create up to $2.7 trillion in economic value worldwide by 2035, while revenue generated by quantum computing companies exceeded $1 billion in 2025 and could reach as much as $4.4 billion by 2028 <a class="cite" href="#mt-ref-5">(McKinsey, 2026)</a>. Google's Willow chip, an initiative described by the company as a foundational step toward practical quantum machine learning, showed progress in error correction and performed a benchmark computation in under five minutes that would take a supercomputer ten septillion years <a class="cite" href="#mt-ref-6">(Neven, 2024)</a>. With frequent advancements like this being made, it’s only a matter of time before hybrid quantum machines are picked up by larger AI firms, which will only create a positive feedback loop of more intensive industry development.</p>
-
-      <aside class="mt-pullquote">
-        <p class="pq-text">The investment case is centered on the long-term potential of quantum computing.</p>
-        <p class="pq-attr"><b>Kat Liu, IPOX Schuster analyst</b></p>
-      </aside>
-
-      <p>According to Kat Liu, “The investment case is centered on the long-term potential of quantum computing” <a class="cite" href="#mt-ref-7">(Srivastava &amp; Biswas, 2026)</a>. Quantum has the kind of upside investors love because the breadth of potential applications is enormous. However, it’s important to realize that the quantum business model as a whole is still young. Quantinuum's Nasdaq debut this week valued the Honeywell-backed company at about $17.6 billion, even though Reuters reported that commercial adoption remains limited and that Japan's RIKEN institute accounted for roughly 60% of its 2025 revenue <a class="cite" href="#mt-ref-7">(Srivastava &amp; Biswas, 2026)</a>. Similar to the ongoing AI stock boom, investors are buying into future expectations, which can be even riskier in less mature industries like quantum.</p>
-
-      <p>The current problem is that modern quantum machines do not have enough stable qubits to consistently avoid error. They are still very prone to noise, meaning the computers can lose or distort information significantly during a calculation. Due to this, while certain machines may be impressive in a lab environment, they still might not be ready to work on real-world problems. Therefore, when the percentage of quantum firms’ customers that <em>aren’t</em> research institutes or universities begins to rise, the potential for sizable upside in this industry can be considered much more certain.</p>
-
-      <figure class="mt-figure">
-        <img src="/blog/images/quantum-computing-hardware.jpg" alt="Quantum computing hardware inside a dilution refrigerator." loading="lazy">
-        <figcaption><span>Quantum computers require highly specialized hardware to remain stable, with inconsistency and errors remaining major barriers to widespread commercial adoption.<span class="credit">Image: IBM Research</span></span></figcaption>
-      </figure>
-
-      <p>To circle back, while nuclear energy and quantum computing may seem unrelated, they both can potentially resolve the bottlenecks that will eventually cap the AI boom’s growth. Neither is a replacement for AI, and if anyone tells you that’s the case, they are severely misinformed. Instead, both are extensions of the industry, potentially signalling a future shift in the market’s focus from software and semiconductors toward the next-gen drivers of scale, giving keen investors a more than welcome head start ahead of an possible expansion race that could define the world’s next period of technological progress and innovation. The primary takeaway here should not be to chase every stock related to nuclear energy or quantum computing. However, the industries and ticker symbols associated with them should be very much on every retail trader’s radar. AI made chips and semiconductors explode, and there’s a high chance that nuclear energy and quantum computing are on deck.</p>
-
-    </div>
-
-    <section class="mt-references">
-      <span class="h">References</span>
-      <span class="note">7 sources</span>
-      <ol>
-        <li id="mt-ref-1"><span><b>International Energy Agency.</b> (2025, April 10). Executive summary: Energy and AI. <a href="https://www.iea.org/reports/energy-and-ai/executive-summary" target="_blank" rel="noopener">iea.org</a></span></li>
-        <li id="mt-ref-2"><span><b>Constellation.</b> (2024, September 20). Constellation to launch Crane Clean Energy Center, restoring jobs and carbon-free power to the grid. <a href="https://www.constellationenergy.com/news/2024/Constellation-to-Launch-Crane-Clean-Energy-Center-Restoring-Jobs-and-Carbon-Free-Power-to-The-Grid.html" target="_blank" rel="noopener">constellationenergy.com</a></span></li>
-        <li id="mt-ref-3"><span><b>Google.</b> (2024, October 14). New nuclear clean energy agreement with Kairos Power. <a href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-kairos-power-nuclear-energy-agreement/" target="_blank" rel="noopener">blog.google</a></span></li>
-        <li id="mt-ref-4"><span><b>X-energy.</b> (2024, October 16). Amazon invests in X-energy to support advanced small modular nuclear reactors and expand carbon-free power. <a href="https://x-energy.com/news/amazon-invests-in-x-energy-to-support-advanced-small-modular-nuclear-reactors-and-expand-carbon-free-power/" target="_blank" rel="noopener">x-energy.com</a></span></li>
-        <li id="mt-ref-5"><span><b>McKinsey &amp; Company.</b> (2026, April 28). McKinsey Quantum Technology Monitor 2026: A commercial tipping point. <a href="https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/mckinsey-quantum-technology-monitor-2026-a-commercial-tipping-point" target="_blank" rel="noopener">mckinsey.com</a></span></li>
-        <li id="mt-ref-6"><span><b>Neven, H.</b> (2024, December 9). Meet Willow, our state-of-the-art quantum chip. Google. <a href="https://blog.google/innovation-and-ai/technology/research/google-willow-quantum-chip/" target="_blank" rel="noopener">blog.google</a></span></li>
-        <li id="mt-ref-7"><span><b>Srivastava, P., &amp; Biswas, P.</b> (2026, June 4). Honeywell's Quantinuum valued at $17.6 billion as shares rise in Nasdaq debut. Reuters. <a href="https://www.reuters.com/business/honeywells-quantinuum-valued-176-billion-shares-rise-nasdaq-debut-2026-06-04/" target="_blank" rel="noopener">reuters.com</a></span></li>
-      </ol>
-    </section>
-
-    <nav class="mt-foot">
-      <a class="cell" href="/the-quiet-pressure-of-higher-yields/">
-        <span class="k">← Previous</span>
-        <span class="title">The quiet pressure of higher yields</span>
-        <span class="meta">May 28, 2026 · 6 min</span>
-      </a>
-      <a class="cell right" href="#" aria-disabled="true" title="No newer article yet">
-        <span class="k">Next →</span>
-        <span class="title">No newer article yet</span>
-        <span class="meta">—</span>
-      </a>
-    </nav>
-
-  </article>
-
-  <footer class="mt-colophon">
-    <span>© 2026 Mason Lancellotti</span>
-    <a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a>
-    <span class="links">
-      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+<footer>
+  <div class="foot-row">
+    <p class="fl-left">&#169; 2026 Mason Lancellotti</p>
+    <nav class="fl-mid" aria-label="Materials">
       <a href="/files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
       <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
-    </span>
-  </footer>
+    </nav>
+    <nav class="fl-right" aria-label="Elsewhere">
+      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:mason.angelo.lancellotti@gmail.com">Email</a>
+    </nav>
+  </div>
+</footer>
 
-</div><!-- /.mobile-tablet-only -->
-
-<script>
-  // Stop the "coming Thursday" cards from navigating
-  document.querySelectorAll('[aria-disabled="true"]').forEach((el) => {
-    el.addEventListener('click', (e) => e.preventDefault());
-  });
-</script>
-
+</div>
 </body>
 </html>

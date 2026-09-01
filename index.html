@@ -1,2257 +1,768 @@
 <!doctype html>
-<html lang="en" data-palette="ink" data-typeface="helvetica" data-rules="clean">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mason Lancellotti</title>
-<link rel="preload" as="image" href="v2/swim-5.jpg" fetchpriority="high">
-<link rel="preload" as="image" href="v2/swim-2.jpg" fetchpriority="high">
-<link rel="preload" as="image" href="v2/swim-3.jpg" fetchpriority="high">
-
-<script>
-  const TWEAKS = /*EDITMODE-BEGIN*/{
-    "palette": "ink",
-    "showGrain": true,
-    "density": "dense",
-    "typeface": "helvetica",
-    "rules": "panel",
-    "barEdges": "aligned"
-  }/*EDITMODE-END*/;
-  window.__TWEAKS__ = TWEAKS;
-</script>
-
-<style>
-/* ==========================================================
-   LEDGER — a financial-filing-inspired portfolio
-   palette tokens reused; type + structure rewritten
-   ========================================================== */
-
-:root {
-  /* default — overridden by [data-typeface] below */
-  --font-stack: 'Helvetica Neue', Arial, sans-serif;
-  --font-sans: var(--font-stack);
-  --font-body: var(--font-stack);
-  --font-mono: var(--font-stack);
-}
-[data-typeface="plain"]     { --font-stack: Arial, Helvetica, sans-serif; }
-[data-typeface="helvetica"] { --font-stack: 'Helvetica Neue', Arial, sans-serif; }
-[data-typeface="aptos"]     { --font-stack: Aptos, 'Segoe UI', Arial, sans-serif; }
-
-[data-palette="ink"] {
-  --bg: oklch(0.97 0.005 250);
-  --bg-2: oklch(0.945 0.007 250);
-  --ink: oklch(0.16 0.02 255);
-  --ink-2: oklch(0.35 0.02 255);
-  --muted: oklch(0.54 0.015 255);
-  --rule: oklch(0.82 0.008 255);
-  --rule-soft: oklch(0.88 0.006 255);
-  --paper: oklch(0.993 0.003 255);
-  --accent: oklch(0.45 0.15 255);
-  --accent-bg: oklch(0.97 0.02 255);
-}
-[data-palette="warm"] {
-  --bg: oklch(0.965 0.012 82);
-  --bg-2: oklch(0.945 0.018 82);
-  --ink: oklch(0.2 0.02 60);
-  --ink-2: oklch(0.36 0.02 60);
-  --muted: oklch(0.55 0.015 60);
-  --rule: oklch(0.83 0.015 70);
-  --rule-soft: oklch(0.88 0.012 70);
-  --paper: oklch(0.99 0.008 82);
-  --accent: oklch(0.52 0.14 48);
-  --accent-bg: oklch(0.96 0.03 60);
-}
-[data-palette="forest"] {
-  --bg: oklch(0.95 0.01 140);
-  --bg-2: oklch(0.93 0.015 140);
-  --ink: oklch(0.18 0.025 150);
-  --ink-2: oklch(0.33 0.02 150);
-  --muted: oklch(0.5 0.018 150);
-  --rule: oklch(0.81 0.018 140);
-  --rule-soft: oklch(0.87 0.015 140);
-  --paper: oklch(0.99 0.006 140);
-  --accent: oklch(0.45 0.11 155);
-  --accent-bg: oklch(0.94 0.025 150);
-}
-
-* { box-sizing: border-box; }
-html, body {
-  margin: 0; padding: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "tnum" 1, "lnum" 1;
-}
-body { min-height: 100vh; }
-
-.sans { font-family: var(--font-sans); }
-.mono { font-family: var(--font-mono); font-feature-settings: "tnum" 1; }
-.num  { font-variant-numeric: tabular-nums; }
-
-button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; padding: 0; }
-.inline-link { color: var(--accent); text-decoration: underline; }
-.inline-link:hover, .inline-link:focus-visible { text-decoration-thickness: 2px; }
-
-body[data-grain="true"]::before {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: multiply;
-  opacity: 0.4;
-  z-index: 1;
-}
-
-/* ==========================================================
-   DOCUMENT MASTHEAD
-   ========================================================== */
-.doc {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 56px;
-  position: relative;
-  z-index: 2;
-}
-
-.masthead {
-  border-top: 4px solid var(--ink);
-  padding-top: 18px;
-  padding-bottom: 32px;
-  margin-top: 40px;
-}
-.masthead .masthead-strip {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 24px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
-}
-.masthead .name-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 28px 0 0;
-}
-.masthead .name {
-  font-family: var(--font-sans);
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  margin: 0;
-}
-.masthead .filing-id {
-  font-family: var(--font-stack);
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 0;
-  text-align: right;
-  line-height: 1.5;
-}
-.masthead .filing-id > div + div { margin-top: 1px; }
-.masthead .filing-id b { color: var(--ink); font-weight: 500; }
-
-/* document tabs — styled as roman-numeral section tabs */
-.tabstrip {
-  display: flex;
-  gap: 8px;
-  margin-top: 28px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
-}
-.tabstrip button {
-  padding: 9px 13px;
-  margin-right: 0;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  margin-bottom: 0;
-  transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
-  display: flex; align-items: baseline; gap: 10px;
-}
-.tabstrip button .roman { font-style: normal; color: var(--ink-2); opacity: 0.6; }
-.tabstrip button:hover,
-.tabstrip button:focus-visible {
-  color: var(--ink);
-  border-color: var(--rule);
-  background: var(--bg-2);
-}
-.tabstrip button.active {
-  color: var(--ink);
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 6%, var(--paper));
-}
-.tabstrip button.active .roman { color: var(--accent); opacity: 1; }
-.tabstrip .spacer { flex: 1; }
-.tabstrip .as-of { padding: 10px 0; font-family: var(--font-stack); font-size: 12.5px; color: var(--muted); letter-spacing: 0; font-weight: 400; }
-
-/* ==========================================================
-   SUMMARY (standfirst + stat block)
-   ========================================================== */
-.summary {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 64px;
-  padding: 48px 0 56px;
-  border-bottom: 1px solid var(--rule);
-  align-items: start;
-}
-.summary .lede {
-  font-family: var(--font-sans);
-  font-size: 24px;
-  line-height: 1.35;
-  letter-spacing: -0.015em;
-  font-weight: 400;
-  color: var(--ink);
-  margin: 0;
-  max-width: 44ch;
-}
-.summary .lede em {
-  font-style: normal;
-  color: inherit;
-}
-.summary .lede small {
-  display: block;
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 16px;
-  line-height: 1.55;
-  font-family: var(--font-body);
-  letter-spacing: 0;
-  max-width: 64ch;
-}
-
-.statblock {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-.statblock > div {
-  background: var(--paper);
-  padding: 16px 18px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.statblock .k {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.statblock .v {
-  font-family: var(--font-sans);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-.statblock .v .sub { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 4px; }
-
-/* ==========================================================
-   SECTION HEADS (REGISTER / SKILLS)
-   ========================================================== */
-.section-head {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 24px;
-  align-items: baseline;
-  padding: 56px 0 18px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-.section-head .title { color: var(--ink); }
-.section-head .rule { height: 1px; background: var(--rule); }
-.section-head .note { color: var(--muted); font-size: 10.5px; }
-.section-head .dot {
-  color: var(--ink);
-  font-weight: 500;
-  font-size: 19px;
-  line-height: 1;
-  margin: 0 7px;
-  vertical-align: -3px;
-  display: inline-block;
-}
-.section-head .note .dot { margin-left: 0; color: var(--ink-2); font-size: 1.5em; vertical-align: -2px; }
-.section-head .numeral { font-weight: 500; }
-
-/* ==========================================================
-   REGISTER (the table)
-   ========================================================== */
-.register { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-.register-head {
-  display: grid;
-  grid-template-columns: 160px 1.6fr 1.6fr 160px 28px;
-  gap: 24px;
-  padding: 10px 0 9px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border-bottom: 1px solid var(--rule);
-}
-.register-head span { text-align: left; }
-.register-head .col-n { text-align: right; }
-
-.row {
-  display: grid;
-  grid-template-columns: 160px 1.6fr 1.6fr 160px 28px;
-  gap: 24px;
-  padding: 16px 12px 15px;
-  margin: 0 -12px;
-  border-bottom: 1px solid var(--rule-soft);
-  cursor: pointer;
-  position: relative;
-  transition: background 0.15s;
-  align-items: baseline;
-}
-.row:hover {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-}
-.row.open { background: color-mix(in oklab, var(--accent) 4%, transparent); }
-.row:last-child { border-bottom: none; }
-
-.row .n {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-.row .period {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-2);
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-}
-.row .org {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.row.future .org { color: var(--ink-2); }
-.row.future .org::after { content: " (planned)"; font-size: 11px; font-family: var(--font-mono); font-weight: 400; color: var(--muted); letter-spacing: 0.05em; }
-.row .role { font-size: 14px; color: var(--ink-2); line-height: 1.3; }
-.row .role .kind { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 2px; }
-.row .locus { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.row .locus small { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; margin-top: 2px; }
-.row .chev {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--muted);
-  text-align: right;
-  transition: transform 0.25s ease;
-}
-.row.open .chev { transform: rotate(90deg); color: var(--accent); }
-
-/* expanded content */
-.row-detail {
-  display: none;
-  padding: 0 0 18px;
-  border-bottom: 1px solid var(--rule-soft);
-  background: color-mix(in oklab, var(--accent) 2%, transparent);
-}
-.row.open + .row-detail { display: block; }
-
-.row-detail .inner {
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 32px;
-  padding: 16px 0 0;
-  border-left: 2px solid var(--accent);
-  padding-left: 18px;
-  margin-left: 0;
-}
-.row-detail .inner:not(:has(.aside-col)) { grid-template-columns: 1fr; }
-.row-detail .meta {
-  display: flex; flex-direction: column; gap: 14px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-.row-detail .meta .kv b {
-  display: block;
-  color: var(--ink);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0;
-  margin-top: 2px;
-  font-family: var(--font-body);
-  text-transform: none;
-}
-.row-detail .body .note {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink);
-  margin: 0 0 14px;
-  max-width: none;
-  font-weight: 400;
-}
-.row-detail .body .duration {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0 0 10px;
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
-}
-.row-detail .body ul { margin: 0; padding: 0; list-style: none; }
-.row-detail .body ul li {
-  position: relative;
-  padding-left: 18px;
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 400 !important;
-  font-style: normal;
-  line-height: 1.6;
-  letter-spacing: 0 !important;
-  color: var(--ink-2);
-  opacity: 1;
-  margin-bottom: 7px;
-  text-rendering: geometricPrecision;
-  font-feature-settings: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.row-detail .body ul li *,
-.row-detail .body ul li strong,
-.row-detail .body ul li b,
-.row-detail .body ul li em {
-  font-weight: inherit !important;
-  font-style: inherit !important;
-  font-family: inherit !important;
-  color: inherit !important;
-}
-.row-detail .body ul li::before {
-  content: ""; position: absolute; left: 0; top: 9px;
-  width: 8px; height: 1px; background: var(--ink-2);
-}
-
-.row-detail .aside-col {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.55;
-  padding-left: 16px;
-  border-left: 1px solid var(--rule);
-}
-.row-detail .aside-col .stat {
-  font-family: var(--font-sans);
-  font-size: 38px;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  display: block;
-  margin-bottom: 4px;
-}
-.row-detail .aside-col .stat small { font-size: 14px; color: var(--muted); font-weight: 400; }
-.row-detail .aside-col .stat-label { text-transform: uppercase; letter-spacing: 0.14em; font-size: 10px; margin-bottom: 14px; display: block; }
-.row-detail .aside-col .placeholder {
-  margin-top: 16px;
-  aspect-ratio: 4 / 3;
-  background:
-    repeating-linear-gradient(135deg, color-mix(in oklab, var(--ink) 5%, transparent) 0 1px, transparent 1px 8px),
-    var(--bg-2);
-  border: 1px solid var(--rule);
-  display: grid; place-items: center;
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-  padding: 8px;
-}
-.row-detail .row-photo {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-}
-.row-detail .row-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 14px;
-  font-size: 13px;
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-  font-weight: 500;
-}
-.row-detail .row-link:hover,
-.row-detail .row-link:focus-visible {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-.row-detail .row-link span { font-size: 11px; opacity: 0.85; }
-.row-detail .row-collage {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-top: 18px;
-  max-width: none;
-}
-.row-detail .row-collage img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  display: block;
-  border: none;
-  background: transparent;
-}
-@media (max-width: 900px) {
-  .row-detail .row-collage { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* ==========================================================
-   SKILLS MATRIX
-   ========================================================== */
-.skills-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
-.skills-table thead th {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: left;
-  padding: 10px 0 9px;
-  border-bottom: 1px solid var(--rule);
-  font-weight: 400;
-}
-.skills-table tbody td {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  font-size: 13.5px;
-  vertical-align: middle;
-}
-.skills-table thead th { padding-right: 32px; }
-.skills-table thead th + th { padding-left: 32px; }
-.skills-table tbody tr:last-child td { border-bottom: none; }
-.skills-table td.skill { font-family: var(--font-sans); font-weight: 500; font-size: 15px; letter-spacing: -0.005em; width: 200px; padding-right: 32px; }
-.skills-table td.level {
-  width: 260px;
-  padding-left: 32px;
-  padding-right: 32px;
-}
-.skills-table td.level .level-text {
-  display: inline-block;
-  width: 92px;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--ink-2);
-  letter-spacing: 0;
-  text-transform: none;
-  font-weight: 400;
-  vertical-align: middle;
-}
-.skills-table .barwrap { display: inline-grid; grid-template-columns: repeat(5, 24px); gap: 4px; vertical-align: middle; }
-.skills-table .barwrap span { height: 9px; background: var(--rule); }
-.skills-table .barwrap span.on { background: var(--ink); }
-.skills-table td.applied {
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  font-weight: 400;
-  padding-left: 32px;
-}
-
-/* ==========================================================
-   GLOBAL: calm the typography — read like a real personal site
-   removes uppercase, kills letter-spacing, drops heavy weights
-   ========================================================== */
-body,
-.masthead .masthead-strip,
-.masthead .filing-id,
-.tabstrip button,
-.section-head,
-.statblock .k,
-.register-head,
-.row .period,
-.row .role .kind,
-.row .locus,
-.row .locus small,
-.row.future .org::after,
-.row .n,
-.row .chev,
-.row-detail .meta,
-.row-detail .meta .kv b,
-.row-detail .aside-col,
-.row-detail .aside-col .stat-label,
-.row-detail .aside-col .placeholder,
-.skills-table thead th,
-.skills-table td.level,
-.placeholder-block .kicker,
-.repo-row,
-.repo-row .name,
-.repo-row .status,
-.repo-row .lang,
-.blog-entry .tags,
-.blog-entry .date,
-.blog-entry .len,
-.tweaks-panel .hint,
-.tweaks-panel .label,
-.tweaks-panel .opts button,
-.tweaks-panel .toggle,
-.colophon,
-.transcript .term.current .term-name::after,
-.transcript .term-meta,
-.transcript .term-meta b,
-.transcript .course-code,
-.transcript .course-cr,
-.transcript .course-grade {
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-  font-family: var(--font-stack) !important;
-}
-
-/* Section labels: regular weight, ink-2 — no editorial shouting */
-.section-head .title,
-.statblock .k,
-.register-head,
-.skills-table thead th,
-.skills-table td.level,
-.row .role .kind,
-.repo-row .status,
-.repo-row .lang,
-.blog-entry .tags,
-.tweaks-panel .label,
-.tweaks-panel .hint,
-.transcript .term-meta,
-.colophon {
-  font-weight: 400 !important;
-  color: var(--ink-2);
-  font-size: 12.5px;
-}
-.section-head .title { color: var(--ink); font-weight: 500 !important; font-size: 13px; }
-.section-head .note { color: var(--muted); font-weight: 400; }
-
-/* Pull headline weights down a notch so they don't feel like a corporate filing */
-.masthead .name { font-weight: 500; letter-spacing: -0.02em; }
-.summary .lede { font-weight: 400; letter-spacing: -0.005em; }
-.statblock .v { font-weight: 500; letter-spacing: -0.01em; }
-.row .org { font-weight: 500; letter-spacing: -0.005em; }
-.row-detail .body .note { font-weight: 400; letter-spacing: 0; }
-.row-detail .aside-col .stat { font-weight: 500; letter-spacing: -0.01em; }
-.skills-table td.skill { font-weight: 500; letter-spacing: 0; }
-.transcript .term-name { font-weight: 500; letter-spacing: -0.005em; }
-.transcript .course-name { font-weight: 400; letter-spacing: 0; }
-.blog-entry .title { font-weight: 500; letter-spacing: -0.005em; }
-.placeholder-block h2 { font-weight: 500; letter-spacing: -0.005em; }
-.tweaks-panel h4 { font-weight: 500; letter-spacing: 0; }
-
-/* ==========================================================
-   TRANSCRIPT
-   ========================================================== */
-.transcript { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 0; }
-.transcript .term { padding: 18px 0 8px; border-bottom: 1px solid var(--rule-soft); }
-.transcript .term:last-child { border-bottom: none; }
-
-.transcript .term-head {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin: 6px 0 14px;
-}
-.transcript .term-head .term-stat {
-  background: var(--paper);
-  padding: 12px 16px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.transcript .term-head .k {
-  font-size: 11px;
-  color: var(--muted);
-  font-weight: 400;
-}
-.transcript .term-head .v {
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-}
-
-.transcript .courses { display: block; }
-
-.transcript .course {
-  padding: 10px 0 12px;
-  border-top: 1px dotted var(--rule-soft);
-}
-.transcript .course:first-child { border-top: none; }
-
-.transcript .course-row {
-  display: grid;
-  grid-template-columns: 88px 1fr 56px 48px;
-  gap: 16px;
-  align-items: baseline;
-}
-.transcript .course-code {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--ink-2);
-  letter-spacing: 0.05em;
-  font-variant-numeric: tabular-nums;
-}
-.transcript .course-name {
-  font-family: var(--font-sans);
-  font-size: 14.5px;
-  font-weight: 500;
-  letter-spacing: -0.008em;
-  color: var(--ink);
-}
-.transcript .course-cr {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-.transcript .course-grade {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  text-align: right;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-.transcript .course-grade .g-letter {
-  display: inline-block;
-  width: 100%;
-  text-align: right;
-}
-.transcript .course-grade .g-mod {
-  position: absolute;
-  left: 100%;
-  top: 0;
-  margin-left: 2px;
-  font-weight: 500;
-}
-
-/* Footnotes */
-.fn-ref {
-  font-size: 0.55em;
-  font-weight: 500;
-  vertical-align: super;
-  margin-left: 2px;
-  color: var(--accent);
-  text-decoration: none;
-}
-.fn-ref:hover { text-decoration: underline; }
-
-/* ==========================================================
-   INVOLVEMENT — honor society + publication
-   ========================================================== */
-.involvement-label {
-  margin: 18px 0 8px;
-  font-size: 12.5px;
-  color: var(--ink-2);
-  font-weight: 500;
-  letter-spacing: 0;
-}
-.involvement-label:first-child { margin-top: 0; }
-.involvement {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  gap: 14px;
-  background: transparent;
-  border: none;
-  margin-top: 28px;
-  position: relative;
-}
-.involvement-fn {
-  position: absolute;
-  top: -4px;
-  right: -22px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  padding: 2px 4px;
-}
-.involvement-fn:hover { text-decoration: underline; }
-.involvement-fn::before { content: "["; opacity: 0.7; }
-.involvement-fn::after { content: "]"; opacity: 0.7; }
-
-.transcript-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 12px 0 4px;
-  font-size: 13px;
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-  font-weight: 500;
-}
-.transcript-link:hover,
-.transcript-link:focus-visible {
-  border-bottom-color: var(--accent);
-}
-.transcript-link span { font-size: 11px; opacity: 0.85; }
-
-.section-head-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: 14px;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-}
-.section-head-link:hover,
-.section-head-link:focus-visible {
-  border-bottom-color: var(--accent);
-}
-.section-head-link span[aria-hidden] { font-size: 10px; opacity: 0.85; }
-.involvement .inv-card {
-  background: var(--paper);
-  padding: 16px 22px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border: 1px solid var(--rule);
-}
-/* ODE — academic recognition aside: thinner, accent rail */
-.involvement .inv-card-aside {
-  background: var(--paper);
-  padding: 14px 16px 16px 20px;
-  gap: 6px;
-  border: 1px solid var(--rule);
-  border-left: 2px solid var(--accent);
-}
-.involvement .inv-card-aside .inv-head {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-.involvement .inv-card-aside .inv-org {
-  font-size: 14.5px;
-  letter-spacing: -0.005em;
-}
-.involvement .inv-card-aside .inv-desc {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  margin: 0;
-}
-.involvement .inv-letters {
-  font-size: 26px;
-  letter-spacing: 0.18em;
-  color: var(--ink-2);
-  opacity: 0.22;
-  font-weight: 300;
-  line-height: 1;
-  margin: -2px 0 4px;
-  user-select: none;
-}
-.involvement .inv-card-aside .inv-meta {
-  margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px solid var(--rule-soft);
-  font-size: 11px;
-  color: var(--muted);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.involvement .inv-card-aside .inv-meta-since,
-.involvement .inv-card-aside .inv-meta-tag {
-  color: var(--muted);
-  font-weight: 400;
-  font-size: 11px;
-}
-.involvement .inv-monogram {
-  display: flex;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--ink-2);
-  letter-spacing: 0.04em;
-  margin: -4px 0 4px;
-  line-height: 1;
-}
-.involvement .inv-monogram span {
-  display: inline-block;
-  padding: 4px 8px;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-  min-width: 30px;
-  text-align: center;
-}
-.involvement .inv-meta {
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid var(--rule-soft);
-  font-size: 11.5px;
-  color: var(--muted);
-}
-.involvement .inv-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.involvement .inv-org {
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  line-height: 1.2;
-}
-.involvement .inv-role {
-  font-size: 11.5px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.involvement .inv-desc {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  font-weight: 400;
-}
-.involvement .inv-article {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "label label"
-    "title title"
-    "meta  meta";
-  gap: 2px 8px;
-  margin-top: 4px;
-  padding: 10px 12px;
-  background: var(--bg-2);
-  border: 1px solid var(--rule-soft);
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.15s, background 0.15s;
-}
-.involvement .inv-article:hover {
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 4%, var(--bg-2));
-}
-.involvement .inv-article-label {
-  grid-area: label;
-  font-size: 10.5px;
-  color: var(--muted);
-  font-weight: 500;
-}
-.involvement .inv-article-title {
-  grid-area: title;
-  font-size: 14.5px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  line-height: 1.3;
-}
-.involvement .inv-article-meta {
-  grid-area: meta;
-  font-size: 11.5px;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.involvement .inv-article-arrow {
-  font-size: 14px;
-  color: var(--accent);
-}
-
-@media (max-width: 900px) {
-  .involvement { grid-template-columns: 1fr; }
-  .goal-grid { grid-template-columns: 1fr; }
-  .goal-card { grid-row: auto; grid-template-rows: none; display: flex; flex-direction: column; }
-}
-
-.footnotes {
-  margin: 0;
-  padding: 0;
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-.footnotes .fn-item {
-  display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 6px;
-  margin-bottom: 6px;
-  scroll-margin-top: 24px;
-}
-.footnotes .fn-n {
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-}
-.footnotes .fn-item:target { color: var(--ink); }
-.footnotes .fn-item:target .fn-n { color: var(--accent); font-weight: 500; }
-/* All grades render identically — no per-grade color/size overrides */
-.transcript .course.pass .course-grade { color: var(--ink); }
-
-.transcript .course-note {
-  margin-top: 4px;
-  padding-left: 104px;
-  padding-right: 120px;
-  font-size: 12.5px;
-  font-style: italic;
-  color: var(--muted);
-  line-height: 1.5;
-  max-width: none;
-}
-
-/* ==========================================================
-   COLOPHON
-   ========================================================== */
-.colophon {
-  border-top: 2px solid var(--ink);
-  padding: 20px 0 40px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 24px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.colophon b { color: var(--ink); font-weight: 500; }
-.colophon a { color: inherit; text-decoration: none; }
-.colophon a:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.masthead .filing-id a { color: inherit; text-decoration: none; }
-.masthead .filing-id a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
-/* ==========================================================
-   REPOS + BLOG (share register aesthetic)
-   ========================================================== */
-.placeholder-block {
-  margin: 40px 0 80px;
-  padding: 32px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-}
-.placeholder-block h2 {
-  font-family: var(--font-sans);
-  font-size: 22px;
-  font-weight: 500;
-  margin: 0 0 4px;
-  letter-spacing: -0.015em;
-}
-.placeholder-block p { font-size: 13.5px; color: var(--ink-2); max-width: 56ch; margin: 0; line-height: 1.55; }
-.placeholder-block .kicker { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
-
-/* repo rows — same register pattern */
-.repo-row {
-  display: grid;
-  grid-template-columns: 1.5fr 2fr 100px 90px 28px;
-  gap: 24px;
-  padding: 22px 12px;
-  margin: 0 -12px;
-  border-bottom: 1px solid var(--rule-soft);
-  align-items: baseline;
-  cursor: pointer;
-  position: relative;
-  transition: background 0.15s;
-}
-.repo-row.repo-row-head { margin: 0; }
-.repo-row:not(.repo-row-head):hover {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-}
-.repo-row .name { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--ink); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.repo-row .name .repo-title { font-family: var(--font-sans); font-size: 14.5px; font-weight: 500; letter-spacing: -0.005em; color: var(--ink); line-height: 1.3; }
-.repo-row .name .repo-handle { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.02em; }
-.repo-row .desc { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
-.repo-row .lang { font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.04em; display: inline-flex; align-items: center; }
-.repo-row .lang .sq { display: inline-block; width: 8px; height: 8px; background: var(--accent); margin-right: 6px; flex-shrink: 0; }
-.repo-row .status { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; text-align: right; }
-.repo-row .chev { font-family: var(--font-mono); color: var(--muted); text-align: right; transition: transform 0.25s ease, color 0.15s; }
-.repo-row.open { background: color-mix(in oklab, var(--accent) 4%, transparent); }
-.repo-row.open .chev { transform: rotate(90deg); color: var(--accent); }
-
-.repo-detail {
-  padding: 16px 0 22px;
-  border-bottom: 1px solid var(--rule-soft);
-  background: color-mix(in oklab, var(--accent) 2%, transparent);
-}
-.repo-detail-inner {
-  padding: 4px 0 0 18px;
-  border-left: 2px solid var(--accent);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.repo-detail-note {
-  margin: 0;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-.repo-detail .row-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-  font-weight: 500;
-}
-.repo-detail .row-link:hover,
-.repo-detail .row-link:focus-visible {
-  border-bottom-color: var(--accent);
-}
-.repo-detail .row-link span[aria-hidden] { font-size: 11px; opacity: 0.85; }
-
-/* featured article block (Market Opinions) */
-.featured-article {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 32px;
-  margin: 40px 0 80px;
-  padding: 24px 28px;
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--accent);
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.15s, border-color 0.15s;
-}
-.featured-article:hover,
-.featured-article:focus-visible {
-  background: color-mix(in oklab, var(--accent) 9%, var(--paper));
-  border-color: var(--accent);
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent);
-}
-.featured-article-side {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 4px;
-}
-.featured-article-label {
-  font-family: var(--font-stack);
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 500;
-}
-.featured-article-meta {
-  font-family: var(--font-stack);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-}
-.featured-article-main { display: flex; flex-direction: column; gap: 8px; }
-.featured-article-title {
-  font-family: var(--font-sans);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  margin: 0;
-  color: var(--ink);
-  line-height: 1.25;
-}
-.featured-article-excerpt {
-  margin: 0;
-  font-size: 14px;
-  color: var(--ink-2);
-  line-height: 1.55;
-}
-.featured-article-cta {
-  margin-top: 6px;
-  font-family: var(--font-stack);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.featured-article-cta span[aria-hidden] { font-size: 11px; opacity: 0.85; }
-@media (max-width: 900px) {
-  .featured-article { grid-template-columns: 1fr; gap: 14px; }
-}
-
-/* goal cards — "white block" variant for the coming-soon list */
-.goal-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto auto 1fr auto;
-  gap: 16px;
-  margin: 0 0 80px;
-}
-.goal-card {
-  position: relative;
-  padding: 22px 24px 24px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 4;
-  gap: 6px;
-}
-.goal-card-icon {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
-  color: var(--ink);
-  opacity: 0.38;
-  pointer-events: none;
-}
-.goal-card-icon svg { width: 100%; height: 100%; display: block; }
-.goal-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.goal-card-kicker {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.goal-card-lang {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--ink-2);
-  letter-spacing: 0.04em;
-  display: inline-flex;
-  align-items: center;
-}
-.goal-card-lang .sq { display: inline-block; width: 8px; height: 8px; margin-right: 6px; vertical-align: middle; }
-.goal-card-num {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.goal-card-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-.goal-card-title {
-  font-family: var(--font-sans);
-  font-size: 19px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  margin: 0;
-  color: var(--ink);
-  line-height: 1.25;
-  min-height: calc(19px * 1.25 * 2);
-}
-.goal-card-handle {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--muted);
-  letter-spacing: 0.02em;
-}
-.goal-card-desc {
-  font-size: 13.5px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  margin: 6px 0 0;
-}
-.goal-card-why {
-  margin: 10px 0 0;
-  padding: 2px 0 2px 14px;
-  border-left: 2px solid var(--accent);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.goal-card-why-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.goal-card-why-text {
-  margin: 0;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* blog entries */
-.blog-entry {
-  display: grid;
-  grid-template-columns: 140px 1fr 90px;
-  gap: 40px;
-  padding: 24px 12px;
-  margin: 0 -12px;
-  border-bottom: 1px solid var(--rule-soft);
-  align-items: baseline;
-  cursor: pointer;
-  position: relative;
-  transition: background 0.15s;
-}
-.blog-entry.upcoming {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-  opacity: 0.68;
-}
-.blog-entry[role="link"]:hover,
-.blog-entry[role="link"]:focus-visible {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-}
-.blog-entry .date { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }
-.blog-entry .title { font-family: var(--font-sans); font-size: 19px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 4px; line-height: 1.25; }
-.blog-entry .excerpt { font-size: 13.5px; color: var(--ink-2); line-height: 1.55; max-width: 58ch; margin: 0; }
-.blog-entry .tags { display: flex; gap: 6px; margin-top: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-.blog-entry .tags span { font-size: 12px; }
-.blog-entry .len { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-align: right; letter-spacing: 0.08em; }
-
-/* ==========================================================
-   TWEAKS
-   ========================================================== */
-.tweaks-panel {
-  position: fixed; bottom: 24px; right: 24px; z-index: 100;
-  width: 260px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  padding: 16px 18px;
-  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.3);
-  font-size: 13px;
-  animation: tweakIn 0.25s ease;
-}
-@keyframes tweakIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.tweaks-panel h4 { display: flex; justify-content: space-between; align-items: center; margin: 0 0 4px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
-.tweaks-panel .close { font-size: 16px; color: var(--muted); padding: 2px 6px; cursor: pointer; border: none; background: none; }
-.tweaks-panel .hint { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
-.tweaks-panel .group { margin-bottom: 14px; }
-.tweaks-panel .label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; display: block; }
-.tweaks-panel .opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.tweaks-panel .opts button {
-  padding: 9px 6px;
-  border: 1px solid var(--rule);
-  font-size: 11px;
-  text-align: center;
-  background: var(--bg);
-  cursor: pointer;
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-}
-.tweaks-panel .opts button:hover { border-color: var(--ink-2); }
-.tweaks-panel .opts button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.tweaks-panel .swatch-row { display: flex; gap: 6px; justify-content: center; margin-bottom: 4px; }
-.tweaks-panel .swatch-row .sw { width: 10px; height: 10px; border: 1px solid var(--rule); }
-.tweaks-panel .toggle { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; border: 1px solid var(--rule); cursor: pointer; background: var(--bg); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; }
-.tweaks-panel .toggle .sw { width: 28px; height: 16px; background: var(--rule); position: relative; }
-.tweaks-panel .toggle .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: var(--paper); transition: transform 0.2s; }
-.tweaks-panel .toggle.on .sw { background: var(--accent); }
-.tweaks-panel .toggle.on .sw::after { transform: translateX(12px); }
-
-/* density */
-[data-density="dense"] .row { padding: 10px 12px 9px; }
-[data-density="dense"] .summary { padding: 32px 0 36px; }
-[data-density="dense"] .section-head { padding-top: 36px; }
-[data-density="loose"] .row { padding: 22px 12px 21px; }
-[data-density="loose"] .summary { padding: 64px 0 72px; }
-
-/* ==========================================================
-   SECTION RULES — "clean" mode collapses the stacked dividers
-   between sections into a single quiet line
-   ========================================================== */
-[data-rules="clean"] .section-head .rule { display: none; }
-[data-rules="clean"] .section-head {
-  grid-template-columns: auto 1fr auto;
-  padding-top: 64px;
-  padding-bottom: 14px;
-  gap: 18px;
-  border-bottom: none;
-}
-[data-rules="clean"][data-density="dense"] .section-head { padding-top: 44px; }
-[data-rules="clean"] .register,
-[data-rules="clean"] .skills-table,
-[data-rules="clean"] .transcript {
-  border-top: none;
-}
-[data-rules="clean"] .register-head,
-[data-rules="clean"] .skills-table thead th {
-  border-bottom-color: var(--rule);
-}
-[data-rules="clean"] .colophon { border-top-width: 1px; }
-
-/* panel: section title + note sit in a quiet filled panel, no rules */
-[data-rules="panel"] .section-head {
-  background: var(--bg-2);
-  border: 1px solid var(--rule-soft);
-  padding: 14px 20px;
-  margin-top: 56px;
-  margin-bottom: 18px;
-  gap: 18px;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  border-bottom: 1px solid var(--rule-soft);
-}
-[data-rules="panel"] .section-head .rule { display: block; visibility: hidden; height: 0; }
-[data-rules="panel"] .section-head .note {
-  justify-self: end;
-  text-align: right;
-}
-[data-rules="panel"][data-density="dense"] .section-head { margin-top: 36px; padding: 12px 18px; }
-[data-rules="panel"] .section-head .rule { display: none; }
-[data-rules="panel"] .section-head .title {
-  font-weight: 500 !important;
-  color: var(--ink);
-  font-size: 13px;
-}
-[data-rules="panel"] .section-head .note { color: var(--ink-2); }
-[data-rules="panel"] .section-head .numeral {
-  font-weight: 500;
-}
-[data-rules="panel"] .register,
-[data-rules="panel"] .skills-table,
-[data-rules="panel"] .transcript {
-  border-top: none;
-}
-[data-rules="panel"] .colophon { border-top-width: 1px; }
-
-/* Bar edges — extend section heads and statblocks outward so inner text aligns with body */
-[data-edges="extended"] .section-head {
-  margin-left: -20px;
-  margin-right: -20px;
-}
-[data-edges="extended"][data-density="dense"][data-rules="panel"] .section-head {
-  margin-left: -18px;
-  margin-right: -18px;
-}
-[data-edges="extended"] .statblock {
-  margin-left: -18px;
-  margin-right: -18px;
-}
-[data-edges="extended"] .transcript .term-head {
-  margin-left: -16px;
-  margin-right: -16px;
-}
-
-/* responsive */
-@media (max-width: 900px) {
-  .doc { padding: 0 24px; }
-  .masthead .masthead-strip { grid-template-columns: 1fr; gap: 8px; }
-  .masthead .name-row { flex-direction: column; gap: 12px; align-items: flex-start; }
-  .masthead .filing-id { text-align: left; }
-  .summary { grid-template-columns: 1fr; gap: 32px; }
-  .register-head, .row { grid-template-columns: 1fr 48px; gap: 12px; }
-  .register-head .col-role, .register-head .col-locus, .register-head .col-period { display: none; }
-  .row .period, .row .role, .row .locus { display: none; }
-  .row .period-mobile { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 4px; }
-  .row-detail .inner { grid-template-columns: 1fr; padding-left: 16px; margin-left: 0; }
-  .row-detail .aside-col { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 16px; }
-  .repo-row { grid-template-columns: 1fr 48px; gap: 12px; }
-  .repo-row .desc, .repo-row .lang, .repo-row .status { display: none; }
-  .blog-entry { grid-template-columns: 1fr; gap: 6px; }
-  .blog-entry .len { display: none; }
-  .skills-table td.refs { display: none; }
-  .skills-table td.skill { padding-right: 8px; }
-  .skills-table .barwrap { grid-template-columns: repeat(5, 22px); gap: 3px; }
-  .skills-table td.level .level-text { font-size: 11px; width: 78px; }
-  .skills-table td.skill { width: 140px; }
-  .skills-table td.applied { font-size: 12px; }
-  .transcript .course-row { grid-template-columns: 1fr auto; gap: 8px; }
-  .transcript .course-code { font-size: 10px; }
-  .transcript .course-cr { display: none; }
-  .transcript .course-note { padding-left: 0; padding-right: 0; }
-}
-
-/* ==========================================================
-   DESKTOP / MOBILE-TABLET VISIBILITY SWITCH
-   Single alternate layout for everything ≤1024px.
-   The original desktop styles above are not touched.
-   ========================================================== */
-.desktop-only        { display: block; }
-.mobile-tablet-only  { display: none; }
-@media (max-width: 1024px) {
-  .desktop-only        { display: none !important; }
-  .mobile-tablet-only  { display: block; }
-}
-
-/* ==========================================================
-   MOBILE / TABLET PORTFOLIO LAYOUT
-   - phone: compact, full-width
-   - tablet (≥640px): centered max-width container, looser
-   ========================================================== */
-.mt-doc {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 18px;
-  position: relative;
-  z-index: 2;
-  font-family: var(--font-stack);
-  color: var(--ink);
-}
-
-/* ---------- Masthead ---------- */
-.mt-masthead {
-  border-top: 4px solid var(--ink);
-  padding-top: 16px;
-  margin-top: 16px;
-  padding-bottom: 8px;
-}
-.mt-mast-strip {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 11px;
-  color: var(--muted);
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
-}
-.mt-name {
-  font-family: var(--font-sans);
-  font-size: 34px;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1;
-  margin: 18px 0 14px;
-  color: var(--ink);
-}
-.mt-mast-meta {
-  font-size: 12.5px;
-  color: var(--ink-2);
-  line-height: 1.55;
-}
-.mt-mast-meta b { color: var(--ink); font-weight: 500; }
-.mt-mast-meta a { color: inherit; text-decoration: none; }
-.mt-mast-meta a:active { color: var(--accent); }
-
-.mt-tabstrip {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.mt-tabstrip::-webkit-scrollbar { display: none; }
-.mt-tabstrip button {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 10px 13px;
-  margin-right: 0;
-  font-family: var(--font-stack);
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 0;
-  cursor: pointer;
-  white-space: nowrap;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  transition: color 0.15s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.mt-tabstrip button .roman { color: var(--ink-2); opacity: 0.6; }
-.mt-tabstrip button:hover,
-.mt-tabstrip button:focus-visible {
-  color: var(--ink);
-  border-color: var(--rule);
-  background: var(--bg-2);
-}
-.mt-tabstrip button.active {
-  color: var(--ink);
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 6%, var(--paper));
-}
-.mt-tabstrip button.active .roman { color: var(--accent); opacity: 1; }
-
-/* ---------- Summary ---------- */
-.mt-summary { padding: 24px 0 8px; border-bottom: 1px solid var(--rule); }
-.mt-lede {
-  font-family: var(--font-sans);
-  font-size: 19px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin: 0 0 12px;
-}
-.mt-lede em { font-style: normal; }
-.mt-lede-small {
-  font-size: 13.5px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  margin: 0 0 18px;
-}
-.mt-statblock {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin: 4px 0 16px;
-}
-.mt-statblock > div {
-  background: var(--paper);
-  padding: 12px 14px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.mt-statblock .k { font-size: 10.5px; color: var(--muted); }
-.mt-statblock .v {
-  font-family: var(--font-sans);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
-/* ---------- Section heads ---------- */
-.mt-section-head {
-  padding: 28px 0 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  border-bottom: 1px solid var(--rule-soft);
-  margin-bottom: 0;
-}
-.mt-section-title {
-  font-size: 13px;
-  color: var(--ink);
-  font-weight: 500;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.mt-section-title .numeral { color: var(--ink); }
-.mt-section-title .dot {
-  color: var(--ink);
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 1;
-  margin: 0 3px;
-  vertical-align: -2px;
-}
-.mt-section-link {
-  margin-left: 6px;
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
-}
-.mt-section-link:hover,
-.mt-section-link:focus-visible {
-  border-bottom-color: var(--accent);
-}
-.mt-section-note { font-size: 12px; color: var(--muted); line-height: 1.45; }
-
-/* ---------- Register (rows) ---------- */
-.mt-register {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-.mt-row {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 14px 10px;
-  margin: 0 -10px;
-  cursor: pointer;
-  font-family: var(--font-stack);
-  color: inherit;
-  min-height: 44px;
-  position: relative;
-  transition: background 0.15s;
-}
-.mt-row:not(:disabled):hover,
-.mt-row:not(:disabled):focus-visible {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-}
-.mt-row:last-of-type { border-bottom: none; }
-.mt-row.open { background: color-mix(in oklab, var(--accent) 4%, transparent); padding-left: 10px; padding-right: 10px; margin: 0 -10px; }
-.mt-row-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
-}
-.mt-row-period {
-  font-size: 11.5px;
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-}
-.mt-row-chev {
-  font-size: 16px;
-  color: var(--muted);
-  transition: transform 0.2s ease, color 0.15s;
-}
-.mt-row.open .mt-row-chev { transform: rotate(90deg); color: var(--accent); }
-.mt-row-org {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.25;
-  color: var(--ink);
-  margin: 2px 0 4px;
-}
-.mt-row.future .mt-row-org { color: var(--ink-2); }
-.mt-row.future .mt-row-org::after {
-  content: " (planned)";
-  font-size: 11px;
-  color: var(--muted);
-  font-weight: 400;
-}
-.mt-row-meta {
-  font-size: 12.5px;
-  color: var(--ink-2);
-  line-height: 1.4;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-}
-.mt-row-meta .dot { color: var(--muted); opacity: 0.6; }
-
-.mt-row-detail {
-  padding: 4px 0 18px 14px;
-  border-left: 2px solid var(--accent);
-  margin: 8px 0 12px;
-  background: color-mix(in oklab, var(--accent) 2%, transparent);
-}
-.mt-row-duration {
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 8px;
-}
-.mt-row-note {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--ink);
-  margin: 0 0 12px;
-}
-.mt-row-detail ul {
-  margin: 0 0 14px;
-  padding: 0;
-  list-style: none;
-}
-.mt-row-detail ul li {
-  position: relative;
-  padding-left: 16px;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin-bottom: 6px;
-}
-.mt-row-detail ul li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 8px;
-  height: 1px;
-  background: var(--ink-2);
-}
-.mt-row-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 13px;
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
-  padding: 2px 5px 3px;
-  font-weight: 500;
-  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
-}
-.mt-row-link:hover,
-.mt-row-link:focus-visible {
-  border-bottom-color: var(--accent);
-}
-.mt-row-photo {
-  width: 100%;
-  margin-top: 12px;
-  border: 1px solid var(--rule);
-  background: var(--bg-2);
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-.mt-row-collage {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin-top: 12px;
-}
-.mt-row-collage img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  background: transparent;
-}
-
-/* ---------- Involvement ---------- */
-.mt-involvement {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 24px;
-}
-.mt-inv-card {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  padding: 14px 16px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.mt-inv-card.aside { border-left: 2px solid var(--accent); }
-.mt-inv-letters {
-  font-size: 22px;
-  letter-spacing: 0.18em;
-  color: var(--ink-2);
-  opacity: 0.22;
-  font-weight: 300;
-  margin: -2px 0 2px;
-}
-.mt-inv-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.mt-inv-org { font-size: 16px; font-weight: 500; letter-spacing: -0.005em; }
-.mt-inv-role { font-size: 11.5px; color: var(--muted); }
-.mt-inv-desc { margin: 0; font-size: 13px; line-height: 1.55; color: var(--ink-2); }
-.mt-inv-article {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 4px;
-  padding: 10px 12px;
-  background: var(--bg-2);
-  border: 1px solid var(--rule-soft);
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.mt-inv-article:hover,
-.mt-inv-article:focus-visible {
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 4%, var(--bg-2));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent);
-}
-.mt-inv-article .label { font-size: 10.5px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-.mt-inv-article .title { font-size: 14px; font-weight: 500; color: var(--ink); letter-spacing: -0.005em; line-height: 1.3; }
-.mt-inv-article .meta {
-  font-size: 11.5px;
-  color: var(--accent);
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.mt-inv-meta {
-  margin-top: 4px;
-  padding-top: 8px;
-  border-top: 1px solid var(--rule-soft);
-  font-size: 11px;
-  color: var(--muted);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-/* ---------- Skills ---------- */
-.mt-skills {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-.mt-skill {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.mt-skill:last-child { border-bottom: none; }
-.mt-skill-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-}
-.mt-skill-name {
-  font-family: var(--font-sans);
-  font-size: 14.5px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-}
-.mt-skill-level { font-size: 11.5px; color: var(--ink-2); }
-.mt-skill-bars {
-  display: grid;
-  grid-template-columns: repeat(5, 22px);
-  gap: 3px;
-  margin: 6px 0 8px;
-}
-.mt-skill-bars span { height: 8px; background: var(--rule); }
-.mt-skill-bars span.on { background: var(--ink); }
-.mt-skill-applied { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
-
-/* ---------- Transcript ---------- */
-.mt-transcript {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding: 4px 0;
-}
-.mt-term { padding: 14px 0 4px; border-bottom: 1px solid var(--rule-soft); }
-.mt-term:last-child { border-bottom: none; }
-.mt-term-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin: 0 0 10px;
-}
-.mt-term-head > div {
-  background: var(--paper);
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.mt-term-head > div:nth-child(3) { grid-column: 1 / -1; }
-.mt-term-head .k { font-size: 10.5px; color: var(--muted); }
-.mt-term-head .v {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  font-variant-numeric: tabular-nums;
-}
-.mt-courses { display: flex; flex-direction: column; gap: 8px; }
-.mt-course { padding: 8px 0 8px; border-top: 1px dotted var(--rule-soft); }
-.mt-course:first-child { border-top: none; }
-.mt-course-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-}
-.mt-course-code {
-  font-family: var(--font-sans);
-  font-size: 11.5px;
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-}
-.mt-course-grade {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.mt-course-name {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-  margin: 2px 0;
-}
-.mt-course-note { font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.5; }
-
-/* ---------- Footnotes ---------- */
-.mt-footnotes { padding: 14px 0 0; font-size: 12.5px; color: var(--ink-2); }
-.mt-fn-item {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 6px;
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-.mt-fn-item .n { color: var(--muted); font-variant-numeric: tabular-nums; }
-
-/* ---------- Repos ---------- */
-.mt-repo-lang {
-  display: inline-flex;
-  align-items: center;
-  font-size: 11.5px;
-  color: var(--ink-2);
-  letter-spacing: 0.02em;
-}
-.mt-repo-lang .sq {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  margin-right: 6px;
-}
-.mt-repo-desc {
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  margin-top: 6px;
-}
-
-/* Coming-soon cards */
-.mt-goal-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; margin-bottom: 8px; }
-.mt-goal-card {
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  padding: 18px 18px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.mt-goal-num {
-  font-family: var(--font-sans);
-  font-size: 10.5px;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-variant-numeric: tabular-nums;
-}
-.mt-goal-dot {
-  display: inline-block;
-  width: 7px; height: 7px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-.mt-goal-title {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin: 2px 0 2px;
-  line-height: 1.25;
-}
-.mt-goal-desc { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin: 0; }
-.mt-goal-why {
-  margin-top: 6px;
-  padding: 4px 0 4px 12px;
-  border-left: 2px solid var(--accent);
-}
-.mt-goal-why .label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  color: var(--accent);
-  font-weight: 500;
-}
-.mt-goal-why p {
-  margin: 4px 0 0;
-  font-size: 12.5px;
-  font-style: italic;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* ---------- Blog posts ---------- */
-.mt-post-date {
-  font-size: 11.5px;
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-}
-.mt-post-len {
-  font-size: 11px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.mt-post-excerpt {
-  font-size: 13.5px;
-  color: var(--ink-2);
-  line-height: 1.55;
-  margin: 4px 0 8px;
-}
-.mt-post-tags {
-  font-size: 11.5px;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.mt-post-tags .upcoming { color: var(--accent); }
-.mt-post-cta {
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 500;
-}
-.mt-post.upcoming {
-  background: color-mix(in oklab, var(--ink) 3%, transparent);
-  opacity: 0.68;
-}
-.mt-post:disabled { cursor: default; }
-
-.mt-featured {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 20px 0 24px;
-  padding: 18px 20px 20px;
-  background: color-mix(in oklab, var(--accent) 5%, var(--paper));
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--accent);
-  text-decoration: none;
-  color: var(--ink);
-  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-}
-.mt-featured:hover,
-.mt-featured:focus-visible {
-  border-color: var(--accent);
-  background: color-mix(in oklab, var(--accent) 9%, var(--paper));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent);
-}
-.mt-featured .label {
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 500;
-}
-.mt-featured .date {
-  font-family: var(--font-stack);
-  font-size: 11px;
-  color: var(--muted);
-}
-.mt-featured .title {
-  font-family: var(--font-sans);
-  font-size: 19px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  margin: 4px 0 4px;
-  color: var(--ink);
-  line-height: 1.25;
-}
-.mt-featured .excerpt { margin: 0; font-size: 13.5px; color: var(--ink-2); line-height: 1.55; }
-.mt-featured .cta {
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* ---------- Colophon ---------- */
-.mt-colophon {
-  border-top: 2px solid var(--ink);
-  margin-top: 28px;
-  padding: 18px 0 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--ink-2);
-}
-.mt-colophon a { color: inherit; text-decoration: none; }
-.mt-colophon a:active { color: var(--accent); }
-.mt-colo-links { display: flex; flex-wrap: wrap; gap: 14px; }
-
-/* Tablet ≥640px: looser, larger typography, slightly more lateral padding */
-@media (min-width: 640px) and (max-width: 1024px) {
-  .mt-doc { padding: 0 40px; }
-  .mt-name { font-size: 46px; }
-  .mt-lede { font-size: 22px; }
-  .mt-section-head { padding-top: 40px; padding-bottom: 14px; }
-  .mt-statblock { grid-template-columns: repeat(4, 1fr); }
-  .mt-row { padding: 18px 10px; }
-  .mt-row-org { font-size: 19px; }
-  .mt-row-note { font-size: 16px; }
-  .mt-goal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .mt-term-head { grid-template-columns: 2fr 1fr 1fr; }
-  .mt-term-head > div:nth-child(3) { grid-column: auto; }
-  .mt-skill-bars { grid-template-columns: repeat(5, 26px); gap: 4px; }
-  .mt-skill-bars span { height: 9px; }
-  .mt-row-collage { grid-template-columns: repeat(5, 1fr); }
-  .mt-colophon {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 0 36px;
-  }
-}
-
-
-</style>
-  <meta name="description" content="I'm Mason Lancellotti, an Emory economics and computer science student focused on finance, consulting, data analytics, and tech-driven solutions.">
+<meta name="description" content="I'm Mason Lancellotti, an Emory economics and computer science student focused on finance, consulting, data analytics, and tech-driven solutions.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mason Lancellotti">
+<meta property="og:description" content="An expanded resume: experience, skills, coursework, project repositories, and writing on markets.">
+<link rel="preload" as="image" href="images/swim-5.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/swim-2.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/swim-3.jpg" fetchpriority="high">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css?v=20260831-7">
 </head>
-<body data-grain="true">
-  <div id="root"></div>
+<body>
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<div class="wrap home">
 
-  <script type="text/babel" src="v2/ledger-data.jsx?v=20260830-1"></script>
-  <script type="text/babel" src="v2/ledger-mobile.jsx?v=20260830-1"></script>
-  <script type="text/babel" src="v2/ledger-app.jsx?v=20260830-1"></script>
+<header>
+  <div class="side-in">
+  <p class="modified muted">Last modified: 8/30/2026</p>
+  <h1>Mason Lancellotti</h1>
+  <p class="contact">
+    Emory University · Atlanta, GA · 3.93 GPA<br>
+    Economics, computer science, and business
+  </p>
+
+  <div class="side-group">
+    <p class="side-label">Contact</p>
+    <ul class="side-links">
+      <li><a href="mailto:mason.angelo.lancellotti@gmail.com">mason.angelo.lancellotti@gmail.com</a></li>
+      <li class="plain">(703) 919-3319</li>
+    </ul>
+  </div>
+
+  
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <p class="side-label">Pages</p>
+    <button role="tab" id="tab-filing" data-panel="filing" aria-controls="filing" aria-selected="true">Experience</button>
+    <button role="tab" id="tab-repos" data-panel="repos" aria-controls="repos" aria-selected="false" tabindex="-1">Project Repositories</button>
+    <button role="tab" id="tab-blog" data-panel="blog" aria-controls="blog" aria-selected="false" tabindex="-1">Market Opinions</button>
+  </nav>
+
+  <div class="side-group">
+    <p class="side-label">Materials</p>
+    <ul class="side-links">
+      <li><a href="files/mason-resume.pdf" target="_blank" rel="noopener">Resume<span class="tag">PDF</span></a></li>
+      <li><a href="files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript<span class="tag">PDF</span></a></li>
+      <li><a href="files/mason-sat.pdf" target="_blank" rel="noopener">SAT Report<span class="tag">PDF</span></a></li>
+    </ul>
+  </div>
+
+  <div class="side-group">
+    <p class="side-label">External Links</p>
+    <ul class="side-links">
+      <li><a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://emoryeconomicsreview.org/articles/2026/3/3/peptide-pricing-power-the-glp-1-duopoly" target="_blank" rel="noopener">Emory Economics Review<span class="ext" aria-hidden="true">↗</span></a></li>
+    </ul>
+  </div>
+
+  </div>
+</header>
+
+<section id="filing" role="tabpanel" aria-labelledby="tab-filing">
+
+  <div class="page-intro">
+    <div class="intro-text">
+      <p class="lede">Undergraduate at <em>Emory University</em> studying economics and computer science with a business minor; master's in economics expected in 2028.</p>
+      <p class="sub">Below you can find a running archive of my experience, skills, and coursework. Some entries can be expanded to provide more detail. I created this page with the goal of painting a clearer picture of my background than a static resume alone can accomplish.</p>
+    </div>
+    <div class="intro-side">
+      <div class="headshot"><img src="images/headshot.jpg" alt="Mason Lancellotti" width="520" height="520" fetchpriority="high"></div>
+      <div class="seeking">
+        <p class="side-label">Currently seeking</p>
+        <p class="seeking-what">Summer 2027 internships in equity research, analytics, and markets.</p>
+        <p class="seeking-meta">Available May&nbsp;–&nbsp;August 2027 · Open to relocation</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Experience</h2>
+
+  <div class="rows">
+    <details id="role-1">
+      <summary><span class="when">Jun '22 – Mar '23</span> <b>Mathnasium</b> <span class="role">Math Instructor</span> <span class="loc">Haymarket, VA</span></summary>
+      <div>
+        <p class="muted">10 mos.</p>
+        <p>This was my first paid role, and served as my introduction into the professional world.</p>
+        <ul>
+          <li>Taught 30+ K-12 students through structured sessions and one-on-one homework help.</li>
+          <li>Introduced study techniques and problem-solving strategies to build retention and academic confidence.</li>
+          <li>Wrote personalized learning plans with regular parent check-ins, with ~90% of students finishing the semester with higher grades.</li>
+        </ul>
+        <a href="https://www.mathnasium.com/math-centers/haymarket" target="_blank" rel="noopener">Mathnasium Haymarket <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="role-2">
+      <summary><span class="when">Jan '24 – Present</span> <b>Emory Club Swimming</b> <span class="role">Vice President</span> <span class="loc">Atlanta, GA</span></summary>
+      <div>
+        <p class="muted">Ongoing</p>
+        <p>The team spans from beginners to ex-varsity swimmers, requiring me to consider many different perspectives, often different than my own.</p>
+        <ul>
+          <li>Design and lead 4 practices per week for 10–20 swimmers across every skill level.</li>
+          <li>Balance technique work for new swimmers with endurance training for more experienced swimmers in the same session.</li>
+          <li>Coordinate logistics for 6 out-of-state meets per year, managing itineraries, lodging, transportation, and budgeting with the club sports office.</li>
+        </ul>
+        <div class="photos">
+          <img src="images/swim-5.jpg" alt="" loading="eager" fetchpriority="high">
+          <img src="images/swim-2.jpg" alt="" loading="eager" fetchpriority="high">
+          <img src="images/swim-3.jpg" alt="" loading="eager" fetchpriority="high">
+        </div>
+      </div>
+    </details>
+
+    <details id="role-3">
+      <summary><span class="when">May '24 – Aug '26</span> <b>Life Time Fitness</b> <span class="role">Lifeguard</span> <span class="loc">Gainesville, VA</span></summary>
+      <div>
+        <p class="muted">2 yrs. 4 mos.</p>
+        <p>Being a returning seasonal employee for three summers, I underwent repeated certifications and training. This position also bolstered my client communication skills.</p>
+        <ul>
+          <li>Monitored pool activities and proactively enforced safety guidelines to prevent accidents.</li>
+          <li>Administered first aid on 6 separate occasions, coordinating directly with police and EMS.</li>
+          <li>Collaborated with management on aquatics events and served 300+ members daily, resolving issues on the pool deck and locker rooms.</li>
+        </ul>
+        <a href="https://my.lifetime.life/clubs/va/gainesville/programs/swim.html" target="_blank" rel="noopener">Life Time Gainesville <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="role-4">
+      <summary><span class="when">Jun '25 – Aug '25</span> <b>RBmedia</b> <span class="role">Business Analytics Intern</span> <span class="loc">Landover, MD</span></summary>
+      <div>
+        <p class="muted">3 mos.</p>
+        <p>This was my first time in a professional setting with a business context. It opened my eyes to the utility of data and how invaluable of a tool it can be for almost any task, goal, or industry.</p>
+        <ul>
+          <li>Compiled monthly and quarterly sales reports on 2,500+ Audible and Spotify audiobook titles.</li>
+          <li>Visualized trends with tables and graphs to help guide executive decision-making on a variety of topics.</li>
+          <li>Assisted in rolling out an automated posting workflow across 12 social media accounts, supervising the first ~1,800 uploads and diagnosing technical issues in real time.</li>
+        </ul>
+        <a href="https://rbmediaglobal.com/" target="_blank" rel="noopener">RBmedia <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="role-5">
+      <summary><span class="when">Sep '25 – Present</span> <b>Emory Economics Department</b> <span class="role">Student Tutor</span> <span class="loc">Atlanta, GA</span></summary>
+      <div>
+        <p class="muted">Ongoing</p>
+        <p>Having been invited to the program through a GPA-based selection process, students can reach out to me for independent, paid tutoring when in need of homework help or clarity on tricky concepts.</p>
+        <ul>
+          <li>Offer one-on-one instruction in micro/macroeconomics, data science, and computer science.</li>
+          <li>Build comprehensive review guides and exam-based timelines from each course's syllabus.</li>
+          <li>Run 3-5 sessions per week on content mastery, problem sets, and test strategy, looping in professors and TAs when needed to clarify solution methods.</li>
+        </ul>
+        <a href="https://economics.emory.edu/undergraduate/econ-dept-opportunities/tutoring.html" target="_blank" rel="noopener">Emory Econ Tutoring <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="role-6">
+      <summary><span class="when">June '26 – Present</span> <b>GROWTH Homes</b> <span class="role">Digital Marketing Intern</span> <span class="loc">Washington, DC</span></summary>
+      <div>
+        <p class="muted">Ongoing</p>
+        <p>I support ongoing digital marketing, data, and automation projects for a real estate organization on an as-needed basis.</p>
+        <ul>
+          <li>Developed an industry-specific AI application that saved approximately 61 hours of manual labor over an initial test batch of 76 short-form videos.</li>
+          <li>Reconciled 4,000+ records for CRM migration, authoring formal documentation to guide adoption, best practices, and efficient utilization.</li>
+          <li>Retained on an as-needed basis to support ongoing projects and new emerging needs.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="involvement">
+    <div class="inv-card">
+      <div class="inv-head">
+        <span class="inv-org">Emory Economics Review</span>
+        <span class="inv-role">Contributor<sup><a href="#fn-2" aria-label="Footnote 2">2</a></sup></span>
+      </div>
+      <p class="inv-desc">Emory's undergraduate economics publication. I am part of the organization as an author and write long-form pieces on unique economics topics of my choice, with selected work published in an annual print magazine.</p>
+      <a class="inv-article" href="https://emoryeconomicsreview.org/articles/2026/3/3/peptide-pricing-power-the-glp-1-duopoly" target="_blank" rel="noopener">
+        <span class="inv-article-label">Featured article</span>
+        <span class="inv-article-title">Peptide Pricing Power: The GLP-1 Duopoly <span aria-hidden="true">↗</span></span>
+        <span class="inv-article-meta">By Mason Lancellotti · March 7, 2026</span>
+      </a>
+    </div>
+
+    <div class="inv-card inv-card-aside">
+      <div class="inv-letters" aria-hidden="true">ΟΔΕ</div>
+      <div class="inv-head">
+        <span class="inv-org">Omicron Delta Epsilon</span>
+        <span class="inv-role">Member</span>
+      </div>
+      <p class="inv-desc">International economics honor society. Merit-based invitation extended to students in the top of their economics class.</p>
+      <div class="inv-meta">Academic distinction · Inducted 2025</div>
+    </div>
+  </div>
+
+  <h2>Skills Index</h2>
+
+  <table class="skills">
+    <thead>
+      <tr><th>Skill</th><th>Level</th><th>Prior applications</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PowerPoint</td><td class="level"><span class="level-text">Expert</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td>Stock pitches, mock strategy analysis decks, Experimental Economics final presentation, Econometrics final presentation, Topics in Macroeconomics presentations, other miscellaneous class projects</td></tr>
+      <tr><td>AI automation</td><td class="level"><span class="level-text">Expert</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span></td><td>Audiobook preview creation/posting workflow (RBmedia), centralized real estate social media marketing app (GROWTH Homes), Data Management &amp; Visualization, various personal projects, daily work streamlining and efficiency</td></tr>
+      <tr><td>Python</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>All personal projects (see <a href="?tab=repos">Project Repositories</a>), Computing Methods in Economics, Data Management &amp; Visualization, course labs for Calculus, Linear Algebra, Econometrics, and Data Science for Economists</td></tr>
+      <tr><td>Excel</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>Sales data cleaning and analysis (RBmedia), CRM data restructure and transfer (GROWTH Homes), financial modeling (personal investing), Corporate Finance, Accounting, and Process &amp; Systems Management</td></tr>
+      <tr><td>Financial analysis</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>Market research dashboard, Bitcoin price prediction model, Corporate Finance, stock pitches, personal investing</td></tr>
+      <tr><td>Econometrics</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>Econometrics final project, Quantitative Methods I, prediction markets trading program, bitcoin price prediction model</td></tr>
+      <tr><td>Forecasting</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>Bitcoin price prediction model, Econometrics final project, prediction markets trading program, Process &amp; Systems Management, Corporate Finance</td></tr>
+      <tr><td>Valuation</td><td class="level"><span class="level-text">Advanced</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span></span></td><td>Prediction markets trading program, stock pitches, Corporate Finance, personal investing</td></tr>
+      <tr><td>SQL</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>Market research dashboard, prediction markets trading program, centralized real estate social media marketing app, Database Systems</td></tr>
+      <tr><td>Git</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>All personal projects, Data Management &amp; Visualization</td></tr>
+      <tr><td>Tableau</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>Process &amp; Systems Management, Data Management &amp; Visualization</td></tr>
+      <tr><td>Macroeconomic analysis</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>Market research dashboard (regime analysis and sentiment components), Intermediate Macroeconomics, Topics in Macroeconomics, Emory Economics Review, personal blog</td></tr>
+      <tr><td>Competitive research</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>Market research dashboard, ad hoc projects/writeups (RBmedia and GROWTH Homes), Emory Economics Review, personal blog, personal investing</td></tr>
+      <tr><td>Due diligence</td><td class="level"><span class="level-text">Proficient</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span></span></td><td>Market research dashboard, stock pitches, personal investing</td></tr>
+      <tr><td>Power BI</td><td class="level"><span class="level-text">Intermediate</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></span></td><td>Econometrics, trading/pricing program dashboards</td></tr>
+      <tr><td>Stata</td><td class="level"><span class="level-text">Intermediate</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></span></td><td>Data Science for Economists, Econometrics</td></tr>
+      <tr><td>R</td><td class="level"><span class="level-text">Intermediate</span><span class="barwrap" aria-hidden="true"><span class="on"></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></span></td><td>Econometrics, Data Management &amp; Visualization</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Undergrad Transcript <a class="h2-link" href="files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Open PDF <span aria-hidden="true">↗</span></a></h2>
+
+  <div class="transcript">
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Fall 2023</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">4.000</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">15<a class="fn-ref" href="#fn-1">1</a></span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 170</span>
+            <span class="course-name">Intro to Computer Science I</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Learned programming from scratch in Java, starting with simple algorithms, recursion, and turtle graphics.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 101</span>
+            <span class="course-name">Principles of Microeconomics</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered how markets work through supply, demand, pricing, and consumer/firm behavior.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">PSYC 110</span>
+            <span class="course-name">Intro Psychology I</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on the biological side of psychology, including brain structures, animal behavior, and how different parts of the brain control different functions or predispositions.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">PSYC 190</span>
+            <span class="course-name">Freshman Seminar: Psychology</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on case studies regarding brain disorders like Alzheimer's, face blindness, and aphantasia, concluding with a fifteen-minute final presentation (which I did on CTE).</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Spring 2024</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">4.000</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">13<a class="fn-ref" href="#fn-1">1</a></span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 171</span>
+            <span class="course-name">Intro to Computer Science II</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Built on Java foundation from CS 170 with object-oriented programming, basic data structures, and more complex/efficient problem solving.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 224</span>
+            <span class="course-name">Foundations of Computer Science</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered discrete math, logic, proofs, and the theory behind how computer science and encryption work.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 112</span>
+            <span class="course-name">Principles of Macroeconomics</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on inflation, unemployment, growth, banking, and how the Fed as well as the overall larger economy function.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ENG 205</span>
+            <span class="course-name">Poetry</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on reading comprehension and understanding the how and why behind authors' use of varying languages, structures, and tones.</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Fall 2024</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">3.929</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">17</span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 253</span>
+            <span class="course-name">Data Structures and Algorithms</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Learned core data structures and algorithms in both Java and Python, with an emphasis on efficiency and identifying appropriate use cases.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 201</span>
+            <span class="course-name">Intermediate Microeconomics</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Dove deeper into utility theory, consumer choice dynamics, firm behavior, constrained optimization, and other calculus applications.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 215</span>
+            <span class="course-name">Stocks, Bonds &amp; Financial Markets</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered a vast array of financial markets, including stocks, bonds, options, futures, real estate, and other major asset classes.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">MATH 221</span>
+            <span class="course-name">Linear Algebra</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span><span class="g-mod">-</span></span>
+          </div>
+          <div class="course-note">Studied matrices, vector spaces, eigenvalues, transformations, and least-squares methods, learning how to apply these concepts efficiently and in a standardized manner using Python.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">SPAN 201</span>
+            <span class="course-name">Intermediate Spanish I</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on the study of authentic cultural material in order to build more robust speaking, writing, reading, and listening skills.</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Spring 2025</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">4.000</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">18</span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ACT 200</span>
+            <span class="course-name">Accounting: The Language of Business</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Learned how the four financial statements connect and can be used to track performance through transactions, costs, and cash flows, concluding with a final twenty-minute stock pitch (which my group did on Nike, recommending a buy).</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">BUS 290</span>
+            <span class="course-name">Tech Toolbox A: Excel</span>
+            <span class="course-cr">1.00</span>
+            <span class="course-grade"><span class="g-letter">S</span></span>
+          </div>
+          <div class="course-note">Built practical Excel skills through learning formulas, how to create charts, employ pivot tables, utilize VLOOKUP, and conduct basic financial modeling.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 212</span>
+            <span class="course-name">Intermediate Macroeconomics</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">A math-heavy class centered on deriving theoretical models for national output, employment, inflation, and monetary policy mechanisms.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 220</span>
+            <span class="course-name">Data Science for Economists</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered basic and intermediate probability, statistics, and regression concepts, also including a Python lab component during which we conducted practical economic work using real-world datasets.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">MATH 210</span>
+            <span class="course-name">Advanced Calculus for Data Sciences</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on multivariable calculus, optimization, integration, Taylor series, and specific data science applications using Python.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">SPAN 202</span>
+            <span class="course-name">Intermediate Spanish II</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Continued strengthening Spanish communication skills while further studying Hispanic culture, society, and history.</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Fall 2025</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">4.000</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">17</span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 325</span>
+            <span class="course-name">Artificial Intelligence</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Began with primitive AI concepts and built up to more advanced topics like alpha-beta pruning, CNNs, reinforcement learning, and LLMs, overall covering a wide array of computational techniques and their discrete foundations.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 310W</span>
+            <span class="course-name">Experimental Economics</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on examining a list of the most impactful studies and findings in the field, ending with a capstone project that involved the design of our own economic experiment and a mock academic paper explaining the procedure and analyzing various possible outcomes.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 320</span>
+            <span class="course-name">Econometrics</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on regression-based approaches for modeling economic data, testing relationships, and interpreting results, including a lab section in which we had to design a unique econometric model using real datasets from IPUMS and FRED, presenting our findings and limitations at the conclusion of the course.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">FIN 320</span>
+            <span class="course-name">Corporate Finance</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered stock and bond valuation, annuities and perpetuities, risk-return tradeoffs, capital allocation, and general firm-level financial decision-making.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">HIST 207</span>
+            <span class="course-name">Medieval Europe and the World</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Focused on Catholicism's aggressive expansion and religious dominance through the rigorous study and analysis of primary texts and accounts, emphasizing the suppression of other cultures and belief systems.</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Spring 2026</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">3.600</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">12</span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 334</span>
+            <span class="course-name">Machine Learning</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span><span class="g-mod">-</span></span>
+          </div>
+          <div class="course-note">Built from foundational ML concepts like decision boundaries, gradient descent, regularization, model selection, and kernels into more advanced topics like neural networks, transformers, clustering, and recommender systems.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">CS 377</span>
+            <span class="course-name">Database Systems</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">A heavily SQL-based class covering database design, relational models, normalization, query processing, and maintenance of data integrity.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ISOM 351</span>
+            <span class="course-name">Process &amp; Systems Management</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">B</span><span class="g-mod">-</span></span>
+          </div>
+          <div class="course-note">Studied how businesses analyze and improve operations, allocate resources, and make process decisions, with an emphasis on performance measurement, forecasting accuracy, and reducing costly inefficiencies.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">MKT 340</span>
+            <span class="course-name">Marketing Management</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">A</span></span>
+          </div>
+          <div class="course-note">Covered how companies understand customers, position products, and construct marketing strategies, ending with an online, multi-week, simulated internship and group presentation on our decision-making throughout the activity.</div>
+        </div>
+    </div>
+  </div>
+
+
+    <div class="term current">
+    <div class="term-head">
+      <div class="term-stat"><span class="k">Term</span><span class="v">Fall 2026 · in progress</span></div>
+      <div class="term-stat"><span class="k">Term GPA</span><span class="v">TBD</span></div>
+      <div class="term-stat"><span class="k">Credits</span><span class="v">13</span></div>
+    </div>
+    <div class="courses">
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 480</span>
+            <span class="course-name">Computing Methods in Economics</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">TBD</span></span>
+          </div>
+          <div class="course-note">Capstone course focused on conducting economic analysis through advanced computational techniques, including a variety of different topics, each covering a unique economic model and its implementation using software tools and programming languages.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 410W</span>
+            <span class="course-name">Topics in Macroeconomics</span>
+            <span class="course-cr">4.00</span>
+            <span class="course-grade"><span class="g-letter">TBD</span></span>
+          </div>
+          <div class="course-note">Advanced writing-intensive seminar focused on macroeconomic theory, fiscal policy, and the labor market, bridging the gap between theory and real data, and concluding with a fifteen-page research paper with a defensible position of my own.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 525</span>
+            <span class="course-name">Data Mgmt. &amp; Visualization</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">TBD</span></span>
+          </div>
+          <div class="course-note">A graduate course on building practical skills required for economic analysis and data science, with an emphasis on acquiring, cleaning, and structuring data, development of reproducible research workflows, and hands-on use of Git, Python, R, Stata, and AI.</div>
+        </div>
+        <div class="course">
+          <div class="course-row">
+            <span class="course-code">ECON 526</span>
+            <span class="course-name">Quantitative Methods I</span>
+            <span class="course-cr">3.00</span>
+            <span class="course-grade"><span class="g-letter">TBD</span></span>
+          </div>
+          <div class="course-note">Another graduate course setting the foundation for complex econometric work, covering multivariate and integral calculus, matrix algebra, differential equations, and their applications in both static and dynamic analyses.</div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+<h2>Footnotes</h2>
+
+  <div class="footnotes">
+    <p id="fn-1">[1] I left off a few required first-year courses because they were general education requirements and do not add any meaningful information to the academic background presented in this section.</p>
+    <p id="fn-2">[2] I only included certain extracurricular involvement in this section, focusing on the clubs where I have had the most relevant or impactful experience.</p>
+  </div>
+
+</section>
+
+<section id="repos" role="tabpanel" aria-labelledby="tab-repos" hidden>
+
+  <h2>Primary Work</h2>
+
+  <div class="rows repos">
+    <div class="repo-head">
+      <span>Title</span><span>Description</span><span>Primary Language</span><span>Status</span>
+    </div>
+    <details id="repo-1">
+      <summary>
+        <span class="name"><span class="repo-title">Prediction Markets</span><span class="repo-handle">four repositories</span></span>
+        <span class="desc">Four programs for identifying and evaluating inefficiencies across Kalshi and Polymarket, spanning strategy backtesting, cross-venue arbitrage detection, live market visualization, weather contract pricing.</span>
+        <span class="lang"><span class="sq"></span>Python</span>
+        <span class="status done"><span class="dot"></span>Complete</span>
+      </summary>
+      <div>
+        <p>Prediction markets have been the subject of my fascination for multiple years at this point, since they include such a wide, near-ridiculous array of subjects and events that you can “invest” in. It seemed logical to me that since these markets are still new (compared to other, more established financial markets) and attract an abundance of uninformed retail traders, their potential to contain inefficiencies would be high.</p>
+
+        <h3>Crypto Contract Backtesting System</h3>
+        <p>This project involved short-term crypto contracts on Kalshi, featuring leakage-safe data handling, purged cross-validation, probability calibration, fee-aware backtesting, and multiple checks against a sealed holdout. 38 strategies, all generated from a data mining-based discovery engine, can be tested, which I did across millions of real trades and just shy of 700 iterations. Small edges were found here and there, but most were unreliable or consumed by fees. In the end, I discovered that the market is indeed efficient. I would like to use this program on other exchanges in the future.</p>
+        <a href="https://github.com/masonlancellotti/crypto-contract-backtesting-system" target="_blank" rel="noopener">github.com/masonlancellotti/crypto-contract-backtesting-system <span aria-hidden="true">↗</span></a>
+
+        <h3>Arbitrage Scanner</h3>
+        <p>This idea is what originally made me interested in prediction markets; since there are so many venues, there must be price differences between them for the same contracts, even if only for a few seconds. In this project, I graph-based relationship detection and caching, fee-specific edge math, and a layered verification stack with LLMs classifying how two markets or contracts relate, with hard-coded validators preventing them from being overwhelmed or wasting tokens. On a live run, the program passed over 150,000 contracts and 300,000 quotes, identifying 800 pairs and rejecting all of them due to rule mismatches or incomplete outcome sets. In the future, I would like to expand the number of venues this program supports, as well as improve its process and cost so that it can run continuously and more efficiently/accurately identify and potentially autonomously profit off of arbitrage opportunities.</p>
+        <a href="https://github.com/masonlancellotti/prediction-market-arbitrage-scanner" target="_blank" rel="noopener">github.com/masonlancellotti/prediction-market-arbitrage-scanner <span aria-hidden="true">↗</span></a>
+
+        <h3>Trading Terminal</h3>
+        <p>A Bloomberg-style four-panel desktop app wired to live public data from both Kalshi and Polymarket. The interface includes function keys, full keyboard navigation, most-active and biggest-mover screens, news, charts, order book depth, live latency and connection health indicators, a scrolling ticker tape, world clocks, a watchlist, and a local paper-trading environment that fills simulated orders against the real book. One challenge I was proud of tackling in this project is how Kalshi and Polymarket return data in completely different ways; on the backend, all data is converted into one common format, so contracts from both exchanges can sit side by side in the same list and be compared directly.</p>
+        <a href="https://github.com/masonlancellotti/prediction-market-trading-terminal" target="_blank" rel="noopener">github.com/masonlancellotti/prediction-market-trading-terminal <span aria-hidden="true">↗</span></a>
+
+        <h3>Weather Contract Pricing Model</h3>
+        <p>This project involved daily high-temperature contracts on Kalshi and Polymarket. It reads contract fine print to determine the exact weather station or sensor a market will settle on and then calculates a machine learning-based fair-value price based on that station's NWS data, building a baseline from recent daily highs, blending in the current forecast, and using historical forecast error to set the spread of the distribution. Because many of these contracts settle on a range rather than a single temperature, it integrates that distribution across each bucket to yield a probability per outcome, which it then conveniently compares against the order book (with prices spanning from zero to one and summing to one, exactly like a probability) to determine edge after fees. In the future, I would like to improve/expand this program’s pricing methodology, as well as create a more concrete, automated trading mechanism.</p>
+        <a href="https://github.com/masonlancellotti/weather-contract-pricing-model" target="_blank" rel="noopener">github.com/masonlancellotti/weather-contract-pricing-model <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="repo-2">
+      <summary>
+        <span class="name"><span class="repo-title">Market Intelligence Agent</span><span class="repo-handle">market-intelligence-agent</span></span>
+        <span class="desc">Continuously running research infrastructure for scheduled and on-demand investment briefs, adversarial review, forecast calibration tracking.</span>
+        <span class="lang"><span class="sq"></span>Python</span>
+        <span class="status done"><span class="dot"></span>Complete</span>
+      </summary>
+      <div>
+        <p>A local research system that runs continuously and produces scheduled market briefs as well as ad-hoc investment briefs. It ingests equities, crypto, news, SEC filings, macroeconomic data, and prediction markets, computing a composite risk regime across them, and running an agent pipeline, including data volume filtration, analysts, adversarial review, a dedicated material composition stage, and a fact-checker. This process yields cited morning digests, strategy notes, and hedge ideas. My primary focus here was building a sophisticated challenge stage, since AI is still very susceptible to hallucinating and/or acting as a yes-man.</p>
+        <a href="https://github.com/masonlancellotti/market-intelligence-agent" target="_blank" rel="noopener">github.com/masonlancellotti/market-intelligence-agent <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="repo-3">
+      <summary>
+        <span class="name"><span class="repo-title">Resale Price Gap Engine</span><span class="repo-handle">resale-price-gap-engine</span></span>
+        <span class="desc">Automated secondhand marketplace arbitrage covering opportunity identification, seller negotiation, purchasing, listing, fulfillment.</span>
+        <span class="lang"><span class="sq"></span>TypeScript</span>
+        <span class="status done"><span class="dot"></span>Complete</span>
+      </summary>
+      <div>
+        <p>Evaluates listings on secondhand markets against recent comparable sales and handles the full transaction workflow if a listing is identified as likely to be profitable. From discovery and valuation through communicating with sellers, purchasing, listing, repricing, and shipping, every action is recorded, and the level of automation is highly customizable by user. The program is also self-training, following the listings it declined through to their eventual sale, scoring valuation error and confidence to tune the opportunity identification system over time.</p>
+        <a href="https://github.com/masonlancellotti/resale-price-gap-engine" target="_blank" rel="noopener">github.com/masonlancellotti/resale-price-gap-engine <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+
+    <details id="repo-4">
+      <summary>
+        <span class="name"><span class="repo-title">Real Estate Social Marketing App</span><span class="repo-handle">private, employer-owned</span></span>
+        <span class="desc">End-to-end social media marketing software for real estate development, spanning strategy, content production, scheduling, performance analytics.</span>
+        <span class="lang"><span class="sq"></span>Python</span>
+        <span class="status wip"><span class="dot"></span>In progress</span>
+      </summary>
+      <div>
+        <p>A custom application built for GROWTH Homes that includes the end-to-end path for turning raw property footage into scheduled social media content. It was made with real estate development in mind but could also be generalized for use in any subset of the real estate industry. The app is highly AI driven, with a multitude of APIs making it a one-stop shop for strategy, video storage, content production, post scheduling, and analytics. It also features company- and competitor-based web and social scraping, a notebook that natively integrates into video creation workflows and strategy development, an AI “consultant” trained on 40+ pages of highly specific industry context and reference files, cloud-based media storage, and functional team-based features. Across a pilot batch of seventy-six publication-ready videos it saved an estimated sixty-one hours of manual work. There is no public repository for this project, as it belongs to my employer. Here, you can view screenshots of the software, as well as a few videos and posts it produced, all of which took only a few minutes to create from start to finish. I plan to continue working on this project seriously, making improvements and eventually adding new features.</p>
+      </div>
+    </details>
+
+    <details id="repo-5">
+      <summary>
+        <span class="name"><span class="repo-title">Personal Website</span><span class="repo-handle">personal-website</span></span>
+        <span class="desc">Frontend architecture including modular components and reusable organization systems meant to provide a richer alternative to my resume.</span>
+        <span class="lang"><span class="sq"></span>HTML</span>
+        <span class="status wip"><span class="dot"></span>In progress</span>
+      </summary>
+      <div>
+        <p>A modular React-based portfolio website intended to offer a more complete picture of my background and experience, in addition to displaying how I can utilize my skillset in a practical setting to produce a concrete, high-quality deliverable. I used Claude for much of the build process to implement, debug, and refine the frontend while I crafted focused prompts and feedback to ensure the final product reflected my initial vision.</p>
+        <a href="https://github.com/masonlancellotti/personal-website" target="_blank" rel="noopener">github.com/masonlancellotti/personal-website <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+  </div>
+
+  <div class="soon-grid">
+    <div class="soon-card">
+      <div class="soon-head">
+        <span class="soon-title">Coming soon</span>
+        <span class="status wip"><span class="dot"></span>In progress</span>
+      </div>
+      <p class="soon-desc">A new project is being built here. This panel fills in with a description and a public repository once it is far enough along to be worth showing.</p>
+    </div>
+    <div class="soon-card">
+      <div class="soon-head">
+        <span class="soon-title">Coming soon</span>
+        <span class="status wip"><span class="dot"></span>In progress</span>
+      </div>
+      <p class="soon-desc">Reserved for the next project on the list. If you want to hear what I am working on before it lands here, my email is in the sidebar.</p>
+    </div>
+  </div>
+
+</section>
+
+<section id="blog" role="tabpanel" aria-labelledby="tab-blog" hidden>
+
+  <h2>Articles</h2>
+
+  <div class="blog-list">
+    <a class="blog-entry" href="/beyond-ai-the-two-forces-defining-the-next-tech-frontier/">
+      <span class="thumb"><img src="/blog/images/three-mile-island.jpg" alt="" loading="lazy"></span>
+      <span class="entry-body">
+        <span class="meta">June 4, 2026 · Technology · 7 min</span>
+        <span class="title">Beyond AI: the two forces defining the next tech frontier</span>
+        <span class="excerpt">As AI dominates the current market narrative, investors are eager to identify the next "golden ticket," so to speak. While sectors like nuclear energy and quantum computing are still in their early stages, some speculate they have the potential to explode alongside rising demands for power and advanced computation.</span>
+      </span>
+    </a>
+    <a class="blog-entry" href="/the-quiet-pressure-of-higher-yields/">
+      <span class="thumb"><img src="/blog/images/treasury-building.jpg" alt="" loading="lazy"></span>
+      <span class="entry-body">
+        <span class="meta">May 28, 2026 · Interest rates · 6 min</span>
+        <span class="title">The quiet pressure of higher yields</span>
+        <span class="excerpt">While investors focus on earnings, tariffs, the Fed, and political headlines, many overlook the impact of heightened Treasury yields. Elevated yields may not draw much attention, but they can slowly weigh on valuations and decrease collective risk appetite, leaving the market in a fragile state.</span>
+      </span>
+    </a>
+    <a class="blog-entry" href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/">
+      <span class="thumb"><img src="/blog/images/jensen-huang.jpg" alt="" loading="lazy"></span>
+      <span class="entry-body">
+        <span class="meta">May 21, 2026 · Stock market · 5 min</span>
+        <span class="title">Why you should watch Nvidia earnings even if you don't own the stock</span>
+        <span class="excerpt">With tech stocks dominating the market, megacap earnings reports like Nvidia's have the potential to shift sentiment across AI, semiconductors, and broader indexes, creating a ripple effect that reaches far beyond direct stock exposure.</span>
+      </span>
+    </a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="foot-row">
+    <p class="fl-left">&#169; 2026 Mason Lancellotti</p>
+    <nav class="fl-mid" aria-label="Materials">
+      <a href="files/mason-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
+      <a href="files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
+    </nav>
+    <nav class="fl-right" aria-label="Elsewhere">
+      <a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:mason.angelo.lancellotti@gmail.com">Email</a>
+    </nav>
+  </div>
+</footer>
+
+</div>
+
+<script src="assets/site.js?v=20260828-3" defer></script>
 </body>
 </html>
