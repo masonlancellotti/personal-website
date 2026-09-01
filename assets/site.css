@@ -446,6 +446,35 @@ td + td, th + th { border-left: 1px solid var(--rule-soft); }
 .skills .barwrap span.on { background: var(--accent); }
 .skills td:first-child { font-weight: 600; width: 14em; }
 
+@media (max-width: 560px) {
+  .skills,
+  .skills tbody,
+  .skills tr,
+  .skills td { display: block; width: 100%; }
+  table.skills { border: 0; }
+  .skills thead { display: none; }
+  .skills tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--rule);
+    border-bottom-color: var(--ink);
+  }
+  .skills td { border: 0; }
+  .skills td + td { border-top: 1px solid var(--rule-soft); }
+  .skills td:first-child {
+    width: auto;
+    background: var(--wash);
+  }
+  .skills td.level {
+    display: flex;
+    width: auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    white-space: normal;
+  }
+  .skills .level-text { width: auto; }
+}
+
 /* transcript: each term reads as its own block */
 
 
@@ -610,10 +639,12 @@ footer { border-top: 1px solid var(--ink); padding-top: 14px; }
 .repos .repo-head,
 .repos summary {
   display: grid;
-  grid-template-columns: 1.4fr 2fr 145px 110px;
+  grid-template-columns: 1.4fr 2fr 145px 18px 110px;
   gap: 26px;
   align-items: baseline;
 }
+.repo-head span:nth-child(4),
+.repos summary .status { grid-column: 5; }
 .repo-head {
   padding: 10px 12px;
   border-bottom: 1px solid var(--rule);
@@ -706,7 +737,9 @@ footer { border-top: 1px solid var(--ink); padding-top: 14px; }
   padding: 16px 0 22px 20px;
   border-left: 2px solid var(--accent);
   margin-left: 12px;
+  min-width: 0;
 }
+.repos details > div a { overflow-wrap: anywhere; }
 .repos details[open] > summary {
   background: var(--wash);
   box-shadow: inset 0 0 0 1px var(--rule);
@@ -715,13 +748,20 @@ footer { border-top: 1px solid var(--ink); padding-top: 14px; }
 .repos details > div h3 { margin-top: 22px; font-size: 16px; }
 .repos details > div h3:first-child { margin-top: 4px; }
 
-@media (max-width: 900px) {
+@media (max-width: 900px), (min-width: 1000px) and (max-width: 1320px) {
   .repos .repo-head { display: none; }
   .repos summary { grid-template-columns: 1fr; gap: 6px; }
+  .repos summary .status { grid-column: auto; }
   .repos .status, .repos .lang { text-align: left; }
+}
+@media (max-width: 900px) {
   .transcript .term-head { grid-template-columns: 1fr; }
-  .transcript .course-row { grid-template-columns: 76px 1fr 46px 40px; gap: 10px; }
+  .transcript .course-row { grid-template-columns: 76px minmax(0, 1fr) 46px 40px; gap: 10px; }
   .transcript .course-note { padding-left: 0; padding-right: 0; }
+}
+@media (max-width: 560px) {
+  .transcript .course-row { grid-template-columns: minmax(0, 1fr) 46px 40px; row-gap: 4px; }
+  .transcript .course-code { grid-column: 1 / -1; }
 }
 
 .involvement .inv-card { height: 100%; }
@@ -798,11 +838,11 @@ h2 + .rows, h2 + .transcript, h2 + table { margin-top: 14px; }
   display: grid;
   grid-template-columns: 220px calc(52ch + 17px);
   gap: 18px;
-  align-items: stretch;
+  align-items: start;
 }
 .headshot {
+  position: relative;
   width: 100%;
-  height: auto;
   aspect-ratio: 1;
   border: 1px solid var(--rule);
   background: var(--wash);
@@ -813,6 +853,14 @@ h2 + .rows, h2 + .transcript, h2 + table { margin-top: 14px; }
   text-transform: uppercase;
   color: var(--muted);
   overflow: hidden;
+}
+@supports not (aspect-ratio: 1) {
+  .headshot { height: 220px; }
+}
+.headshot picture {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 .headshot img {
   width: 100%;
@@ -851,7 +899,7 @@ h2 + .rows, h2 + .transcript, h2 + table { margin-top: 14px; }
 
 @media (max-width: 560px) {
   .intro-side { grid-template-columns: 1fr; max-width: 520px; }
-  .headshot { width: min(100%, 220px); height: auto; }
+  .headshot { width: min(100%, 220px); }
 }
 
 /* ══ experience: role and location are their own columns ════════════════════ */
