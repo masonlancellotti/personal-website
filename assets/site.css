@@ -1215,13 +1215,13 @@ footer { font-size: 14px; }
   text-wrap: balance;
 }
 .identity-photo {
-  flex: 0 0 62px;
-  width: 62px;
-  height: 62px;
+  display: block;
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid var(--bg);
-  box-shadow: 0 0 0 1px var(--rule);
+  border: 1px solid var(--rule);
   background: var(--wash);
 }
 .identity-photo img {
@@ -1426,7 +1426,7 @@ footer { font-size: 14px; }
   .home .tabs button,
   .article-page .dir .page-links a { min-height: 54px; padding: 7px 5px; font-size: 13px; }
   .identity { margin: 8px 0 10px; }
-  .identity-photo { flex-basis: 56px; width: 56px; height: 56px; }
+  .identity-photo { flex-basis: 68px; width: 68px; height: 68px; }
   .identity h1,
   .identity .dir-name { font-size: clamp(24px, 7vw, 30px); }
   .contact { font-size: 13.5px; }
