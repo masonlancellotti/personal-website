@@ -1,7 +1,7 @@
 const directory = document.querySelector('.site-directory');
 const menu = document.getElementById('site-menu');
 const menuToggle = document.querySelector('.directory-toggle');
-const mobileNavigation = window.matchMedia('(max-width: 760px)');
+const mobileNavigation = window.matchMedia('(max-width: 959px)');
 
 if (directory && menu && menuToggle) {
   const home = document.createComment('Directory position');
