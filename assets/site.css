@@ -1120,6 +1120,15 @@ footer { font-size: 14px; }
 }
 @container content (max-width: 780px) {
   .involvement, .soon-grid { grid-template-columns: 1fr; }
+  .featured-article { grid-template-columns: 1fr; }
+  .featured-image { min-height: 0; aspect-ratio: 16 / 7; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .featured-copy { padding: 24px 22px; }
+  .featured-title { font-size: 23px; }
+  .transcript .course-row { grid-template-columns: 76px minmax(0, 1fr) 46px 40px; gap: 10px; }
+  .transcript .course-note { padding-left: 0; padding-right: 0; }
+}
+
+@container content (max-width: 690px) {
   .rows:not(.repos) summary { grid-template-columns: 18px minmax(0, 1fr) auto; column-gap: 12px; row-gap: 2px; padding: 15px 0; }
   .rows:not(.repos) summary::before { grid-column: 1; grid-row: 1 / 4; align-self: center; }
   .rows:not(.repos) summary .when { grid-column: 2; grid-row: 1; font-size: 13px; }
@@ -1127,12 +1136,6 @@ footer { font-size: 14px; }
   .rows:not(.repos) summary > b { grid-column: 2 / -1; grid-row: 2; font-size: 16px; }
   .rows:not(.repos) summary .role { grid-column: 2 / -1; grid-row: 3; font-size: 14px; }
   .rows:not(.repos) details > div { padding-left: 30px; }
-  .featured-article { grid-template-columns: 1fr; }
-  .featured-image { min-height: 0; aspect-ratio: 16 / 7; border-right: 0; border-bottom: 1px solid var(--rule); }
-  .featured-copy { padding: 24px 22px; }
-  .featured-title { font-size: 23px; }
-  .transcript .course-row { grid-template-columns: 76px minmax(0, 1fr) 46px 40px; gap: 10px; }
-  .transcript .course-note { padding-left: 0; padding-right: 0; }
 }
 
 @media (min-width: 960px) {
@@ -1174,7 +1177,23 @@ footer { font-size: 14px; }
   .featured-image { aspect-ratio: 16 / 7; border-right: 0; border-bottom: 1px solid var(--rule); }
   .article-card-image { aspect-ratio: 16 / 8; border-right: 0; border-bottom: 1px solid var(--rule); }
 }
-@container content (max-width: 850px) {
+/* Keep the original table and meters; give examples room on smaller desktops. */
+@container content (max-width: 980px) {
+  .skills td:first-child { width: 150px; }
+}
+@container content (max-width: 700px) {
+  .skills, .skills tbody, .skills tr, .skills td { display: block; width: 100%; }
+  table.skills { border: 0; }
+  .skills thead { display: none; }
+  .skills tr { margin-bottom: 12px; border: 1px solid var(--rule); border-bottom-color: var(--ink); }
+  .skills td { border: 0; }
+  .skills td + td { border-top: 1px solid var(--rule-soft); }
+  .skills td:first-child { width: auto; background: var(--wash); }
+  .skills td.level { display: flex; width: auto; align-items: center; justify-content: space-between; gap: 12px; }
+  .skills .level-text { width: auto; }
+  .skills td:last-child { font-size: 14px; line-height: 1.6; }
+}
+@media (max-width: 850px) {
   .skills, .skills tbody, .skills tr, .skills td { display: block; width: 100%; }
   table.skills { border: 0; }
   .skills thead { display: none; }
