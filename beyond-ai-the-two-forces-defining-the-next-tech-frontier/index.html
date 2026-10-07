@@ -10,7 +10,7 @@
 <meta property="og:title" content="Beyond AI: the two forces defining the next tech frontier">
 <meta property="og:description" content="Nuclear energy and quantum computing could address the power and computation bottlenecks that will eventually constrain AI's growth.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=20260930-2">
+<link rel="stylesheet" href="/assets/site.css?v=20261007-6">
 </head>
 <body>
 
@@ -18,23 +18,27 @@
 
 <aside class="dir">
 <div class="dir-in">
-  <p class="modified muted">Last modified: 8/30/2026</p>
+  <p class="modified muted">Last modified: 10/7/2026</p>
+  <button type="button" class="directory-toggle" aria-controls="site-menu" aria-expanded="false">Menu</button>
   <div class="identity">
     <picture class="identity-photo">
       <source srcset="/images/headshot-new.webp" type="image/webp">
       <img src="/images/headshot-new.jpg" alt="" width="660" height="824">
     </picture>
+    <div class="identity-text">
     <p class="dir-name"><a href="/">Mason Lancellotti</a></p>
-  </div>
-  <p class="contact">
-    Emory University · Atlanta, GA · 3.93 GPA<br>
+    <p class="contact">
+    <span class="keep-together">Emory University</span> · <span class="keep-together">Atlanta, GA</span> · <span class="keep-together">3.93 GPA</span><br>
     Economics, computer science, and business
   </p>
+    </div>
+  </div>
   <div class="compact-actions">
     <a href="mailto:mason.angelo.lancellotti@gmail.com">Email</a>
-    <a href="/files/mason-resume.pdf?v=20260930-1824" target="_blank" rel="noopener">Resume ↗</a>
+    <a href="/files/mason-resume.pdf?v=20261007-2" target="_blank" rel="noopener">Resume</a>
   </div>
 
+  <div class="site-directory" id="site-directory">
   <div class="side-group">
     <p class="side-label">Contact</p>
     <ul class="side-links">
@@ -55,7 +59,7 @@
   <div class="side-group">
     <p class="side-label">Materials</p>
     <ul class="side-links">
-      <li><a href="/files/mason-resume.pdf?v=20260930-1824" target="_blank" rel="noopener">Resume<span class="tag">PDF</span></a></li>
+      <li><a href="/files/mason-resume.pdf?v=20261007-2" target="_blank" rel="noopener">Resume<span class="tag">PDF</span></a></li>
       <li><a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript<span class="tag">PDF</span></a></li>
       <li><a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT Report<span class="tag">PDF</span></a></li>
     </ul>
@@ -64,10 +68,12 @@
   <div class="side-group">
     <p class="side-label">External Links</p>
     <ul class="side-links">
-      <li><a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn<span class="ext" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://www.linkedin.com/in/masonlancellotti/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/masonlancellotti" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
   </div>
+  </div>
+
 </div>
 </aside>
 
@@ -140,7 +146,7 @@
       <li><a href="/the-quiet-pressure-of-higher-yields/"><span class="rt"><img src="/blog/images/treasury-building.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">The quiet pressure of higher yields</span><span class="d">May 28, 2026</span></span></a></li>
       <li><a href="/why-you-should-watch-nvidia-earnings-even-if-you-dont-own-the-stock/"><span class="rt"><img src="/blog/images/jensen-huang.jpg" alt="" loading="lazy"></span><span class="rx"><span class="rn">Why you should watch Nvidia earnings even if you don't own the stock</span><span class="d">May 21, 2026</span></span></a></li>
     </ul>
-    <a class="rail-home" href="/">&#8592; Home</a>
+    <a class="rail-home" href="/">Home</a>
   </div>
 </div>
 </main>
@@ -151,7 +157,7 @@
   <div class="foot-row">
     <p class="fl-left">&#169; 2026 Mason Lancellotti</p>
     <nav class="fl-mid" aria-label="Materials">
-      <a href="/files/mason-resume.pdf?v=20260930-1824" target="_blank" rel="noopener">Resume</a>
+      <a href="/files/mason-resume.pdf?v=20261007-2" target="_blank" rel="noopener">Resume</a>
       <a href="/files/Transcript_Mason_Lancellotti.pdf" target="_blank" rel="noopener">Transcript</a>
       <a href="/files/mason-sat.pdf" target="_blank" rel="noopener">SAT</a>
     </nav>
@@ -164,5 +170,13 @@
 </footer>
 
 </div>
+<dialog class="site-menu" id="site-menu" aria-labelledby="site-menu-title">
+  <div class="site-menu-header">
+    <h2 id="site-menu-title">Navigation</h2>
+    <button type="button" class="site-menu-close" autofocus>Close</button>
+  </div>
+  <div class="site-menu-body"></div>
+</dialog>
+<script src="/assets/navigation.js?v=20261007-4" defer></script>
 </body>
 </html>
