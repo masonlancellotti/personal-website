@@ -32,6 +32,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font: 16px/1.5 Helvetica, Arial, sans-serif;
+  text-wrap: pretty;
 }
 
 .wrap {
@@ -40,7 +41,7 @@ body {
 
 a { color: var(--accent); }
 
-h1, h2, h3 { font-family: Helvetica, Arial, sans-serif; }
+h1, h2, h3 { font-family: Helvetica, Arial, sans-serif; text-wrap: balance; }
 
 h1 { font-size: 36px; font-weight: 700; margin: 0 0 8px; }
 h2 { font-size: 24px; margin: 44px 0 16px; }
@@ -581,12 +582,12 @@ footer { border-top: 1px solid var(--ink); padding-top: 14px; }
 .repos .repo-head,
 .repos summary {
   display: grid;
-  grid-template-columns: 1.4fr 2fr 145px 18px 110px;
+  grid-template-columns: minmax(180px, 1.1fr) minmax(0, 2fr) 90px 110px;
   gap: 26px;
   align-items: baseline;
 }
 .repo-head span:nth-child(4),
-.repos summary .status { grid-column: 5; }
+.repos summary .status { grid-column: 4; }
 .repo-head {
   padding: 10px 12px;
   border-bottom: 1px solid var(--rule);
@@ -1062,6 +1063,7 @@ footer { font-size: 14px; }
 }
 .identity-text { min-width: 0; }
 .identity-text .contact { margin-top: 8px; font-size: 13px; line-height: 1.5; }
+.contact-line { display: block; white-space: nowrap; }
 .identity-photo {
   display: block;
   flex: 0 0 clamp(80px, 20vw, 88px);
@@ -1235,3 +1237,17 @@ html.has-site-menu { overflow: hidden; }
 .site-menu .tabs button { min-height: 44px; padding: 11px 0; font-size: 14px; border: 0; border-bottom: 1px solid var(--rule-soft); background: transparent; text-align: left; }
 .site-menu .tabs button[aria-selected="true"] { padding-left: 12px; border-left: 2px solid var(--accent); color: var(--accent); background: transparent; }
 .site-menu :focus-visible, .directory-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Balance short labels as a unit; prose inherits widow-aware wrapping. */
+.rows summary > b, .rows summary .role,
+.repos .repo-title, .skills td:first-child,
+.transcript .course-name, .inv-org, .inv-article-title,
+.post-nav .t, .dir .article-list a, .dir .article-list .here span {
+  text-wrap: balance;
+}
+.byline, .article-meta, .inv-article-meta { text-wrap: balance; }
+
+/* Compact portraits leave enough room for complete header facts at 320px. */
+@media (max-width: 360px) {
+  .identity-photo { flex-basis: 72px; width: 72px; height: 72px; }
+}
